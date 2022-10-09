@@ -1,0 +1,332 @@
+
+/* CSS Resets https: //piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,h1,h2,h3,h4,p,figure,blockquote,dl,dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,button,
+textarea,select {
+    font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+* {
+    border: 0px solid black;
+}
+/* App Styling */
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+    display: flex;
+    justify-content: center;
+    background-color:rgb(188, 201, 213);
+    font-size: 10px;
+}
+
+
+/* The main container to keep all otheres centered*/
+.centered-container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    border: 0px solid blue;
+    height: 500px;
+    margin-top: 10px;
+}
+
+/*The container that holds the cells that contain all the weather data*/
+.main-container {
+    display: flex;
+    flex-direction: column;
+    
+
+    border: 1px solid rgb(247, 170, 16);
+    
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* three levels to hold the celss of the data*/
+.level-top { 
+    display: flex;
+    flex: 0 auto;
+    border: 0px solid black;
+    height: 170px;
+}
+.level-top .weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex: 1 15%;
+    border: 0px solid black;
+    margin: 10px;
+    border-radius: 5px;
+}
+.level-top .current-condition-container {
+    flex: 1 75%;
+    border: 0px solid black;
+}
+.temp {
+    border: 0px solid black;
+    height: 20px;
+    margin: 3px;
+    line-height: 15px;
+}
+.temp .temp- {
+    font-size: 30px;
+    font-weight: 600;
+    padding-left: 15px;
+    color:rgb(247, 170, 16);
+}
+
+.date {
+    border: 0px solid black;
+    height: 25px;
+    margin: 3px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 100;
+    color: rgb(160, 252, 1);
+}
+.condition {
+    border: 0px solid black;
+    margin: 3px;
+    margin-left: 10px;
+    color:rgb(9, 249, 249);
+}
+
+.search {
+    display:flex;
+    justify-content: flex-end;
+
+    line-height: 10px;
+    padding-top: 8px;
+    margin-left: 10px;
+}
+
+input[type="text"]{
+    border: 0px solid black;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid black;
+    width: 150px;
+    color: rgb(9, 249, 249);
+    padding-left: 5px;
+}
+
+#search {
+    border: 0px solid black;
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#search:hover {
+    color: white;
+    cursor:pointer;
+}
+#search:active {
+    color: black;
+}
+
+.level-mid {
+    display: flex;
+    flex: 0 auto;
+    flex-wrap: wrap;
+    border: 0px solid black;
+    height: 25px;
+    margin-left: 20px;
+}
+.current-stats {
+    display: flex;
+    border: 1px solid rgb(251, 249, 249);
+    width: 100px;
+    margin-left: 5px;
+    margin-bottom: 2px;
+    border-radius: 5px;
+    text-align:center;
+    font-size: 10px;
+    line-height: 20px;
+    color:rgb(247, 170, 16);
+}
+/*
+.current-stats:first-child {
+    margin-left: 15px;
+} */
+.current-stats:last-child{
+    width: 120px;
+}
+.icon {
+    border: 0px solid black;
+    margin-left: 5px;
+
+}
+.level-bottom {
+    display: flex;
+    flex: 1 auto;
+
+    flex-wrap: wrap;
+    border: 0px solid black;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.day-container {
+    display: flex;
+    align-items: center;
+
+    border: 0px solid rgb(5, 5, 5);
+}
+.day-container-centered {
+    display: flex;
+    flex: 1 auto;
+
+    border: 0px solid rgb(252, 251, 251);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.level-bottom .day{
+    display: flex;
+    flex-direction: column;
+
+    flex: 0 125px;
+    border: 1px solid rgb(254, 254, 254);
+
+    height: 80px;
+
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+/*.day:first-child {
+    margin-left: 5px;
+}*/
+
+.level-bottom .day .inside-day-container{
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+}
+
+.level-bottom .day .inside-day-container .what-day {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 7px;
+    flex: 1;
+    border: 0px solid rgb(254, 254, 254);
+    color:aliceblue;
+}
+
+.day-conditions {
+    color: aliceblue;
+    padding-left: 7px;
+}
+.level-bottom .day .inside-day-container .icon-temp-container{
+    display: flex;
+    margin-top: 1px;
+}
+
+.level-bottom .day .inside-day-container .icon-temp-container .day-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 0 40%;
+    height: 30px; 
+    border: 0px solid rgb(254, 254, 254);
+}
+.level-bottom .day .inside-day-container .icon-temp-container .day-temp {
+    display: flex;
+    padding-top: 0px;
+    flex: 0 60%;
+    border: 0px solid rgb(254, 254, 254);color:
+    rgb(247, 170, 16);
+    font-size: 20px;
+}
+
+
+
+@media screen and (max-width: 415px) {
+    /* make the last three days hide
+    #day-five, #day-six, #day-seven {
+        display: none;
+    }*/
+    .level-mid {
+        height: 50px;        
+    }
+    .level-top {
+        margin-bottom: 5px;
+    }
+    .main-container {
+        height: 600px;
+        margin-bottom: 50px;
+    }
+    
+}
+@media screen and (max-width: 542px) {
+    .level-mid {
+            height: 50px;
+        }
+}

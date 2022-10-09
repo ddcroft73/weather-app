@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Weather</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+
+</head>
+
+<body>
+
+
+<!--Add one big flex container that will always be centered-->
+<div class="centered-container">
+    <!--THis container will be the flex container that holds the cells for weather info
+        3 in all. The contents should change according to the screen size.-->
+
+    <div class="main-container">
+
+        <div class="search">
+            <input type="text" id="location" value="city, state OR zipcode">
+            <input type="button" value="Search" id="submit">
+        </div>
+
+        <div class="level-top">
+            <div class="weather-icon">
+                <img src="SVG/rainy.svg" >
+            </div>
+
+            <div class="current-condition-container">
+                <div class="date">
+                    <span class="today-date-time">Sunday, 08/25/2022</span>
+                </div>
+                <div class="temp">
+                      <span class="temp-">72&#176;</span>
+                </div>
+                <div class="condition">
+                     <span class="condition-text">be raining, blahh...</span>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="level-mid" id="conditionsBorders">
+             <div class="current-stats">  
+                <div class="icon" ></div>           
+                <img src="SVG/thermo.svg" width="15"> &nbsp;<span id="current-temp"></span> 
+             </div>
+            <div class="current-stats">
+                <div class="icon"></div>
+                <img src="SVG/humidity.svg" width="15"> <span id="current-humidity"></span>
+            </div>
+            <div class="current-stats">
+                <div class="icon"></div>
+                <img src="SVG/wind.svg" width="15"> <span id="wind-speed"></span>
+            </div>
+            <div class="current-stats">
+                <div class="icon"></div>
+                <img src="SVG/rainy.svg" width="15"> &nbsp;<span id="feels-like"></span>
+            </div>
+            <div class="current-stats">
+            <div class="icon"></div>
+            <img src="SVG/sun.svg" width="10"> &nbsp;<span id="sunup"></span>
+            <div class="icon"></div>
+            <img src="SVG/moon.svg" width="10"> &nbsp;<span id="sundown"></span>
+            </div>
+        </div>
+        
+        <div class="day-container">
+            <div class="day-container-centered">
+                <div class="level-bottom" id="daysBorders">
+                    <div class="day" id="day-1">
+                        <div class="inside-day-container">                    
+                            <div class="what-day" id="day-date-1">
+                                Monday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">    
+                                    <img src="SVG/sun.svg" width="25" id="day-icon-1">                    
+                                </div>
+                                <div class="day-temp" id="day-temp-1">
+                                    72&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-1">
+                                Sunny
+                            </div>
+                        </div>                
+                    </div>
+
+                    <div class="day" id="day-2">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-2">
+                                Tuesday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/lightning.svg" width="25" id="day-icon-2">
+                                </div>
+                                <div class="day-temp" id="day-temp-2">
+                                    72&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-2">
+                                Stormy
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="day" id="day-3">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-3">
+                                Wed 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/cloud.svg" width="25" id="day-icon-3">
+                                </div>
+                                <div class="day-temp" id="day-temp-3">
+                                    68&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-3">
+                                Cloudy
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day" id="day-4">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-4">
+                                Thursday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/sun.svg" width="25" id="day-icon-4">
+                                </div>
+                                <div class="day-temp" id="day-temp-4">
+                                    74&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-4">
+                                Sunny
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day" id="day-5">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-5">
+                                Friday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/sun.svg" width="25" id="day-icon-5">
+                                </div>
+                                <div class="day-temp" id="day-temp-5">
+                                    64&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-5">
+                                Light Rain
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day" id="day-6">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-6">
+                                Saturday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/wind.svg" width="25" id="day-icon-6">
+                                </div>
+                                <div class="day-temp" id="day-temp-6">
+                                    78&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-6">
+                                Windy
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="day" id="day-7">
+                        <div class="inside-day-container">
+                            <div class="what-day" id="day-date-7">
+                                Sunday 08/26
+                            </div>
+                            <div class="icon-temp-container">
+                                <div class="day-icon">
+                                    <img src="SVG/rainy.svg" width="25" id="day-icon-7">
+                                </div>
+                                <div class="day-temp" id="day-temp-7">
+                                    79&#176;
+                                </div>
+                            </div>
+                            <div class="day-conditions" id="day-condition-7">
+                                Sunny
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script type="module" src="main.js" ></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script>dayjs().format()</script>
+</body>
+</html>
