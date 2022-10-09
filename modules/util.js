@@ -60,43 +60,50 @@ export const setBackground = (main, dom) => {
     const dir = "bg-images/";
     let fileName = "clear-BG.jpg";  // Default
 
-    const setDarkColors = (dom) => {
-      // call functioin to color for dark colors
+    const setColors = (dom, color) => {
+      // the condition divs
       for (let i = 0; i < dom.conditionBorders.length; i++) {
         if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
-          dom.conditionBorders[i].style = "border: 1px solid black";
-          dom.conditionBorders[i].style.color = "black";
+          dom.conditionBorders[i].style = `border: 1px solid ${color}`;
+          dom.conditionBorders[i].style.color = color;
         }
-      }
+      } 
+      // the day cards
       for (let i = 0; i < dom.daysBorders.length; i++) {
         if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
-          dom.daysBorders[i].style = "border: 1px solid black";
-          dom.daysBorders[i].style.color = "black";
+          dom.daysBorders[i].style = `border: 1px solid ${color}`;
+          dom.daysBorders[i].style.color = color;
         }
       }
+
     }
-    
+    console.log(main);
+
     switch (main) {
       case "Clear":
-        fileName = "rainy-BG.jpg";
-        setDarkColors(dom);
-
+        fileName = "clear-BG.jpg";
+        setColors(dom, 'white');
         break;
+
       case "Clouds":
         fileName = "cloudy-BG.jpg";
-        setDarkColors(dom);
+        setColors(dom, 'rgb(247, 170, 16)');        
+        break;
 
-        break;
       case "Rain":
-        fileName = "rainy-BG.svg";
+        fileName = "rainy-BG.jpg";
+        setColors(dom, 'black');
         break;
-      /*  
+      
       case "Thunderstorm":
-        fileName = "stormy.svg";
+        fileName = "tstorm-BG.jpg";
+        setColors(dom, 'orange');
         break;
+
       case "Drizzle":
         fileName = "mist.svg";
         break;
+        
       case "Snow":
         fileName = "snow.svg";
         break;
@@ -111,8 +118,8 @@ export const setBackground = (main, dom) => {
         break;
       case "Haze":
         path = "haze.svg";
-        break;
-        */
+        break;        
+        
       default:
         fileName = fileName;
     } 

@@ -7,7 +7,11 @@ const defLocation = 'Spartanburg, South Carolina';
 // Create a DOM object to create references to the elements on the page.
 export let DOM = {};
 
+DOM.spinner = document.querySelector('.spin');
+DOM.location1 = document.querySelector('.location');
+
 // info for today
+DOM.weatherIcon = document.querySelector("#weather-icon");
 DOM.today = document.querySelector(".today-date-time");
 DOM.currentTemp = document.querySelector(".temp-");
 DOM.currentTempTwo = document.querySelector("#current-temp");
@@ -65,13 +69,15 @@ DOM.day = [
 ];
 
 // user input
-DOM.location = document.queryCommandValue("#location");
+DOM.location = document.querySelector("#location");
 DOM.submit = document.querySelector("#submit")
 
 // for color changes due to tofays weather
 DOM.backGround = document.querySelector(".main-container");
 DOM.conditionBorders = document.getElementById("conditionsBorders").childNodes;
 DOM.daysBorders = document.getElementById("daysBorders").childNodes;
+
+DOM.submit.addEventListener('click', () => console.log(DOM.location.value))
 
 // When the app loads. check local storage to see if ther is a location, if so use it to load the initial
 // forecast. If Not, load th defLocation.

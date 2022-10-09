@@ -18,26 +18,35 @@
         3 in all. The contents should change according to the screen size.-->
 
     <div class="main-container">
+        <div class="spin"></div>
+
 
         <div class="search">
-            <input type="text" id="location" value="city, state OR zipcode">
+            <div class="location">location</div>
+            <input type="text" id="location" placeholder="city & state OR zipcode">
             <input type="button" value="Search" id="submit">
         </div>
 
         <div class="level-top">
             <div class="weather-icon">
-                <img src="SVG/rainy.svg" >
+                <img src="SVG/rainy.svg" id="weather-icon">
             </div>
 
             <div class="current-condition-container">
                 <div class="date">
-                    <span class="today-date-time">Sunday, 08/25/2022</span>
+                    <span class="today-date-time">Day, Date, Year</span>
                 </div>
                 <div class="temp">
-                      <span class="temp-">72&#176;</span>
+                    <span class="temp-">72&#176;</span>
+                    <div class="temp-type">&#176;F<!--<img src="SVG/f.svg" width="25">--></div>
                 </div>
+                <div class="temp-high-low">
+                    <div class="hi">hi 60</div>
+                    <div class="lo">low 70</div>
+                </div>
+
                 <div class="condition">
-                     <span class="condition-text">be raining, blahh...</span>
+                     <span class="condition-text">yo, condition go here...</span>
                 </div>
                 
             </div>
@@ -47,11 +56,12 @@
         <div class="level-mid" id="conditionsBorders">
              <div class="current-stats">  
                 <div class="icon" ></div>           
-                <img src="SVG/thermo.svg" width="15"> &nbsp;<span id="current-temp"></span> 
+                <img src="SVG/thermo.svg" width="15" alt="thermometer" > &nbsp;<span id="current-temp"></span> 
              </div>
             <div class="current-stats">
                 <div class="icon"></div>
-                <img src="SVG/humidity.svg" width="15"> <span id="current-humidity"></span>
+                <img src="SVG/feels_like.svg" width="15" alt="Feels like"> &nbsp;<span id="feels-like"></span>
+                
             </div>
             <div class="current-stats">
                 <div class="icon"></div>
@@ -59,7 +69,7 @@
             </div>
             <div class="current-stats">
                 <div class="icon"></div>
-                <img src="SVG/rainy.svg" width="15"> &nbsp;<span id="feels-like"></span>
+                <img src="SVG/humidity.svg" width="15"> <span id="current-humidity"></span>
             </div>
             <div class="current-stats">
             <div class="icon"></div>
@@ -82,7 +92,7 @@
                                     <img src="SVG/sun.svg" width="25" id="day-icon-1">                    
                                 </div>
                                 <div class="day-temp" id="day-temp-1">
-                                    72&#176;
+                                    72&#176; 
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-1">
@@ -100,9 +110,12 @@
                                 <div class="day-icon">
                                     <img src="SVG/lightning.svg" width="25" id="day-icon-2">
                                 </div>
-                                <div class="day-temp" id="day-temp-2">
-                                    72&#176;
+
+                                <div class="day-temp">
+                                   <div class="day-temp" id="day-temp-2"></div>    
+                                    <div class="day-temp-low" id="day-temp-low"><span class="hi">50</span>/<span class="lo">50</span></div>
                                 </div>
+                                
                             </div>
                             <div class="day-conditions" id="day-condition-2">
                                 Stormy
