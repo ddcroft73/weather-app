@@ -32,52 +32,64 @@ import { setMainIcon } from "./util.js";
  */
 
 export const getForecast = async (location, key, excludes, dom) => {
-    // makes the api call to get the weather data alwys in F
-    dom.spinner.style.visibility = 'visible';
+  // makes the api call to get the weather data alwys in F
+  dom.spinner.style.visibility = "visible";
 
-    const getForecastData = async (key, coordinates) => {
-      const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=${excludes}&units=imperial&appid=${key}`;
-      const resp = await fetch(url, { mode: "cors" });
-      const data = await resp.json();
-      // adds the name of the locatiion as gathered from getWeatherData to be used in the UI as it is
-      // not available in the final call
-      data.name = coordinates.name;
-      data.country = coordinates.country;
-      data.temp_max = coordinates.temp_max;
-      data.temp_min = coordinates.temp_min;
-      console.log(data.temp_max, data.temp_min)
-      return data;
+  const getForecastData = async (key, coordinates) => {
+    const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=${excludes}&units=imperial&appid=${key}`;
+    const resp = await fetch(url, { mode: "cors" });
+    const data = await resp.json();
+    // adds the name of the locatiion as gathered from getWeatherData to be used in the UI as it is
+    // not available in the final call
+    data.name = coordinates.name;
+    data.country = coordinates.country;
+    data.temp_max = coordinates.temp_max;
+    data.temp_min = coordinates.temp_min;
+    console.log(data.temp_max, data.temp_min);
+    return data;
+  };
+  //https://api.openweathermap.org/data/2.5/weather?q=yo,southcarolina&units=imperial&appid=69eb4c4ba2a0b741f04a495fd8e76b06
+  //https://api.openweathermap.org/data/3.0/onecall?lat=34.9496&lon=-81.9321&exclude=minutely,hourly,alerts&units=imperial&appid=69eb4c4ba2a0b741f04a495fd8e76b06
+
+  // makes an API call and gets the coordinates of the location, need the coord to get
+  // the weather data I need.
+  const getWeatherData = async (key, location) => {
+    // get the coordinates of this location
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${key}`;
+
+    try {
+        const resp = await fetch(url, { mode: "cors" });
+        const data = await resp.json();        
+        
+        // extract some data needed that is not in the onecall api.
+        const coord = {
+          lon: data.coord.lon,
+          lat: data.coord.lat,
+          name: data.name,
+          country: data.sys.country,
+          temp_max: data.main.temp_max,
+          temp_min: data.main.temp_min,
+        };
+
+        dom.location1.textContent = location;
+        // using the coords of location make another API call for forecast data
+        const forecastData = await getForecastData(key, coord);
+        return forecastData;
     }
-
-    // makes an API call and gets the coordinates of the location, need the coord to get
-    // the weather data I need.
-    const getWeatherData = async (key, location) => {
-      // get the coordinates of this location
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${key}`;
-      const resp = await fetch(url, { mode: "cors" });
-      const data = await resp.json();
-
-      // extract some data needed that is not in the onecall api.
-      const coord = {
-        lon: data.coord.lon,
-        lat: data.coord.lat,
-        name: data.name,
-        country: data.sys.country,
-        temp_max: data.main.temp_max,
-        temp_min: data.main.temp_min
-      };
-      
-      dom.location1.textContent = location;
-      
-      // using the coords of location make another API call for forecast data
-      const forecastData = await getForecastData(key, coord);
-      return forecastData;
-    }
-
-  const weatherData = await getWeatherData(key, location);
-  // pass the promise into a regular function so it can be picked apart as an object
-  parseWeatherData(weatherData, dom);
-  dom.spinner.style.visibility = 'hidden';
+     catch {
+      // first get the error code from the response
+      alert(`The location: ${location} could not be found.`);
+     }
+  };
+  
+  try {
+      const weatherData = await getWeatherData(key, location);
+      // pass the promise into a regular function so it can be picked apart as an object
+      parseWeatherData(weatherData, dom);
+  } catch {
+    console.log('error')
+  }  
+  dom.spinner.style.visibility = "hidden";
 }
 
 // called from inside async function, promise is passed in and results in an object with the weather data.
@@ -91,15 +103,21 @@ const parseWeatherData = (APIData, dom) => {
 
 
 const displayCurrentConditions = (APIData, dom) => {
+  const { temp_max, temp_min } = APIData;
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
   const { main, description } = APIData.current.weather[0];
   const todaysDate = DateString();
   const temperatureString = `${Math.round(temp)}`; //;
-  console.log(getDayFromTimeStamp(dt))
-  // set the page elements according to current conditions
-  dom.today.textContent = todaysDate;
-  dom.currentTemp.innerHTML = temperatureString ;
+  
+  setBackground(main, dom);
+  dom.weatherIcon.src = getIcon(main, dom);
 
+  dom.today.textContent = todaysDate;
+  dom.currentTemp.innerHTML = temperatureString ;  // replace this with pressure
+  dom.hiTemp.innerHTML = `${Math.round(temp_max)}&#176`;;
+  dom.loTemp.innerHTML = `${Math.round(temp_min)}&#176`;;
+  
+  dom.windSpeed.innerHTML ='&nbsp;' + wind_speed + "/mph";
   dom.currentTempTwo.innerHTML = temperatureString;
   dom.condition.innerHTML = description;
   dom.humidity.innerHTML = "&nbsp" + humidity + "%";
@@ -107,15 +125,13 @@ const displayCurrentConditions = (APIData, dom) => {
   dom.sunup.innerHTML = formatTime(sunrise);
   dom.sundown.innerHTML = formatTime(sunset);
   
-  setBackground(main, dom);
-  dom.weatherIcon.src = getIcon(main, dom);
 };
 
 const displayWeatherForWeek = (APIData, dom) => {
 
     for (let index = 0; index < 7; index++) {
       dom.day[index].date.innerHTML = DateString(
-        getDayFromTimeStamp(APIData.daily[index + 1].dt)
+        getDayFromTimeStamp(APIData.daily[index+1].dt)
       )//.split(" ")
        //.splice(0, 3)
        //.join(" ");     // slice off the year for daily forecast.
@@ -123,6 +139,8 @@ const displayWeatherForWeek = (APIData, dom) => {
       dom.day[index].temp.innerHTML = `${Math.round(APIData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
       dom.day[index].icon.src = getIcon(APIData.daily[index].weather[0].main); //  "SVG/sun.svg"; 
       dom.day[index].condition.innerHTML = APIData.daily[index].weather[0].description;
+      dom.day[index].tempMax.innerHTML = Math.round(APIData.daily[index].temp.max) + "&#176";
+      dom.day[index].tempMin.innerHTML = Math.round(APIData.daily[index].temp.min) + "&#176";
     }    
 }
 

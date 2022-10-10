@@ -94,7 +94,7 @@ body {
     
     background-image: url();
 
-    border: 1px solid rgb(247, 170, 16);
+    border: 0px solid rgb(247, 170, 16);
     
     width: 100%;
     max-width: 1000px;
@@ -115,7 +115,7 @@ body {
     justify-content: center;
     align-items: center;
     
-    flex: 1 15%;
+    flex: 0 25%;
     border: 0px solid black;
     margin: 10px;
     border-radius: 5px;
@@ -175,7 +175,7 @@ body {
     border: 0px solid black;
     margin-left: 10px;
     margin-top: 0px;
-    color:rgb(9, 249, 249);
+    color:rgb(245, 249, 249);
 }
 
 .search {
@@ -195,25 +195,53 @@ body {
 }
 input[type="text"]{
     border: 1px solid rgb(251, 249, 249);
-    border-radius: 5px;
+    border-right: 0px solid rgb(249, 249, 249);
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgb(249, 249, 249);
     width: 150px;
-    color: rgb(9, 249, 249);
+    color: rgb(7, 7, 7);
     padding-left: 5px;
+    font-size: 14px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    height: 25px;
+}
+#location:focus {
+    outline:none;
+}
+.clear {
+    border-right: 1px solid rgb(246, 245, 245);
+    border-top: 1px solid rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(249, 249, 249);
+    padding: 3px;
+    line-height: 21px;
+    font-size: 12px;
+    background-color: rgb(187, 192, 195);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 25px;
+
+}
+.clear:hover {
+    color: white;
+    cursor: pointer;
 }
 
+.clear:active {
+    color: black;
+}
 #submit {
     border: 1px solid rgb(247, 247, 247);
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0);
     margin-left: 5px;
     margin-right: 10px;
+    height: 25px;
 }
 
 #submit:hover {
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 #submit:active {
     color: black;
@@ -362,19 +390,24 @@ input[type="text"]{
     #day-five, #day-six, #day-seven {
         display: none;
     }*/
-    .level-mid {
-        height: 50px;        
+    .current-condition-container {
+        margin-top: 30px;        
     }
     .level-top {
         margin-bottom: 5px;
     }
     .main-container {
-        height: 600px;
-        margin-bottom: 50px;
+        height: 700px;
+        margin-bottom: 5px;
     }
-    
+    .temp {
+        font-size: 50px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 }
-@media screen and (max-width: 542px) {
+
+@media screen and (max-width: 576px) {
     .level-mid {
             height: 50px;
         }

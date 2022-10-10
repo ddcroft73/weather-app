@@ -20,16 +20,16 @@
     <div class="main-container">
         <div class="spin"></div>
 
-
         <div class="search">
             <div class="location">location</div>
             <input type="text" id="location" placeholder="city & state OR zipcode">
+            <div class="clear">X</div>
             <input type="button" value="Search" id="submit">
         </div>
 
         <div class="level-top">
             <div class="weather-icon">
-                <img src="SVG/rainy.svg" id="weather-icon">
+                <img src="SVG/rainy.svg" id="weather-icon" width="225">
             </div>
 
             <div class="current-condition-container">
@@ -91,8 +91,9 @@
                                 <div class="day-icon">    
                                     <img src="SVG/sun.svg" width="25" id="day-icon-1">                    
                                 </div>
-                                <div class="day-temp" id="day-temp-1">
-                                    72&#176; 
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-1"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi1" class="hi">50</span>/<span id="lo1" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-1">
@@ -113,7 +114,7 @@
 
                                 <div class="day-temp">
                                    <div class="day-temp" id="day-temp-2"></div>    
-                                    <div class="day-temp-low" id="day-temp-low"><span class="hi">50</span>/<span class="lo">50</span></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi2" class="hi">50</span>/<span id="lo2" class="lo">50</span></div>
                                 </div>
                                 
                             </div>
@@ -132,8 +133,9 @@
                                 <div class="day-icon">
                                     <img src="SVG/cloud.svg" width="25" id="day-icon-3">
                                 </div>
-                                <div class="day-temp" id="day-temp-3">
-                                    68&#176;
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-3"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi3" class="hi">50</span>/<span id="lo3" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-3">
@@ -150,8 +152,9 @@
                                 <div class="day-icon">
                                     <img src="SVG/sun.svg" width="25" id="day-icon-4">
                                 </div>
-                                <div class="day-temp" id="day-temp-4">
-                                    74&#176;
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-4"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi4" class="hi">50</span>/<span id="lo4" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-4">
@@ -168,8 +171,9 @@
                                 <div class="day-icon">
                                     <img src="SVG/sun.svg" width="25" id="day-icon-5">
                                 </div>
-                                <div class="day-temp" id="day-temp-5">
-                                    64&#176;
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-5"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi5" class="hi">50</span>/<span id="lo5" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-5">
@@ -186,8 +190,9 @@
                                 <div class="day-icon">
                                     <img src="SVG/wind.svg" width="25" id="day-icon-6">
                                 </div>
-                                <div class="day-temp" id="day-temp-6">
-                                    78&#176;
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-6"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi6" class="hi">50</span>/<span id="lo6" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-6">
@@ -205,8 +210,9 @@
                                 <div class="day-icon">
                                     <img src="SVG/rainy.svg" width="25" id="day-icon-7">
                                 </div>
-                                <div class="day-temp" id="day-temp-7">
-                                    79&#176;
+                                <div class="day-temp">
+                                    <div class="day-temp" id="day-temp-7"></div>
+                                    <div class="day-temp-low" id="day-temp-low"><span id="hi7" class="hi">50</span>/<span id="lo7" class="lo">50</span></div>
                                 </div>
                             </div>
                             <div class="day-conditions" id="day-condition-7">
@@ -214,6 +220,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
