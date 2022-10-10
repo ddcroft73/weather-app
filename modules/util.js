@@ -92,7 +92,7 @@ export const setBackground = (main, dom) => {
 
       case "Rain":
         fileName = "rainy-BG.jpg";
-        setColors(dom, 'black');
+        setColors(dom, 'gray');
         break;
       
       case "Thunderstorm":
