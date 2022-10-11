@@ -105,7 +105,9 @@ DOM.submit.addEventListener('click', () => {
   getForecast(location, API_KEY_30, "minutely,hourly,alerts", DOM);
 });
 
-DOM.clear.addEventListener("click", () => console.log('DOM.location.value'));
+DOM.clear.addEventListener("click", () => {
+  DOM.location.value = "";
+});
 
 
 // When the app loads. check local storage to see if ther is a location, if so use it to load the initial

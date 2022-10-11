@@ -82,7 +82,7 @@ body {
     display: flex;
     width: 100%;
     max-width: 1000px;
-    border: 0px solid blue;
+    border: 1px solid rgb(0, 0, 3);
     height: 500px;
     margin-top: 10px;
 }
@@ -179,19 +179,23 @@ body {
 }
 
 .search {
+    border: 1px solid black;
     display:flex;
     justify-content: flex-end;
 
     line-height: 10px;
     padding-top: 8px;
-    margin-left: 10px;
+    margin-left: 0px;
+    padding-bottom: 8px;
     margin-right: 10px;
+    width: 100%;
+    background-color:rgb(176, 168, 159);
 }
 .location {
     margin-right: 20px;
-    line-height: 20px;
+    line-height: 25px;
     font-size: 14px;
-    color: white;
+    color: rgb(14, 13, 13);
 }
 input[type="text"]{
     border: 1px solid rgb(251, 249, 249);
@@ -199,16 +203,18 @@ input[type="text"]{
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgb(249, 249, 249);
     width: 150px;
-    color: rgb(7, 7, 7);
+    color: rgb(249, 246, 246);
     padding-left: 5px;
     font-size: 14px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     height: 25px;
 }
+
 #location:focus {
     outline:none;
 }
+
 .clear {
     border-right: 1px solid rgb(246, 245, 245);
     border-top: 1px solid rgb(249, 249, 249);
@@ -404,6 +410,10 @@ input[type="text"]{
         font-size: 50px;
         margin-bottom: 10px;
         margin-top: 10px;
+    }
+
+    .search {
+        padding-bottom: 5px;
     }
 }
 
