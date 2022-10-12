@@ -92,10 +92,11 @@ DOM.location = document.querySelector("#location");
 DOM.submit = document.querySelector("#submit")
 
 // for color changes due to tofays weather
+DOM.dayBackground = document.querySelector(".day");
 DOM.backGround = document.querySelector(".main-container");
 DOM.conditionBorders = document.getElementById("conditionsBorders").childNodes;
 DOM.daysBorders = document.getElementById("daysBorders").childNodes;
-
+DOM.header =  document.querySelector('.search');
 
 DOM.submit.addEventListener('click', () => {
   // get the forecast for this location

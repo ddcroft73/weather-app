@@ -1,12 +1,11 @@
 
 import { findCelsius } from "./util.js";
 import { findFahrenheit } from "./util.js";
-import { DateString } from "./util.js";
 import { formatTime } from "./util.js";
 import { getDayFromTimeStamp } from "./util.js";
 import { getIcon } from "./util.js";
 import { setBackground } from "./util.js";
-import { setMainIcon } from "./util.js";
+import { getDateString } from "./util.js";
 
 //34.9496  -81.9321
 
@@ -76,9 +75,10 @@ export const getForecast = async (location, key, excludes, dom) => {
         const forecastData = await getForecastData(key, coord);
         return forecastData;
     }
-     catch {
+     catch(err) {
       // first get the error code from the response
-      alert(`The location: ${location} could not be found.`);
+      alert(`The location: ${location} could not be found.`
+            `${err}`);
      }
   };
   
@@ -86,8 +86,8 @@ export const getForecast = async (location, key, excludes, dom) => {
       const weatherData = await getWeatherData(key, location);
       // pass the promise into a regular function so it can be picked apart as an object
       parseWeatherData(weatherData, dom);
-  } catch {
-    console.log('error')
+  } catch(err) {
+      console.log(err)
   }  
   dom.spinner.style.visibility = "hidden";
 }
@@ -106,18 +106,17 @@ const displayCurrentConditions = (APIData, dom) => {
   const { temp_max, temp_min } = APIData;
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
   const { main, description } = APIData.current.weather[0];
-  const todaysDate = DateString();
   const temperatureString = `${Math.round(temp)}`; //;
   
-  setBackground(main, dom);
+  setBackground(main, dom, description, sunset);
   dom.weatherIcon.src = getIcon(main, dom);
 
-  dom.today.textContent = todaysDate;
+  dom.today.textContent = getDateString(dt);
   dom.currentTemp.innerHTML = temperatureString ;  // replace this with pressure
   dom.hiTemp.innerHTML = `${Math.round(temp_max)}&#176`;;
   dom.loTemp.innerHTML = `${Math.round(temp_min)}&#176`;;
   
-  dom.windSpeed.innerHTML ='&nbsp;' + wind_speed + "/mph";
+  dom.windSpeed.innerHTML ='&nbsp;' + wind_speed + "/m";
   dom.currentTempTwo.innerHTML = temperatureString;
   dom.condition.innerHTML = description;
   dom.humidity.innerHTML = "&nbsp" + humidity + "%";
@@ -130,12 +129,12 @@ const displayCurrentConditions = (APIData, dom) => {
 const displayWeatherForWeek = (APIData, dom) => {
 
     for (let index = 0; index < 7; index++) {
-      dom.day[index].date.innerHTML = DateString(
+      dom.day[index].date.innerHTML = getDateString(APIData.daily[index+1].dt);/*DateString(
         getDayFromTimeStamp(APIData.daily[index+1].dt)
       )//.split(" ")
        //.splice(0, 3)
        //.join(" ");     // slice off the year for daily forecast.
-      
+      */
       dom.day[index].temp.innerHTML = `${Math.round(APIData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
       dom.day[index].icon.src = getIcon(APIData.daily[index].weather[0].main); //  "SVG/sun.svg"; 
       dom.day[index].condition.innerHTML = APIData.daily[index].weather[0].description;
