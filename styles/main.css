@@ -280,7 +280,7 @@ input[type="text"]{
     font-size: 10px;
     line-height: 20px;
     color:rgb(247, 170, 16);
-    background-color: rgba(118, 118, 180, 0.1);
+    background-color: rgba(118, 118, 180, 0.3);
 }
 /*
 .current-stats:first-child {
@@ -327,7 +327,7 @@ input[type="text"]{
 
     flex: 0 125px;
     border: 1px solid rgb(254, 254, 254);
-    background-color: rgba(67, 67, 139, 0.1);
+    background-color: rgba(67, 67, 139, 0.2);
     height: 80px;
 
     margin-left: 5px;

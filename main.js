@@ -1,7 +1,8 @@
 
-import { getForecast } from "./modules/api.js";
+import { getForecast, startProcess } from "./modules/api.js";
 
-const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
+
+export const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 const defLocation = 'Spartanburg, South Carolina';
 
 // Create a DOM object to create references to the elements on the page.
@@ -111,8 +112,9 @@ DOM.clear.addEventListener("click", () => {
 });
 
 
-// When the app loads. check local storage to see if ther is a location, if so use it to load the initial
-// forecast. If Not, load th defLocation.
 
-// start the initial forecast with just today and the upcoming week.
-getForecast(defLocation, API_KEY_30, 'minutely,hourly,alerts', DOM);
+// starts the api calls.
+// gets the users loaction coordinates of their current location. 
+// uses this info to make a reverse Geo lookup to get the location so I can use it to make the weather api calls.
+startProcess();
+
