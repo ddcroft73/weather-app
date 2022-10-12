@@ -116,5 +116,5 @@ DOM.clear.addEventListener("click", () => {
 // starts the api calls.
 // gets the users loaction coordinates of their current location. 
 // uses this info to make a reverse Geo lookup to get the location so I can use it to make the weather api calls.
-startProcess();
-
+//startProcess();
+getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);
