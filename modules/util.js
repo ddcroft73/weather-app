@@ -51,7 +51,10 @@ export const isNight = (unixTimeStamp) => {
     const ssHourInt = parseInt(ssHour, 10);
     const ssMinuteInt = parseInt(ssMinute, 10);
 
-    console.log(ssHourInt, ssMinuteInt, currHour, currMinute);    
+    //const now = currHour.toString() + currMinute.toString();
+    //const sunDown = ssHour + ssMinute;
+    //console.log(now, sunDown);
+    //console.log(ssHourInt, ssMinuteInt, currHour, currMinute);    
     if (
         (currHour > ssHourInt) || 
         (currHour === ssHourInt) && currMinute > ssMinuteInt || 
@@ -74,6 +77,8 @@ export const isNight = (unixTimeStamp) => {
 export const setBackground = (main, dom, description, sunsetUnixTime) => {
     const url = ["url(",  ")"];    
     const dir = "bg-images/";
+    const night = isNight(sunsetUnixTime);
+
     let fileName = "clear-BG.jpg";  // Default
 
     // sets the colors to correspond to the weather pattern.
@@ -110,7 +115,7 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
 
     switch (main) {
       case "Clear":       
-        if (isNight(sunsetUnixTime)) {
+        if (night) {
           fileName = "night-clear-BG.jpg";
         } else {
           fileName = "clear-BG.jpg";
@@ -119,7 +124,7 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
         break;
 
       case "Clouds":
-        if (isNight(sunsetUnixTime)) {
+        if (night) {
           description = "night";
         }
         fileName = description + "-clouds-BG.jpg";
@@ -177,48 +182,52 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
     dom.backGround.style.backgroundImage = url.join("");
 }
 // given the description of the weather, return th}e path to the appropriate icon
-export const getIcon = (main) => {
-    const dir = "SVG/";
-    let path;
+export const getIcon = (main, sunsetUnixTime) => {
+  const dir = "SVG/";
+  let path;
+  const night = isNight(sunsetUnixTime);
 
-    switch (main) {
-      case "Clear":
-
+  switch (main) {
+    case "Clear":
+      if (night) {
+        path = "moon.svg";
+      } else {
         path = "sun.svg";
-        break;
-      case "Clouds":
-        path = "cloudy.svg";
-        break;
-      case "Rain":
-        path = "rainy.svg";
-        break;
-      case "Thunderstorm":
-        path = "stormy.svg";
-        break;
-      case "Drizzle":
-        path = "mist.svg";
-        break;
-      case "Snow":
-        path = "snow.svg";
-        break;
-      case "Squall":
-        path = "squalls.svg";
-        break;
-      case "Fog":
-        path = "fog.svg";
-        break;
-      case "Tornado":
-        path = "tornado.svg";
-        break;
-      case "Haze":
-        path = "haze.svg";
-        break;
-      default:
-        path = "arrow_left.svg";
-    } 
-    
-    return `${dir}${path}`
-}
+      }
+      break;
+    case "Clouds":
+      path = "cloudy.svg";
+      break;
+    case "Rain":
+      path = "rainy.svg";
+      break;
+    case "Thunderstorm":
+      path = "stormy.svg";
+      break;
+    case "Drizzle":
+      path = "rainy.svg";
+      break;
+    case "Snow":
+      path = "snow.svg";
+      break;
+    case "Squall":
+      path = "squalls.svg";
+      break;
+    case "Fog":
+      path = "fog.svg";
+      break;
+    case "Tornado":
+      path = "tornado.svg";
+      break;
+    case "Haze":
+      path = "haze.svg";
+      break;
+    default:
+      path = "arrow_left.svg";
+  }
+
+  return `${dir}${path}`;
+};
 
 
 export const handleError = (error) => {

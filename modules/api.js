@@ -104,7 +104,7 @@ const displayCurrentConditions = (APIData, DOM) => {
   const temperatureString = `${Math.round(temp)}`; //;
   
   setBackground(main, DOM, description, sunset);
-  DOM.weatherIcon.src = getIcon(main, DOM);
+  DOM.weatherIcon.src = getIcon(main, DOM, sunset);
 
   DOM.today.textContent = getDateString(dt);
   DOM.currentTemp.innerHTML = temperatureString ;  // replace this with pressure
