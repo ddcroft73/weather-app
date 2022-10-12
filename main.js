@@ -1,9 +1,9 @@
 
 //import { getForecast, startProcess } from "./modules/api.js";
 import { getForecast } from "./modules/api.js";
+import { handleError } from "./modules/util.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
-const defLocation = 'Spartanburg, South Carolina';
 
 // Create a DOM object to create references to the elements on the page.
 let DOM = {};
@@ -103,8 +103,12 @@ DOM.submit.addEventListener('click', () => {
   // get the forecast for this location
   console.log(DOM.location.value)
   const location = DOM.location.value;
-  // what to do if the location soes not exist
-  getForecast(location, API_KEY_30, "minutely,hourly,alerts", DOM);
+  if (location != "") {
+    // what to do if the location soes not exist
+    getForecast(location, API_KEY_30, "minutely,hourly,alerts", DOM);
+  } else {
+    alert("You must enter a location.")
+  }
 });
 
 DOM.clear.addEventListener("click", () => {
@@ -112,16 +116,15 @@ DOM.clear.addEventListener("click", () => {
 });
 
 
-
-// get visitor's location
 const  startProcess = async () => {
   DOM.spinner.style.visibility = "visible";
+  
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, handleError);
   } else {
     console.error("Geolocation is not supported by this browser.");
   }
-}
+};
 
 const getLocationWithCoords = async (lat, long) => {
     try {
@@ -152,29 +155,23 @@ const showPosition = async (position) => {
 };
 
 
-const handleError = (error) => {
-  let errorStr;
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      errorStr = "User denied the request for Geolocation.";
-      break;
-    case error.POSITION_UNAVAILABLE:
-      errorStr = "Location information is unavailable.";
-      break;
-    case error.TIMEOUT:
-      errorStr = "The request to get user location timed out.";
-      break;
-    case error.UNKNOWN_ERROR:
-      errorStr = "An unknown error occurred.";
-      break;
-    default:
-      errorStr = "An unknown error occurred.";
-  }
-  console.error("Error occurred: " + errorStr);
-};
-// starts the api calls.
-// gets the users loaction coordinates of their current location. 
-// uses this info to make a reverse Geo lookup to get the location so I can use it to make the weather api calls.
+/*
+   1. gets the users coordinates from the browser. 
+   2. uses the cooridinates to call a reverse look up to get the location
+   location is then fed to a basic weather PAI to get the cooridnates, again, but also some other info. I dont need the first API
+   call to get the cooridnates, unless the user is searching from location only. So I still need to get them. It seems redundant 
+   but In order to use the GPS, I had to get the location in order to get the relevant weather info that is not offered with "OneCall"
+   
+   so if the user is using a location, city and state, i need the cooridinates to call one call and  to get relevant info about the current
+   weather. OneCall does not offer info like min temp, max temp, etc. 
 
+   This was a lot cleaner... I could not import from this file because it was a text file.. so to speak. so I had to define certain functions
+   here to be able to use DOM. Weird.. it would work with all the API functions in api.js on my local machine, but barked errors when live.
+   so... some API code is here until i can figure out a cleaner way. Likely I need to rethink it. I didnt designe at fisrst to use GPS and there was where
+   it got a bit weird.
+*/
+
+// starts the api calls.
 startProcess();
+// old code
 //getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);

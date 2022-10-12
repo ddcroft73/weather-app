@@ -48,16 +48,25 @@ export const isNight = (unixTimeStamp) => {
     const sunset = date.$d.toString().split(" ").splice(4, 1).join();
     const ssHour = sunset.split(":")[0];
     const ssMinute = sunset.split(":")[1];
-    // incase there are no #'s retreived?
     const ssHourInt = parseInt(ssHour, 10);
     const ssMinuteInt = parseInt(ssMinute, 10);
 
-    console.log(ssHourInt, ssMinuteInt, currHour, currMinute);
+    console.log(ssHourInt, ssMinuteInt, currHour, currMinute);    
+    if (
+        (currHour > ssHourInt) || 
+        (currHour === ssHourInt) && currMinute > ssMinuteInt || 
+        ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
+       ) {
+        console.log('true')
+        return true;
+    } 
+
+    return false;
+
   } catch (err) {
     alert(err.message);
   }
   
-  return false;
 }
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
@@ -100,23 +109,25 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
     console.log(main, description);
 
     switch (main) {
-      case "Clear":
-        fileName = "clear-BG.jpg";
+      case "Clear":       
+        if (isNight(sunsetUnixTime)) {
+          fileName = "night-clear-BG.jpg";
+        } else {
+          fileName = "clear-BG.jpg";
+        }
         setColors(dom, "white");
         break;
 
       case "Clouds":
-        // if its night set description to = night
         if (isNight(sunsetUnixTime)) {
           description = "night";
         }
         fileName = description + "-clouds-BG.jpg";
-
-        setColors(dom, 'orange');
+        setColors(dom, "orange");
         break;
 
       case "Rain":
-        // 3 types of rain are enough... 
+        // 3 types of rain are enough...
         if (
           description != "moderate" &&
           description != "heavy" &&
@@ -139,7 +150,7 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
         fileName = "drizzle-BG.jpg";
         break;
 
-// resume here 
+      // resume here
       case "Snow": // light heavy snow sleet
         fileName = "snow.svg";
         break;
@@ -208,3 +219,25 @@ export const getIcon = (main) => {
     
     return `${dir}${path}`
 }
+
+
+export const handleError = (error) => {
+  let errorStr;
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      errorStr = "User denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      errorStr = "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      errorStr = "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      errorStr = "An unknown error occurred.";
+      break;
+    default:
+      errorStr = "An unknown error occurred.";
+  }
+  alert("Error occurred: " + errorStr);
+};

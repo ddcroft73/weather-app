@@ -7,57 +7,6 @@ import { getIcon } from "./util.js";
 import { setBackground } from "./util.js";
 import { getDateString } from "./util.js";
 
-//import { DOM, API_KEY_30 } from "/main.js";
-
-/*
-   1. gets the users coordinates from the browser, 2. uses the cooridinates to call a reverse look up to get the location
-   location is then fed to a basic weather PAI to get the cooridnates, again, but also some other info. I dont need the first API
-   call to get the cooridnates, unless the user is searching from location only. So I still need to get them. It seems redundant 
-   but In order to use the GPS, I had to get the location in order to get the relevant weather info that is not offered with "OneCall"
-   
-   so if the user is using a location, city and state, i need the cooridinates to call one call and  to get relevant info about the current
-   weather. OneCall does not offer info like min temp, max temp, etc. 
-*/
-
-/*
-// get visitor's location
-export const  startProcess = async () => {
-  DOM.spinner.style.visibility = "visible";
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, handleError);
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-}
-
-const getLocationWithCoords = async (lat, long) => {
-    try {
-      const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${API_KEY_30}`;
-      const resp = await fetch(url, { mode: "cors" });
-      const data = await resp.json();
-      return data;
-    } 
-    catch(err) {
-        console.error(err);
-    }  
-};
-
-const showPosition = async (position) => {
-  // call the api with async
-  try {
-      const locationInfo = await getLocationWithCoords(position.coords.latitude, position.coords.longitude); 
-      // uses the first location reuturned... need to test this in other locations
-      const name = locationInfo[0].name;
-      const state = locationInfo[0].state;
-
-      // gets the forcast of the users current location.
-      getForecast(`${name}, ${state}`, API_KEY_30, "minutely,hourly,alerts", DOM);
-  } 
-  catch(err)  {
-    console.error(err);
-  }  
-};
-*/
 /**
  *    getForecast async function
  *
@@ -116,16 +65,15 @@ export const getForecast = async (location, key, excludes, DOM) => {
           temp_max: data.main.temp_max,
           temp_min: data.main.temp_min,
         };
-
+   
         DOM.location1.textContent = location;
         // using the coords of location make another API call for forecast data
         const forecastData = await getForecastData(key, additionalData);
         return forecastData;
     }
-     catch(err) {
+     catch(err){
       // first get the error code from the response
-      alert(`The location: ${location} could not be found.`
-            `${err}`);
+      alert(`The location: "${location}" could not be found.`);
      }
   };
   
@@ -137,7 +85,7 @@ export const getForecast = async (location, key, excludes, DOM) => {
       console.log(err)
   }  
   DOM.spinner.style.visibility = "hidden";
-}
+};
 
 // called from inside async function, promise is passed in and results in an object with the weather data.
 const parseWeatherData = (APIData, DOM) => {
@@ -169,8 +117,7 @@ const displayCurrentConditions = (APIData, DOM) => {
   DOM.humidity.innerHTML = "&nbsp" + humidity + "%";
   DOM.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;  
   DOM.sunup.innerHTML = formatTime(sunrise);
-  DOM.sundown.innerHTML = formatTime(sunset);
-  
+  DOM.sundown.innerHTML = formatTime(sunset);  
 };
 
 const displayWeatherForWeek = (APIData, DOM) => {
@@ -188,27 +135,4 @@ const displayWeatherForWeek = (APIData, DOM) => {
       DOM.day[index].tempMax.innerHTML = Math.round(APIData.daily[index].temp.max) + "&#176";
       DOM.day[index].tempMin.innerHTML = Math.round(APIData.daily[index].temp.min) + "&#176";
     }    
-}
-
-/*
-const handleError = (error) => {
-  let errorStr;
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      errorStr = "User denied the request for Geolocation.";
-      break;
-    case error.POSITION_UNAVAILABLE:
-      errorStr = "Location information is unavailable.";
-      break;
-    case error.TIMEOUT:
-      errorStr = "The request to get user location timed out.";
-      break;
-    case error.UNKNOWN_ERROR:
-      errorStr = "An unknown error occurred.";
-      break;
-    default:
-      errorStr = "An unknown error occurred.";
-  }
-  console.error("Error occurred: " + errorStr);
 };
-*/
