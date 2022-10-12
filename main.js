@@ -1,12 +1,12 @@
 
-import { getForecast, startProcess } from "./modules/api.js";
+//import { getForecast, startProcess } from "./modules/api.js";
+import { getForecast } from "./modules/api.js";
 
-
-export const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
+const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 const defLocation = 'Spartanburg, South Carolina';
 
 // Create a DOM object to create references to the elements on the page.
-export let DOM = {};
+let DOM = {};
 
 DOM.spinner = document.querySelector('.spin');
 DOM.clear = document.querySelector(".clear");
@@ -113,9 +113,68 @@ DOM.clear.addEventListener("click", () => {
 
 
 
+// get visitor's location
+const  startProcess = async () => {
+  DOM.spinner.style.visibility = "visible";
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, handleError);
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+  }
+}
+
+const getLocationWithCoords = async (lat, long) => {
+    try {
+      const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${API_KEY_30}`;
+      const resp = await fetch(url, { mode: "cors" });
+      const data = await resp.json();
+      return data;
+    } 
+    catch(err) {
+        console.error(err);
+    }  
+};
+
+const showPosition = async (position) => {
+  // call the api with async
+  try {
+      const locationInfo = await getLocationWithCoords(position.coords.latitude, position.coords.longitude); 
+      // uses the first location reuturned... need to test this in other locations
+      const name = locationInfo[0].name;
+      const state = locationInfo[0].state;
+
+      // gets the forcast of the users current location.
+      getForecast(`${name}, ${state}`, API_KEY_30, "minutely,hourly,alerts", DOM);
+  } 
+  catch(err)  {
+    console.error(err);
+  }  
+};
+
+
+const handleError = (error) => {
+  let errorStr;
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      errorStr = "User denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      errorStr = "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      errorStr = "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      errorStr = "An unknown error occurred.";
+      break;
+    default:
+      errorStr = "An unknown error occurred.";
+  }
+  console.error("Error occurred: " + errorStr);
+};
 // starts the api calls.
 // gets the users loaction coordinates of their current location. 
 // uses this info to make a reverse Geo lookup to get the location so I can use it to make the weather api calls.
 
-//startProcess();
-getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);
+startProcess();
+//getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);

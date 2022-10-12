@@ -6,7 +6,8 @@ import { getDayFromTimeStamp } from "./util.js";
 import { getIcon } from "./util.js";
 import { setBackground } from "./util.js";
 import { getDateString } from "./util.js";
-import { DOM, API_KEY_30 } from "/main.js";
+
+//import { DOM, API_KEY_30 } from "/main.js";
 
 /*
    1. gets the users coordinates from the browser, 2. uses the cooridinates to call a reverse look up to get the location
@@ -18,7 +19,7 @@ import { DOM, API_KEY_30 } from "/main.js";
    weather. OneCall does not offer info like min temp, max temp, etc. 
 */
 
-
+/*
 // get visitor's location
 export const  startProcess = async () => {
   DOM.spinner.style.visibility = "visible";
@@ -56,7 +57,7 @@ const showPosition = async (position) => {
     console.error(err);
   }  
 };
-
+*/
 /**
  *    getForecast async function
  *
@@ -77,7 +78,7 @@ const showPosition = async (position) => {
  * All this can be dialed in by the user.
  */
 
-export const getForecast = async (location, key, excludes) => {
+export const getForecast = async (location, key, excludes, DOM) => {
   // makes the api call to get the weather data alwys in F
 
   const getForecastData = async (key, coordinates) => {
@@ -98,7 +99,7 @@ export const getForecast = async (location, key, excludes) => {
 
   // makes an API call and gets the coordinates of the location, need the coord to get
   // the weather data I need.
-  const getWeatherData = async (key, location) => {
+  const getWeatherData = async (key, location, DOM) => {
     // get the coordinates of this location
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${key}`;
 
@@ -129,9 +130,9 @@ export const getForecast = async (location, key, excludes) => {
   };
   
   try {
-      const weatherData = await getWeatherData(key, location);
+      const weatherData = await getWeatherData(key, location, DOM);
       // pass the promise into a regular function so it can be picked apart as an object
-      parseWeatherData(weatherData);
+      parseWeatherData(weatherData, DOM);
   } catch(err) {
       console.log(err)
   }  
@@ -139,16 +140,16 @@ export const getForecast = async (location, key, excludes) => {
 }
 
 // called from inside async function, promise is passed in and results in an object with the weather data.
-const parseWeatherData = (APIData) => {
+const parseWeatherData = (APIData, DOM) => {
   // get acces to the array data in the API for each day of the forecast
   // do current conditions
-  displayCurrentConditions(APIData);
+  displayCurrentConditions(APIData, DOM);
   // do the 7 day forecast
-  displayWeatherForWeek(APIData);
+  displayWeatherForWeek(APIData, DOM);
 };
 
 
-const displayCurrentConditions = (APIData) => {
+const displayCurrentConditions = (APIData, DOM) => {
   const { temp_max, temp_min } = APIData;
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
   const { main, description } = APIData.current.weather[0];
@@ -172,7 +173,7 @@ const displayCurrentConditions = (APIData) => {
   
 };
 
-const displayWeatherForWeek = (APIData) => {
+const displayWeatherForWeek = (APIData, DOM) => {
 
     for (let index = 0; index < 7; index++) {
       DOM.day[index].date.innerHTML = getDateString(APIData.daily[index+1].dt);/*DateString(
@@ -189,7 +190,7 @@ const displayWeatherForWeek = (APIData) => {
     }    
 }
 
-
+/*
 const handleError = (error) => {
   let errorStr;
   switch (error.code) {
@@ -210,3 +211,4 @@ const handleError = (error) => {
   }
   console.error("Error occurred: " + errorStr);
 };
+*/
