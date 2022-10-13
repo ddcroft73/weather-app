@@ -6,6 +6,7 @@ import { getDayFromTimeStamp } from "./util.js";
 import { getIcon } from "./util.js";
 import { setBackground } from "./util.js";
 import { getDateString } from "./util.js";
+import { isNight } from "./util.js";
 
 /**
  *    getForecast async function
@@ -102,9 +103,11 @@ const displayCurrentConditions = (APIData, DOM) => {
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
   const { main, description } = APIData.current.weather[0];
   const temperatureString = `${Math.round(temp)}`; //;
+
+  const night = isNight(sunset);
   
-  setBackground(main, DOM, description, sunset);
-  DOM.weatherIcon.src = getIcon(main, DOM, sunset);
+  setBackground(main, description, DOM, night);
+  DOM.weatherIcon.src = getIcon(main, DOM, night);
 
   DOM.today.textContent = getDateString(dt);
   DOM.currentTemp.innerHTML = temperatureString ;  // replace this with pressure

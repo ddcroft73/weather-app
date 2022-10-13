@@ -60,7 +60,6 @@ export const isNight = (unixTimeStamp) => {
         (currHour === ssHourInt) && currMinute > ssMinuteInt || 
         ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
        ) {
-        console.log('true')
         return true;
     } 
 
@@ -74,10 +73,9 @@ export const isNight = (unixTimeStamp) => {
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
 // and storms
-export const setBackground = (main, dom, description, sunsetUnixTime) => {
+export const setBackground = (main, description, dom, night) => {
     const url = ["url(",  ")"];    
     const dir = "bg-images/";
-    const night = isNight(sunsetUnixTime);
 
     let fileName = "clear-BG.jpg";  // Default
 
@@ -111,7 +109,7 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
     /* Lazy mans TDD */
        //main = 'Tornado';
        //description = 'powerful';
-    console.log(main, description);
+    //console.log(main, description);
 
     switch (main) {
       case "Clear":
@@ -162,7 +160,7 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
         } else {
           fileName = "misty-BG.png";
         }
-        setColors(dom, "black");
+        setColors(dom, "orange");
         break;
 
       // resume here
@@ -206,12 +204,13 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
     console.log(url);
     dom.backGround.style.backgroundImage = url.join("");
 }
+
 // given the description of the weather, return th}e path to the appropriate icon
-export const getIcon = (main, sunsetUnixTime) => {
+export const getIcon = (main, dom, night) => {
   const dir = "SVG/";
   let path;
-  const night = isNight(sunsetUnixTime);
-
+ // main = "Clear"
+ 
   switch (main) {
     case "Clear":
       if (night) {
@@ -219,6 +218,7 @@ export const getIcon = (main, sunsetUnixTime) => {
       } else {
         path = "sun.svg";
       }
+
       break;
     case "Clouds":
       path = "cloudy.svg";
