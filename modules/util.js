@@ -109,12 +109,12 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
     description = description.split(" ")[0];    
 
     /* Lazy mans TDD */
-       //main = 'Thunderstorm';
+       //main = 'Tornado';
        //description = 'powerful';
     console.log(main, description);
 
     switch (main) {
-      case "Clear":       
+      case "Clear":
         if (night) {
           fileName = "night-clear-BG.jpg";
         } else {
@@ -153,22 +153,47 @@ export const setBackground = (main, dom, description, sunsetUnixTime) => {
 
       case "Drizzle":
         fileName = "drizzle-BG.jpg";
+        setColors(dom, "black");
+        break;
+
+      case "Mist":
+        if (night) {
+          fileName = "night-misty-BG.jpg";
+        } else {
+          fileName = "misty-BG.png";
+        }
+        setColors(dom, "black");
         break;
 
       // resume here
       case "Snow": // light heavy snow sleet
-        fileName = "snow.svg";
+        if (night) {
+          fileName = "night-snow-BG.jpg";
+        } else {
+          fileName = "snow-BG.jpg";
+        }
+        setColors(dom, "blue");
         break;
 
       case "Squall":
-        fileName = "squalls.svg";
+        fileName = "squall-BG.jpg";
+        setColors(dom, "black");
         break;
+
       case "Fog":
-        fileName = "fog.svg";
+        if (night) {
+          fileName = "night-fog-BG.jpg";
+        } else {
+          fileName = "fog-BG.jpg";
+        }
+        setColors(dom, "black");
         break;
+
       case "Tornado":
-        fileName = "rgb(123, 26, 17)";
+        fileName = "tornado-BG.jpg";        
+        setColors(dom, "maroon")
         break;
+
       case "Haze":
         fileName = "haze.svg";
         break;
@@ -207,6 +232,11 @@ export const getIcon = (main, sunsetUnixTime) => {
     case "Drizzle":
       path = "rainy.svg";
       break;
+
+    case "Mist":
+      path = "rainy.svg";
+      break;
+
     case "Snow":
       path = "snow.svg";
       break;

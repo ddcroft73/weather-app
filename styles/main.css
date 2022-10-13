@@ -192,7 +192,7 @@ body {
     background-color:rgba(0, 0, 0, 0.4);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
 }
 .location {
     margin-right: 20px;
@@ -280,7 +280,7 @@ input[type="text"]{
     font-size: 10px;
     line-height: 20px;
     color:rgb(247, 170, 16);
-    background-color: rgba(118, 118, 180, 0.3);
+    background-color: rgba(118, 118, 180, 0.4);
 }
 /*
 .current-stats:first-child {
