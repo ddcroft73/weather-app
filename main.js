@@ -5,6 +5,12 @@ import { handleError } from "./modules/util.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 
+const options = {
+  enableHighAccuracy: true,
+  maximumAge: 30000,
+  timeout: 27000,
+};
+
 // Create a DOM object to create references to the elements on the page.
 let DOM = {};
 
@@ -30,6 +36,14 @@ DOM.sundown = document.querySelector("#sundown");
 
 // info for the next 7 days
 DOM.day = [
+  {
+    date: document.querySelector("#day-date-0"),
+    icon: document.querySelector("#day-icon-0"),
+    temp: document.querySelector("#day-temp-0"),
+    condition: document.querySelector("#day-condition-0"),
+    tempMax: document.querySelector("#hi0"),
+    tempMin: document.querySelector("#lo0"),
+  },
   {
     date: document.querySelector("#day-date-1"),
     icon: document.querySelector("#day-icon-1"),
@@ -115,16 +129,45 @@ DOM.clear.addEventListener("click", () => {
   DOM.location.value = "";
 });
 
-
-const  startProcess = async () => {
+// gets the current location, and uses that data to call the weather APIs in succession
+const getLocation = async () => {
   DOM.spinner.style.visibility = "visible";
-  
+
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, handleError);
+    navigator.geolocation.getCurrentPosition(startWeatherAPICalls, handleError, options);
   } else {
     console.error("Geolocation is not supported by this browser.");
   }
 };
+// uses the users position to get there location, (city, state) and then calls the weather APIS
+const startWeatherAPICalls = async (position) => {
+  
+  try {
+    const locationInfo = await getLocationWithCoords(
+      position.coords.latitude,
+      position.coords.longitude
+    );
+    // uses the first location returned... need to test this in other locations
+    const name = locationInfo[0].name;
+    const state = locationInfo[0].state;
+
+    // gets the forcast of the users current location.
+    getForecast(`${name}, ${state}`, API_KEY_30, "minutely,hourly,alerts", DOM);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// will conssistetnly check the users location to see if better GPS data ia available
+const watchLocation = async () => {
+  DOM.spinner.style.visibility = "visible";
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(startWeatherAPICalls, handleError, options);
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+  }
+};
+
 
 const getLocationWithCoords = async (lat, long) => {
     try {
@@ -137,23 +180,6 @@ const getLocationWithCoords = async (lat, long) => {
         console.error(err);
     }  
 };
-
-const showPosition = async (position) => {
-  // call the api with async
-  try {
-      const locationInfo = await getLocationWithCoords(position.coords.latitude, position.coords.longitude); 
-      // uses the first location reuturned... need to test this in other locations
-      const name = locationInfo[0].name;
-      const state = locationInfo[0].state;
-
-      // gets the forcast of the users current location.
-      getForecast(`${name}, ${state}`, API_KEY_30, "minutely,hourly,alerts", DOM);
-  } 
-  catch(err)  {
-    console.error(err);
-  }  
-};
-
 
 /*
    1. gets the users coordinates from the browser. 
@@ -170,8 +196,13 @@ const showPosition = async (position) => {
    so... some API code is here until i can figure out a cleaner way. Likely I need to rethink it. I didnt designe at fisrst to use GPS and there was where
    it got a bit weird.
 */
-
 // starts the api calls.
-startProcess();
+getLocation();
+//watchLocation();
+
 // old code
 //getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);
+
+//navigator.geolocation.getCurrentPosition((position) => {
+//  console.log(position.coords.latitude, position.coords.longitude);
+//});

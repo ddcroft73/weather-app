@@ -28,6 +28,7 @@ import { isNight } from "./util.js";
  * All this can be dialed in by the user.
  */
 
+// FIX THE API CALL WHERE IT GETS THE TEMP MAX AND MIN
 export const getForecast = async (location, key, excludes, DOM) => {
   // makes the api call to get the weather data alwys in F
 
@@ -99,8 +100,9 @@ const parseWeatherData = (APIData, DOM) => {
 
 
 const displayCurrentConditions = (APIData, DOM) => {
-  const { temp_max, temp_min } = APIData;
+  //const { temp_max, temp_min } = APIData;
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
+  const { max, min } = APIData.daily[0].temp;
   const { main, description } = APIData.current.weather[0];
   const temperatureString = `${Math.round(temp)}`; //;
 
@@ -111,8 +113,8 @@ const displayCurrentConditions = (APIData, DOM) => {
 
   DOM.today.textContent = getDateString(dt);
   DOM.currentTemp.innerHTML = temperatureString ;  // replace this with pressure
-  DOM.hiTemp.innerHTML = `${Math.round(temp_max)}&#176`;;
-  DOM.loTemp.innerHTML = `${Math.round(temp_min)}&#176`;;
+  DOM.hiTemp.innerHTML = `${Math.round(max)}&#176`;;
+  DOM.loTemp.innerHTML = `${Math.round(min)}&#176`;;
   
   DOM.windSpeed.innerHTML ='&nbsp;' + wind_speed + "/m";
   DOM.currentTempTwo.innerHTML = temperatureString;
@@ -126,7 +128,7 @@ const displayCurrentConditions = (APIData, DOM) => {
 const displayWeatherForWeek = (APIData, DOM) => {
 
     for (let index = 0; index < 7; index++) {
-      DOM.day[index].date.innerHTML = getDateString(APIData.daily[index+1].dt);/*DateString(
+      DOM.day[index].date.innerHTML = getDateString(APIData.daily[index].dt);/*DateString(
         getDayFromTimeStamp(APIData.daily[index+1].dt)
       )//.split(" ")
        //.splice(0, 3)
