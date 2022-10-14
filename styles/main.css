@@ -325,7 +325,7 @@ input[type="text"]{
     display: flex;
     flex-direction: column;
 
-    flex: 0 125px;
+    flex: 0 150px;
     border: 1px solid rgb(254, 254, 254);
     background-color: rgba(67, 67, 139, 0.2);
     height: 80px;
@@ -397,6 +397,14 @@ input[type="text"]{
 
 .lo {
     color: rgb(69, 228, 6);
+}
+@media screen and (max-width: 412px) { 
+    /*.current-stats {
+        margin-left: 15px;
+    } */
+    .day-container-centered {
+        margin-left: 30px;
+    }
 }
 
 @media screen and (max-width: 482px) {

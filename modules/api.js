@@ -127,7 +127,7 @@ const displayCurrentConditions = (APIData, DOM) => {
 
 const displayWeatherForWeek = (APIData, DOM) => {
 
-    for (let index = 0; index < 7; index++) {
+    for (let index = 0; index < 8; index++) {
       DOM.day[index].date.innerHTML = getDateString(APIData.daily[index].dt);/*DateString(
         getDayFromTimeStamp(APIData.daily[index+1].dt)
       )//.split(" ")
@@ -139,5 +139,6 @@ const displayWeatherForWeek = (APIData, DOM) => {
       DOM.day[index].condition.innerHTML = APIData.daily[index].weather[0].description;
       DOM.day[index].tempMax.innerHTML = Math.round(APIData.daily[index].temp.max) + "&#176";
       DOM.day[index].tempMin.innerHTML = Math.round(APIData.daily[index].temp.min) + "&#176";
+      console.log(index)
     }    
 };
