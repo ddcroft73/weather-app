@@ -18,7 +18,8 @@ export const findFahrenheit = (celsius) => {
 
 
 export const getDateString = (unixTimeStamp) => {
-     const dateString = dayjs(unixTimeStamp * 1000).$d.toString();
+     const dateString = dayjs(unixTimeStamp * 1000).$d.toString();    
+
      return dateString.split(" ").splice(0, 4).join(" ");
 }
 
@@ -80,7 +81,12 @@ export const setBackground = (main, description, dom, night) => {
     let fileName = "clear-BG.jpg";  // Default
 
     // sets the colors to correspond to the weather pattern.
-    const setColors = (dom, color) => {      
+    const setColors = (dom, color, bgColor) => {    
+        if (night) {
+          dom.body.style = "background-color: black;";
+        } else {
+          dom.body.style = `background-color: ${bgColor}`;
+        }
         dom.backGround.style = `border: 1px solid ${color};`;
         dom.location.style = `border: 1px solid ${color};`;
         dom.clear.style = `border: 1px solid ${color};`;
@@ -100,6 +106,7 @@ export const setBackground = (main, description, dom, night) => {
           }
         }
       }
+      
     
     // is it day or night? decide if it is day or night and then pick the appropriate images?
 
@@ -118,15 +125,15 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = "clear-BG.jpg";
         }
-        setColors(dom, "white");
+        setColors(dom, "white", 'lightblue');
         break;
-
+    
       case "Clouds":
         if (night) {
           description = "night";
         }
         fileName = description + "-clouds-BG.jpg";
-        setColors(dom, "orange");
+        setColors(dom, "orange", 'gray');
         break;
 
       case "Rain":
@@ -140,18 +147,18 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = description + "-rain-BG.jpg";
         }
-        setColors(dom, "black");
+        setColors(dom, "black", 'darkgray');
         break;
 
       // just thunderstorm, one is plenty
       case "Thunderstorm":
         fileName = "thunderstorm-BG.jpg";
-        setColors(dom, "black");
+        setColors(dom, "black", 'darkgray');
         break;
 
       case "Drizzle":
         fileName = "drizzle-BG.jpg";
-        setColors(dom, "black");
+        setColors(dom, "black", 'gray');
         break;
 
       case "Mist":
@@ -160,7 +167,7 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = "misty-BG.png";
         }
-        setColors(dom, "orange");
+        setColors(dom, "orange", 'gray');
         break;
 
       // resume here
@@ -170,7 +177,7 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = "snow-BG.jpg";
         }
-        setColors(dom, "blue");
+        setColors(dom, "blue", 'lightgray');
         break;
 
       case "Squall":
@@ -206,57 +213,18 @@ export const setBackground = (main, description, dom, night) => {
 }
 
 // given the description of the weather, return th}e path to the appropriate icon
-export const getIcon = (main, dom, night) => {
+export const getIcon = (night, icon) => {
   const dir = "SVG/";
+  const ext = ".svg";
   let path;
- // main = "Clear"
- 
-  switch (main) {
-    case "Clear":
-      if (night) {
-        path = "moon.svg";
-      } else {
-        path = "sun.svg";
-      }
+  console.log(icon)
 
-      break;
-    case "Clouds":
-      path = "cloudy.svg";
-      break;
-    case "Rain":
-      path = "rainy.svg";
-      break;
-    case "Thunderstorm":
-      path = "stormy.svg";
-      break;
-    case "Drizzle":
-      path = "rainy.svg";
-      break;
-
-    case "Mist":
-      path = "rainy.svg";
-      break;
-
-    case "Snow":
-      path = "snow.svg";
-      break;
-    case "Squall":
-      path = "squalls.svg";
-      break;
-    case "Fog":
-      path = "fog.svg";
-      break;
-    case "Tornado":
-      path = "tornado.svg";
-      break;
-    case "Haze":
-      path = "haze.svg";
-      break;
-    default:
-      path = "arrow_left.svg";
+  if (night) {
+    icon.replace('d', 'n');
   }
+  path = dir + icon + ext;
 
-  return `${dir}${path}`;
+  return path;
 };
 
 

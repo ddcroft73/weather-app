@@ -398,16 +398,16 @@ input[type="text"]{
 .lo {
     color: rgb(69, 228, 6);
 }
-@media screen and (max-width: 412px) { 
+@media screen and (max-width: 415px) { 
     /*.current-stats {
         margin-left: 15px;
-    } */
+    } 
     .day-container-centered {
         margin-left: 30px;
-    }
+    }*/
 }
 
-@media screen and (max-width: 482px) {
+@media screen and (max-width: 670px) {
     /* make the last three days hide
     #day-five, #day-six, #day-seven {
         display: none;

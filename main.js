@@ -1,7 +1,9 @@
 
 //import { getForecast, startProcess } from "./modules/api.js";
-import { getForecast } from "./modules/api.js";
+import { getForecast } from "./modules/weather-api.js";
 import { handleError } from "./modules/util.js";
+
+
 //import { getLocationWithCoords } from "./modules/api.js"
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 
@@ -23,7 +25,7 @@ DOM.weatherIcon = document.querySelector("#weather-icon");
 DOM.today = document.querySelector(".today-date-time");
 DOM.currentTemp = document.querySelector(".temp-");
 
-DOM.currentTempTwo = document.querySelector("#current-temp");
+DOM.pressure = document.querySelector("#pressure");
 
 DOM.hiTemp = document.querySelector(".hi");
 DOM.loTemp = document.querySelector(".lo");
@@ -112,6 +114,7 @@ DOM.backGround = document.querySelector(".main-container");
 DOM.conditionBorders = document.getElementById("conditionsBorders").childNodes;
 DOM.daysBorders = document.getElementById("daysBorders").childNodes;
 DOM.header =  document.querySelector('.search');
+DOM.body = document.querySelector('body');
 
 DOM.submit.addEventListener('click', () => {
   // get the forecast for this location
@@ -129,20 +132,23 @@ DOM.clear.addEventListener("click", () => {
   DOM.location.value = "";
 });
 
-// gets the current location, and uses that data to call the weather APIs in succession
-const getLocation = async () => {
+
+export const getLocation = async () => {
   DOM.spinner.style.visibility = "visible";
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(translateCoordinates, handleError, options);
-    
+    navigator.geolocation.getCurrentPosition(
+      translateCoordinates,
+      handleError,
+      options
+    );
   } else {
     console.error("Geolocation is not supported by this browser.");
   }
 };
 
 // uses the users position to get there location, (city, state) and then calls the weather APIS
-const translateCoordinates = async (position) => {  
+const translateCoordinates = async (position) => {
   try {
     const locationInfo = await getLocationWithCoords(
       position.coords.latitude,
@@ -170,17 +176,6 @@ const getLocationWithCoords = async (lat, long) => {
   }
 };
 
-// will conssistetnly check the users location to see if better GPS data ia available
-const watchLocation = async () => {
-  DOM.spinner.style.visibility = "visible";
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(translateCoordinates, handleError, options);
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-};
-
-
 
 /*
    1. gets the users coordinates from the browser. 
@@ -197,13 +192,7 @@ const watchLocation = async () => {
    so... some API code is here until i can figure out a cleaner way. Likely I need to rethink it. I didnt designe at fisrst to use GPS and there was where
    it got a bit weird.
 */
+
+
 // starts the api calls.
 getLocation();
-//watchLocation();
-
-// old code
-//getForecast(defLocation, API_KEY_30, "minutely,hourly,alerts", DOM);
-
-//navigator.geolocation.getCurrentPosition((position) => {
-//  console.log(position.coords.latitude, position.coords.longitude);
-//});

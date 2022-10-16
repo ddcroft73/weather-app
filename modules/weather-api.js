@@ -113,44 +113,41 @@ const parseWeatherData = (APIData, DOM) => {
 
 const displayCurrentConditions = (APIData, DOM) => {
   //const { temp_max, temp_min } = APIData;
-  const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed } = APIData.current;
+  const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed, pressure } =
+    APIData.current;
   const { max, min } = APIData.daily[0].temp;
-  const { main, description } = APIData.current.weather[0];
+  const { main, description, icon } = APIData.current.weather[0];
   const temperatureString = `${Math.round(temp)}`; //;
-
+  // get the current time and display it at the end
+  const current = new Date();
+  const time = current.toLocaleTimeString("en-US");
   const night = isNight(sunset);
-  
-  setBackground(main, description, DOM, night);
-  DOM.weatherIcon.src = getIcon(main, DOM, night);
 
-  DOM.today.textContent = getDateString(dt);
-  DOM.currentTemp.innerHTML = temperatureString ;  // replace this with pressure
-  DOM.hiTemp.innerHTML = `${Math.round(max)}&#176`;;
-  DOM.loTemp.innerHTML = `${Math.round(min)}&#176`;;
-  
-  DOM.windSpeed.innerHTML ='&nbsp;' + wind_speed + "/m";
-  DOM.currentTempTwo.innerHTML = temperatureString;
+  setBackground(main, description, DOM, night);
+  DOM.weatherIcon.src = getIcon(night, icon);
+
+  DOM.today.textContent = getDateString(dt) + " -> " + time;
+  DOM.currentTemp.innerHTML = temperatureString; // replace this with pressure
+  DOM.hiTemp.innerHTML = `${Math.round(max)}&#176`;
+  DOM.loTemp.innerHTML = `${Math.round(min)}&#176`;
+
+  DOM.windSpeed.innerHTML = "&nbsp;" + wind_speed + "/m";
+  DOM.pressure.innerHTML = pressure;
   DOM.condition.innerHTML = description;
   DOM.humidity.innerHTML = "&nbsp" + humidity + "%";
-  DOM.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;  
+  DOM.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;
   DOM.sunup.innerHTML = formatTime(sunrise);
-  DOM.sundown.innerHTML = formatTime(sunset);  
+  DOM.sundown.innerHTML = formatTime(sunset);
 };
 
 const displayWeatherForWeek = (APIData, DOM) => {
 
     for (let index = 0; index < 8; index++) {
-      DOM.day[index].date.innerHTML = getDateString(APIData.daily[index].dt);/*DateString(
-        getDayFromTimeStamp(APIData.daily[index+1].dt)
-      )//.split(" ")
-       //.splice(0, 3)
-       //.join(" ");     // slice off the year for daily forecast.
-      */
+      DOM.day[index].date.innerHTML = getDateString(APIData.daily[index].dt);
       DOM.day[index].temp.innerHTML = `${Math.round(APIData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
-      DOM.day[index].icon.src = getIcon(APIData.daily[index].weather[0].main); //  "SVG/sun.svg"; 
+      DOM.day[index].icon.src = getIcon(false, APIData.daily[index].weather[0].icon); //  "SVG/sun.svg"; 
       DOM.day[index].condition.innerHTML = APIData.daily[index].weather[0].description;
       DOM.day[index].tempMax.innerHTML = Math.round(APIData.daily[index].temp.max) + "&#176";
       DOM.day[index].tempMin.innerHTML = Math.round(APIData.daily[index].temp.min) + "&#176";
-      console.log(index)
     }    
 };
