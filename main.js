@@ -2,7 +2,7 @@
 //import { getForecast, startProcess } from "./modules/api.js";
 import { getForecast } from "./modules/api.js";
 import { handleError } from "./modules/util.js";
-
+//import { getLocationWithCoords } from "./modules/api.js"
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 
 const options = {
@@ -134,14 +134,15 @@ const getLocation = async () => {
   DOM.spinner.style.visibility = "visible";
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(startWeatherAPICalls, handleError, options);
+    navigator.geolocation.getCurrentPosition(translateCoordinates, handleError, options);
+    
   } else {
     console.error("Geolocation is not supported by this browser.");
   }
 };
+
 // uses the users position to get there location, (city, state) and then calls the weather APIS
-const startWeatherAPICalls = async (position) => {
-  
+const translateCoordinates = async (position) => {  
   try {
     const locationInfo = await getLocationWithCoords(
       position.coords.latitude,
@@ -158,28 +159,28 @@ const startWeatherAPICalls = async (position) => {
   }
 };
 
+const getLocationWithCoords = async (lat, long) => {
+  try {
+    const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${API_KEY_30}`;
+    const resp = await fetch(url, { mode: "cors" });
+    const data = await resp.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // will conssistetnly check the users location to see if better GPS data ia available
 const watchLocation = async () => {
   DOM.spinner.style.visibility = "visible";
   if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(startWeatherAPICalls, handleError, options);
+    navigator.geolocation.watchPosition(translateCoordinates, handleError, options);
   } else {
     console.error("Geolocation is not supported by this browser.");
   }
 };
 
 
-const getLocationWithCoords = async (lat, long) => {
-    try {
-      const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${API_KEY_30}`;
-      const resp = await fetch(url, { mode: "cors" });
-      const data = await resp.json();
-      return data;
-    } 
-    catch(err) {
-        console.error(err);
-    }  
-};
 
 /*
    1. gets the users coordinates from the browser. 
