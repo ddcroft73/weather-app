@@ -202,10 +202,10 @@ body {
     color: rgb(249, 246, 246);
 }
 input[type="text"]{
-    border: 1px solid rgb(251, 249, 249);
+    border: 0px solid rgb(251, 249, 249);
     background-color: rgb(175, 175, 175);
     border-right: 0px solid rgb(249, 249, 249);
-    border-bottom: 1px solid rgb(249, 249, 249);
+    border-bottom: 0px solid rgb(249, 249, 249);
     width: 150px;
     color: rgb(31, 30, 30);
     padding-left: 5px;
@@ -221,9 +221,9 @@ input[type="text"]{
 }
 
 .clear {
-    border-right: 1px solid rgb(246, 245, 245);
-    border-top: 1px solid rgb(249, 249, 249);
-    border-bottom: 1px solid rgb(249, 249, 249);
+    border-right: 0px solid rgb(246, 245, 245);
+    border-top: 0px solid rgb(249, 249, 249);
+    border-bottom: 0px solid rgb(249, 249, 249);
     padding: 3px;
     line-height: 21px;
     font-size: 12px;
@@ -232,7 +232,7 @@ input[type="text"]{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     height: 25px;
-
+    font-weight: 600;
 }
 .clear:hover {
     color: white;
@@ -243,7 +243,7 @@ input[type="text"]{
     color: black;
 }
 #submit {
-    border: 1px solid rgb(247, 247, 247);
+    border: 0px solid rgb(247, 247, 247);
     border-radius: 5px;
     background-color: rgb(175, 175, 175);
     margin-left: 5px;

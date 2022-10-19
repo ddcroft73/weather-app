@@ -39,13 +39,13 @@ export const getDayFromTimeStamp = (timestamp) => {
     let doMth = date.getDate();
     return doMth;
 }
-export const isNight = (unixTimeStamp) => {
+export const isNight = (unixTimeStamp, offset) => {
   // Tue Oct 11 2022 18:58:27 GMT-0400
   try {
     const currHour = dayjs().hour();
     const currMinute = dayjs().minute();
     // extract the sunset time
-    const date = dayjs(unixTimeStamp * 1000);
+    const date = dayjs((unixTimeStamp) * 1000);
     const sunset = date.$d.toString().split(" ").splice(4, 1).join();
     const ssHour = sunset.split(":")[0];
     const ssMinute = sunset.split(":")[1];

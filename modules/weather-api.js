@@ -113,6 +113,7 @@ const parseWeatherData = (APIData, DOM) => {
 
 const displayCurrentConditions = (APIData, DOM) => {
   //const { temp_max, temp_min } = APIData;
+  const { timezone_offset } = APIData;
   const { dt, temp, humidity, sunrise, sunset, feels_like, wind_speed, pressure } =
     APIData.current;
   const { max, min } = APIData.daily[0].temp;
@@ -121,7 +122,7 @@ const displayCurrentConditions = (APIData, DOM) => {
   // get the current time and display it at the end
   const current = new Date();
   const time = current.toLocaleTimeString("en-US");
-  const night = isNight(sunset);
+  const night = isNight(sunset, timezone_offset);
 
   setBackground(main, description, DOM, night);
   DOM.weatherIcon.src = getIcon(night, icon);

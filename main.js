@@ -37,72 +37,19 @@ DOM.sunup = document.querySelector('#sunup');
 DOM.sundown = document.querySelector("#sundown");
 
 // info for the next 7 days
-DOM.day = [
-  {
-    date: document.querySelector("#day-date-0"),
-    icon: document.querySelector("#day-icon-0"),
-    temp: document.querySelector("#day-temp-0"),
-    condition: document.querySelector("#day-condition-0"),
-    tempMax: document.querySelector("#hi0"),
-    tempMin: document.querySelector("#lo0"),
-  },
-  {
-    date: document.querySelector("#day-date-1"),
-    icon: document.querySelector("#day-icon-1"),
-    temp: document.querySelector("#day-temp-1"),
-    condition: document.querySelector("#day-condition-1"),
-    tempMax: document.querySelector("#hi1"),
-    tempMin: document.querySelector("#lo1"),
-  },
-  {
-    date: document.querySelector("#day-date-2"),
-    icon: document.querySelector("#day-icon-2"),
-    temp: document.querySelector("#day-temp-2"),
-    condition: document.querySelector("#day-condition-2"),
-    tempMax: document.querySelector("#hi2"),
-    tempMin: document.querySelector("#lo2"),
-  },
-  {
-    date: document.querySelector("#day-date-3"),
-    icon: document.querySelector("#day-icon-3"),
-    temp: document.querySelector("#day-temp-3"),
-    condition: document.querySelector("#day-condition-3"),
-    tempMax: document.querySelector("#hi3"),
-    tempMin: document.querySelector("#lo3"),
-  },
-  {
-    date: document.querySelector("#day-date-4"),
-    icon: document.querySelector("#day-icon-4"),
-    temp: document.querySelector("#day-temp-4"),
-    condition: document.querySelector("#day-condition-4"),
-    tempMax: document.querySelector("#hi4"),
-    tempMin: document.querySelector("#lo4"),
-  },
-  {
-    date: document.querySelector("#day-date-5"),
-    icon: document.querySelector("#day-icon-5"),
-    temp: document.querySelector("#day-temp-5"),
-    condition: document.querySelector("#day-condition-5"),
-    tempMax: document.querySelector("#hi5"),
-    tempMin: document.querySelector("#lo5"),
-  },
-  {
-    date: document.querySelector("#day-date-6"),
-    icon: document.querySelector("#day-icon-6"),
-    temp: document.querySelector("#day-temp-6"),
-    condition: document.querySelector("#day-condition-6"),
-    tempMax: document.querySelector("#hi6"),
-    tempMin: document.querySelector("#lo6"),
-  },
-  {
-    date: document.querySelector("#day-date-7"),
-    icon: document.querySelector("#day-icon-7"),
-    temp: document.querySelector("#day-temp-7"),
-    condition: document.querySelector("#day-condition-7"),
-    tempMax: document.querySelector("#hi7"),
-    tempMin: document.querySelector("#lo7"),
-  },
-];
+DOM.day = [];
+
+for (let index = 0; index < 8; index++) {
+  DOM.day[index] = {
+    date: document.querySelector("#day-date-" + index),
+    icon: document.querySelector("#day-icon-" + index),
+    temp: document.querySelector("#day-temp-" + index),
+    condition: document.querySelector("#day-condition-" + index),
+    tempMax: document.querySelector("#hi" + index),
+    tempMin: document.querySelector("#lo" + index)
+  };
+}
+
 
 // user input
 DOM.location = document.querySelector("#location");
@@ -133,7 +80,7 @@ DOM.clear.addEventListener("click", () => {
 });
 
 
-export const getLocation = async () => {
+export const getGPSLocation = async () => {
   DOM.spinner.style.visibility = "visible";
 
   if (navigator.geolocation) {
@@ -193,6 +140,14 @@ const getLocationWithCoords = async (lat, long) => {
    it got a bit weird.
 */
 
+// decide if the user is trying to get the gps location eather, or if they are trying to refresh and get the weather of the current location
 
-// starts the api calls.
-getLocation();
+if (DOM.location.value == "") {
+  // gettting GPS
+  getGPSLocation();
+} else {
+  // getting the weather at current location
+  // feed the location into function to get the cooridinates of this location
+  console.log('Getting Weather for current location')
+  
+}
