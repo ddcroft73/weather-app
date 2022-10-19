@@ -151,3 +151,6 @@ if (DOM.location.value == "") {
   console.log('Getting Weather for current location')
   
 }
+
+
+// Make a bunch ofchanges herer!!
