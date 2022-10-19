@@ -141,7 +141,7 @@ const getLocationWithCoords = async (lat, long) => {
 */
 
 // decide if the user is trying to get the gps location eather, or if they are trying to refresh and get the weather of the current location
-
+/*
 if (DOM.location.value == "") {
   // gettting GPS
   getGPSLocation();
@@ -151,6 +151,7 @@ if (DOM.location.value == "") {
   console.log('Getting Weather for current location')
   
 }
+*/
 
-
+getForecast(`spartanburg, south carolina`, API_KEY_30, "minutely,hourly,alerts", DOM);
 // Make a bunch ofchanges herer!!
