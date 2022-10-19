@@ -62,39 +62,41 @@ export const getForecast = async (location, key, excludes, DOM) => {
 
       // makes an API call and gets the coordinates of the location, need the coord to get
       // the weather data I need.
-      const getWeatherData = async (key, location, DOM) => {
+      const getCoordinatesFromLocation = async (key, location, DOM) => {
         // get the coordinates of this location
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${key}`;
+        //http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
+        //const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${key}`;
+        const url =`http://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${key}`;
         try {
-            const resp = await fetch(url, { mode: "cors" });
-            const data = await resp.json();        
-            
-            // extract some data needed that is not in the onecall api.
-            const additionalData = {
-              lon: data.coord.lon,
-              lat: data.coord.lat,
-              name: data.name,
-              country: data.sys.country,
-              temp_max: data.main.temp_max,
-              temp_min: data.main.temp_min,
-            };
-      
-            DOM.location1.textContent = location;
-            // using the coords of location make another API call for forecast data
-            const forecastData = await getForecastData(key, additionalData);
-            return forecastData;
-        }
-        catch(err){
+          const resp = await fetch(url, { mode: "cors" });
+          const data = await resp.json();
+
+          // extract some data needed that is not in the onecall api.
+          /*const additionalData = {
+            lon: data.coord.lon,
+            lat: data.coord.lat,
+            name: data.name,
+            country: data.sys.country,
+            temp_max: data.main.temp_max,
+            temp_min: data.main.temp_min,
+          }; */
+
+          DOM.location1.textContent = location;
+          // using the coords of location make another API call for forecast data
+          const forecastData = await getForecastData(key, additionalData);
+          return forecastData;
+        } catch (err) {
           // first get the error code from the response
           alert(`The location: "${location}" could not be found.`);
         }
       };     
 
   try {
-      const weatherData = await getWeatherData(key, location, DOM);  // getLocationWithCoordinates()
+      // get coorditaes with location
+      const coords = await getCoordinatesFromLocation(key, location, DOM);  
       // pass the promise into a regular function so it can be picked apart as an object
-      parseWeatherData(weatherData, DOM);
+      parseWeatherData(coords, DOM);
   } catch(err) {
       console.log(err)
   }  
