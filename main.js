@@ -1,17 +1,6 @@
+import { getWeatherWithGPS } from "./modules/weather-api.js";
+import { getForecastFromLocation } from "./modules/weather-api.js";
 
-//import { getForecast, startProcess } from "./modules/api.js";
-import { getForecast } from "./modules/weather-api.js";
-import { handleError } from "./modules/util.js";
-
-
-//import { getLocationWithCoords } from "./modules/api.js"
-const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
-
-const options = {
-  enableHighAccuracy: true,
-  maximumAge: 30000,
-  timeout: 27000,
-};
 
 // Create a DOM object to create references to the elements on the page.
 let DOM = {};
@@ -64,12 +53,9 @@ DOM.header =  document.querySelector('.search');
 DOM.body = document.querySelector('body');
 
 DOM.submit.addEventListener('click', () => {
-  // get the forecast for this location
-  console.log(DOM.location.value)
   const location = DOM.location.value;
   if (location != "") {
-    // what to do if the location soes not exist
-    getForecast(location, API_KEY_30, "minutely,hourly,alerts", DOM);
+    getForecastFromLocation(location, DOM);
   } else {
     alert("You must enter a location.")
   }
@@ -79,79 +65,25 @@ DOM.clear.addEventListener("click", () => {
   DOM.location.value = "";
 });
 
-
-export const getGPSLocation = async () => {
-  DOM.spinner.style.visibility = "visible";
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      translateCoordinates,
-      handleError,
-      options
-    );
-  } else {
-    console.error("Geolocation is not supported by this browser.");
-  }
-};
-
-// uses the users position to get there location, (city, state) and then calls the weather APIS
-const translateCoordinates = async (position) => {
-  try {
-    const locationInfo = await getLocationWithCoords(
-      position.coords.latitude,
-      position.coords.longitude
-    );
-    // uses the first location returned... need to test this in other locations
-    const name = locationInfo[0].name;
-    const state = locationInfo[0].state;
-
-    // gets the forcast of the users current location.
-    getForecast(`${name}, ${state}`, API_KEY_30, "minutely,hourly,alerts", DOM);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getLocationWithCoords = async (lat, long) => {
-  try {
-    const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${API_KEY_30}`;
-    const resp = await fetch(url, { mode: "cors" });
-    const data = await resp.json();
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-
 /*
-   1. gets the users coordinates from the browser. 
-   2. uses the cooridinates to call a reverse look up to get the location
-   location is then fed to a basic weather PAI to get the cooridnates, again, but also some other info. I dont need the first API
-   call to get the cooridnates, unless the user is searching from location only. So I still need to get them. It seems redundant 
-   but In order to use the GPS, I had to get the location in order to get the relevant weather info that is not offered with "OneCall"
-   
-   so if the user is using a location, city and state, i need the cooridinates to call one call and  to get relevant info about the current
-   weather. OneCall does not offer info like min temp, max temp, etc. 
-
-   This was a lot cleaner... I could not import from this file because it was a text file.. so to speak. so I had to define certain functions
-   here to be able to use DOM. Weird.. it would work with all the API functions in api.js on my local machine, but barked errors when live.
-   so... some API code is here until i can figure out a cleaner way. Likely I need to rethink it. I didnt designe at fisrst to use GPS and there was where
-   it got a bit weird.
+window.addEventListener("beforeunload",  (e) => {
+  e.preventDefault();
+  e.returnValue = "";
+  console.log(DOM.location.value);
+});
 */
 
 // decide if the user is trying to get the gps location eather, or if they are trying to refresh and get the weather of the current location
-/*
-if (DOM.location.value == "") {
-  // gettting GPS
-  getGPSLocation();
-} else {
-  // getting the weather at current location
-  // feed the location into function to get the cooridinates of this location
-  console.log('Getting Weather for current location')
-  
-}
-*/
+const currLocation = DOM.location.value;
 
-getForecast(`spartanburg, south carolina`, API_KEY_30, "minutely,hourly,alerts", DOM);
-// Make a bunch ofchanges herer!!
+if (currLocation == "") {
+  // gettting GPS
+  getWeatherWithGPS(DOM);
+} else {
+  // save the last location entered in the search box, and load it?
+  // getting the weather at current location
+  // Chrome deltes the values in the text box, FireFox, does not... wtf?
+ // getForecastFromLocation(currLocation, DOM);
+}
+
+

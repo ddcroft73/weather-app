@@ -227,24 +227,3 @@ export const getIcon = (night, icon) => {
   return path;
 };
 
-
-export const handleError = (error) => {
-  let errorStr;
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      errorStr = "User denied the request for Geolocation.";
-      break;
-    case error.POSITION_UNAVAILABLE:
-      errorStr = "Location information is unavailable.";
-      break;
-    case error.TIMEOUT:
-      errorStr = "The request to get user location timed out.";
-      break;
-    case error.UNKNOWN_ERROR:
-      errorStr = "An unknown error occurred.";
-      break;
-    default:
-      errorStr = "An unknown error occurred.";
-  }
-  alert("Error occurred: " + errorStr);
-};
