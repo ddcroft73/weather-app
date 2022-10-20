@@ -225,10 +225,13 @@ export const getIcon = (night, icon, main, description) => {
   night = true;
   console.log(`Main: ${main}\nDescription: ${description}`);
   */
- 
+
   // Showers  
-  if (main === 'Rain' && description.split(" ").includes('shower')) {
-     icon = 'showerd';
+  if (
+    (main === "Rain" && description.split(" ").includes("shower")) ||
+    description.split(" ").includes("light")
+  ) {
+    icon = "showerd";
   }
 
   //Sleet, mix rain and snow
