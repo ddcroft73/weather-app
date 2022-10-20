@@ -95,7 +95,7 @@ export const getForecastFromLocation = async (location, dom) => {
 
 const getCoordinatesFromLocation = async (location) => {
 
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${API_KEY_30}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${API_KEY_30}`;
   try {
     const resp = await fetch(url, { mode: "cors" });
     const data = await resp.json();
@@ -113,7 +113,7 @@ const getCoordinatesFromLocation = async (location) => {
 
 const getLocationFromCoords = async (coords) => {
   //https://api.openweathermap.org/geo/1.0/reverse?lat=34.937029&lon=-81.9955954&appid=69eb4c4ba2a0b741f04a495fd8e76b06
-  const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${coords.lat}&lon=${coords.lon}&appid=${API_KEY_30}`;
+  const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${coords.lat}&lon=${coords.lon}&appid=${API_KEY_30}`;
 
   try {
     const resp = await fetch(url, { mode: "cors" });
