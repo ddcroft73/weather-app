@@ -79,7 +79,7 @@ const currLocation = DOM.location.value;
 
 if (currLocation == "") {
   // gettting GPS
-  //getWeatherWithGPS(DOM);
+  getWeatherWithGPS(DOM);
 } else {
   // save the last location entered in the search box, and load it?
   // getting the weather at current location
