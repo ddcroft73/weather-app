@@ -81,31 +81,33 @@ export const setBackground = (main, description, dom, night) => {
     let fileName = "clear-BG.jpg";  // Default
 
     // sets the colors to correspond to the weather pattern.
-    const setColors = (dom, color, bgColor) => {    
-        if (night) {
-          dom.body.style = "background-color: black;";
-        } else {
-          dom.body.style = `background-color: ${bgColor}`;
-        }
-        dom.backGround.style = `border: 1px solid ${color};`;
-        dom.location.style = `border: 1px solid ${color};`;
-        dom.clear.style = `border: 1px solid ${color};`;
-        dom.submit.style = `border: 1px solid ${color};`;
-        // the condition divs
-        for (let i = 0; i < dom.conditionBorders.length; i++) {
-          if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
-            dom.conditionBorders[i].style = `border: 1px solid ${color};`;
-            dom.conditionBorders[i].style.color = color;
-          }
-        } 
-        // the day cards
-        for (let i = 0; i < dom.daysBorders.length; i++) {
-          if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
-            dom.daysBorders[i].style = `border: 1px solid ${color};`;
-            dom.daysBorders[i].style.color = color;
-          }
+    const setColors = (dom, color, bgColor) => {
+      if (night) {
+        dom.body.style = "background-color: black;";
+      } else {
+        dom.body.style = `background-color: ${bgColor};`;
+      }
+      dom.forty8hourForecast.style= `border: 1px solid ${color};`;
+      
+      dom.backGround.style = `border: 1px solid ${color};`;
+      dom.location.style = `border: 1px solid ${color};`;
+      dom.clear.style = `border: 1px solid ${color};`;
+      dom.submit.style = `border: 1px solid ${color};`;
+      // the condition divs
+      for (let i = 0; i < dom.conditionBorders.length; i++) {
+        if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
+          dom.conditionBorders[i].style = `border: 1px solid ${color};`;
+          dom.conditionBorders[i].style.color = color;
         }
       }
+      // the day cards
+      for (let i = 0; i < dom.daysBorders.length; i++) {
+        if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
+          dom.daysBorders[i].style = `border: 1px solid ${color};`;
+          dom.daysBorders[i].style.color = color;
+        }
+      }
+    }
       
     
     // is it day or night? decide if it is day or night and then pick the appropriate images?

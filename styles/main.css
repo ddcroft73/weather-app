@@ -82,9 +82,10 @@ body {
     display: flex;
     width: 100%;
     max-width: 1000px;
-    border: 0px solid rgb(0, 0, 3);
-    height: 500px;
+    border: 1px solid rgb(0, 0, 3);
+    height: 840px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /*The container that holds the cells that contain all the weather data*/
@@ -172,12 +173,6 @@ body {
     margin-left: 3px;
     padding-left: 7px;
     color: white;
-}
-.hi, .lo {
-    border: 0px solid rgb(247, 170, 16);;
-    border-radius: 3px;
-    padding: 0px;
-    font-size: 12px;
 }
 .condition {
     border: 0px solid black;
@@ -337,7 +332,7 @@ input[type="text"]{
     flex: 0 155px;
     border: 1px solid rgb(254, 254, 254);
     background-color: rgba(67, 67, 139, 0.2);
-    height: 80px;
+    height: 95px;
 
     margin-left: 5px;
     margin-top: 5px;
@@ -403,6 +398,11 @@ input[type="text"]{
     padding-left: 3px;
     line-height: 20px;
 }
+.hi, .lo {
+    border: 0px solid rgb(247, 170, 16);
+    border-radius: 3px;
+    font-size: 10px;
+}
 .hi {
     color: rgb(205, 20, 20);
 }
@@ -410,16 +410,36 @@ input[type="text"]{
 .lo {
     color: rgb(69, 228, 6);
 }
-@media screen and (max-width: 415px) { 
-    /*.current-stats {
-        margin-left: 15px;
-    } 
-    .day-container-centered {
-        margin-left: 30px;
-    }*/
-}
 
-@media screen and (max-width: 670px) {
+.forty8-hour-forecast {
+    display: flex;
+    
+    height: 100%;
+    width: 100%;
+    background-color: rgb(97, 97, 124);
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-radius: 8px;
+}
+.inner-container {/*
+    position:relative;
+    top: -100px;*/
+    height: 250px;
+    margin-bottom: 50px;
+}
+@media screen and (max-width: 800px) {
+    .main-container {
+            align-items: center;
+            height: 450px;
+            margin-bottom: 50px;
+        }
+    
+        .centered-container {
+            height: 950px;
+            gap: 20px;
+        }
+}
+@media screen and (max-width: 768px) {
     /* make the last three days hide
     #day-five, #day-six, #day-seven {
         display: none;
@@ -431,8 +451,13 @@ input[type="text"]{
         margin-bottom: 5px;
     }
     .main-container {
-        height: 700px;
-        margin-bottom: 5px;
+        align-items: center;
+        height: 450px;
+        margin-bottom: 50px;
+    }
+    .centered-container {
+        height: 950px;
+        gap: 20px;
     }
     .temp {
         font-size: 50px;
@@ -445,14 +470,53 @@ input[type="text"]{
     .search {
         padding-bottom: 5px;
     }
+
+    .inner-container {
+        height: 400px;
+        margin-bottom: 100px;
+    }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 604px) {
     .level-mid {
             height: 50px;
         }
+    /*.current-stats {
+        margin-left: 15px;
+    } 
+    .day-container-centered {
+        margin-left: 30px;
+    }*/
+    .main-container {
+        height: 550px;
+
+    }
+    .centered-container {
+        height: 1100px;
+    }
 }
 
+@media screen and (max-width: 480px) {
+
+        .main-container {
+            height: 660px;
+        
+        }
+        .centered-container {
+            height: 1230px;
+        }
+}
+
+@media screen and (max-width: 375px) {
+
+    .main-container {
+        height: 1100px;
+    }
+
+    .centered-container {
+        height: 1700px;
+    }
+}
 .spin {
     visibility: hidden;
 }
