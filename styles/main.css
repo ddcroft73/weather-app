@@ -334,7 +334,7 @@ input[type="text"]{
     display: flex;
     flex-direction: column;
 
-    flex: 0 150px;
+    flex: 0 155px;
     border: 1px solid rgb(254, 254, 254);
     background-color: rgba(67, 67, 139, 0.2);
     height: 80px;
@@ -390,6 +390,7 @@ input[type="text"]{
 .level-bottom .day .inside-day-container .icon-temp-container .day-temp {
     display: flex;
     padding-top: 0px;
+    padding-left: 2px;
     flex: 0 40px;
     height: 25px;
     border: 0px solid rgb(254, 254, 254);color:
@@ -422,10 +423,10 @@ input[type="text"]{
     /* make the last three days hide
     #day-five, #day-six, #day-seven {
         display: none;
-    }*/
+    }
     .current-condition-container {
         margin-top: 30px;        
-    }
+    }*/
     .level-top {
         margin-bottom: 5px;
     }
