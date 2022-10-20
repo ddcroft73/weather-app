@@ -222,14 +222,13 @@ export const getIcon = (night, icon, main, description) => {
   /*
   main = 'Snow';
   description = 'light shower rain'
-  night = true;
+  night = true;*/
   console.log(`Main: ${main}\nDescription: ${description}`);
-  */
 
-  // Showers  
+  // Showers
   if (
     (main === "Rain" && description.split(" ").includes("shower")) ||
-    description.split(" ").includes("light")
+    (main === "Rain" && description.split(" ").includes("light"))
   ) {
     icon = "showerd";
   }
@@ -238,17 +237,19 @@ export const getIcon = (night, icon, main, description) => {
   if (
     main === "Snow" ||
     (main === "Sleet" && description.split(" ").includes("sleet")) ||
-    description.split(" ").includes("rain")
+    (main === "Sleet" && description.split(" ").includes("rain") )
   ) {
     icon = "sleetd";
   }
+
   // change to night version
   if (night) {
     icon = icon.replace("d", "n");
   }
+
   path = dir + icon + ext;
 
-   console.log(path)
+  console.log(path);
   return path;
 };
 
