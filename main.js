@@ -55,6 +55,7 @@ DOM.forty8hourForecast = document.querySelector(".forty8-hour-forecast");
 
 DOM.submit.addEventListener('click', () => {
   const location = DOM.location.value;
+  
   if (location != "") {
     getForecastFromLocation(location, DOM);
   } else {

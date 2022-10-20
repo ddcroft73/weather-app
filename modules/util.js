@@ -9,19 +9,19 @@
 export const findCelsius = (fahrenheit) => {
   const celsius = ((fahrenheit - 32) * 5) / 9;
   return celsius;
-}
+};
 
 // C to F
 export const findFahrenheit = (celsius) => {
   return (9 * celsius + 160) / 5;
-}
+};
 
 
 export const getDateString = (unixTimeStamp) => {
      const dateString = dayjs(unixTimeStamp * 1000).$d.toString();    
 
      return dateString.split(" ").splice(0, 4).join(" ");
-}
+};
 
 export const formatTime = (unixTimeStamp) => {
     const date = new Date(unixTimeStamp * 1000);
@@ -30,15 +30,8 @@ export const formatTime = (unixTimeStamp) => {
     if (hours < 10) {hours = "0" + date.getHours();}
     const formattedTime = hours + ":" + minutes.slice(-2);
     return formattedTime;
-}
+};
 
-export const getDayFromTimeStamp = (timestamp) => {    
-
-
-    let date = new Date(timestamp * 1000);
-    let doMth = date.getDate();
-    return doMth;
-}
 export const isNight = (unixTimeStamp, offset) => {
   // Tue Oct 11 2022 18:58:27 GMT-0400
   try {
@@ -62,7 +55,9 @@ export const isNight = (unixTimeStamp, offset) => {
         ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
        ) {
         return true;
-    } 
+    } else if (currHour === 0) { // midnight. definitley dark
+      return true;
+    }
 
     return false;
 
@@ -70,7 +65,26 @@ export const isNight = (unixTimeStamp, offset) => {
     alert(err.message);
   }
   
+};
+
+// removes unneeded fluff on names in order to shorten them.
+export const evalName = (name) => {
+    // if there is "County" in the name, remove it and return the town name.
+    const nameArray = name.split(" ");
+    if (nameArray.includes('County')) {
+        name = nameArray.join("").replace('County', "");
+    }
+    // capitialize all words before returning
+    return capAllWords(name);
+    
+};
+
+export const capAllWords = (string) => {
+  return string.replace(/\w\S*/g, (w) =>
+    w.replace(/^\w/, (c) => c.toUpperCase())
+  );
 }
+
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
 // and storms
@@ -107,7 +121,7 @@ export const setBackground = (main, description, dom, night) => {
           dom.daysBorders[i].style.color = color;
         }
       }
-    }
+    };
       
     
     // is it day or night? decide if it is day or night and then pick the appropriate images?
@@ -127,15 +141,15 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = "clear-BG.jpg";
         }
-        setColors(dom, "white", 'lightblue');
+        setColors(dom, "white", "lightblue");
         break;
-    
+
       case "Clouds":
         if (night) {
           description = "night";
         }
         fileName = description + "-clouds-BG.jpg";
-        setColors(dom, "orange", 'gray');
+        setColors(dom, "orange", "gray");
         break;
 
       case "Rain":
@@ -149,37 +163,36 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = description + "-rain-BG.jpg";
         }
-        setColors(dom, "black", 'darkgray');
+        setColors(dom, "black", "darkgray");
         break;
 
       // just thunderstorm, one is plenty
       case "Thunderstorm":
         fileName = "thunderstorm-BG.jpg";
-        setColors(dom, "black", 'darkgray');
+        setColors(dom, "black", "darkgray");
         break;
 
       case "Drizzle":
         fileName = "drizzle-BG.jpg";
-        setColors(dom, "black", 'gray');
+        setColors(dom, "black", "gray");
         break;
 
-      case "Mist":
+      case "Mist" || "Haze":
         if (night) {
           fileName = "night-misty-BG.jpg";
         } else {
           fileName = "misty-BG.png";
         }
-        setColors(dom, "orange", 'gray');
+        setColors(dom, "orange", "gray");
         break;
 
-      // resume here
       case "Snow": // light heavy snow sleet
         if (night) {
           fileName = "night-snow-BG.jpg";
         } else {
           fileName = "snow-BG.jpg";
         }
-        setColors(dom, "blue", 'lightgray');
+        setColors(dom, "blue", "lightgray");
         break;
 
       case "Squall":
@@ -197,12 +210,8 @@ export const setBackground = (main, description, dom, night) => {
         break;
 
       case "Tornado":
-        fileName = "tornado-BG.jpg";        
-        setColors(dom, "maroon")
-        break;
-
-      case "Haze":
-        fileName = "haze.svg";
+        fileName = "tornado-BG.jpg";
+        setColors(dom, "maroon");
         break;
 
       default:
@@ -212,7 +221,7 @@ export const setBackground = (main, description, dom, night) => {
     
     console.log(url);
     dom.backGround.style.backgroundImage = url.join("");
-}
+};
 
 // given the description of the weather, return th}e path to the appropriate icon
 export const getIcon = (night, icon, main, description) => {
@@ -232,7 +241,6 @@ export const getIcon = (night, icon, main, description) => {
   ) {
     icon = "showerd";
   }
-
   //Sleet, mix rain and snow
   if (
     main === "Snow" ||
@@ -241,14 +249,12 @@ export const getIcon = (night, icon, main, description) => {
   ) {
     icon = "sleetd";
   }
-
   // change to night version
   if (night) {
     icon = icon.replace("d", "n");
   }
 
   path = dir + icon + ext;
-
   console.log(path);
   return path;
 };

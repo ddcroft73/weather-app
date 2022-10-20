@@ -25,3 +25,5 @@ I plan to rebuild the design of this app. I think this will be an exceptional pr
  - Colors update and highlight depending on the weather.
  - Alerts
   - When there is sever weather a modal will popup displaying this.
+
+  View it [live].( https://ddcroft73.github.io/weather-app/)

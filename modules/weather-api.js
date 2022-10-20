@@ -2,11 +2,12 @@
 import { findCelsius } from "./util.js";
 import { findFahrenheit } from "./util.js";
 import { formatTime } from "./util.js";
-import { getDayFromTimeStamp } from "./util.js";
 import { getIcon } from "./util.js";
 import { setBackground } from "./util.js";
 import { getDateString } from "./util.js";
 import { isNight } from "./util.js";
+import { evalName } from "./util.js"; //
+import { capAllWords } from "./util.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 const excludes = "minutley";
@@ -84,7 +85,7 @@ export const getForecastFromLocation = async (location, dom) => {
     const weatherData = await getForecastData(coords);
     dom.spinner.style.visibility = "hidden";
 
-    dom.location1.innerHTML = `${location}`;
+    dom.location1.innerHTML = `${capAllWords(location)}`;
     parseWeatherData(weatherData, dom);
   }
   catch(err) {
@@ -94,7 +95,6 @@ export const getForecastFromLocation = async (location, dom) => {
 };
 
 const getCoordinatesFromLocation = async (location) => {
-
   const url = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${API_KEY_30}`;
   try {
     const resp = await fetch(url, { mode: "cors" });
@@ -120,17 +120,17 @@ const getLocationFromCoords = async (coords) => {
     const data = await resp.json();
 
     const location = {
-      name: data[0].name,
-      state: data[0].state,
+      name: evalName(data[0].name), // often a GPS location is not exact. If not it may return "County" in the name. 
+      state: data[0].state,         // THis is better if not. Makes the name wau to long.
     };
 
+    console.log(location);
     return location;
   } catch (err) {
     console.log(err.message);
   }
 };     
 
-// called from inside async function, promise is passed in and results in an object with the weather data.
 const parseWeatherData = (weatherData, dom) => {
   displayCurrentConditions(weatherData, dom);
   displayWeatherForWeek(weatherData, dom);
