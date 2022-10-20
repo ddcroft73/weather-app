@@ -161,7 +161,7 @@ const displayCurrentConditions = (weatherData, dom) => {
   dom.loTemp.innerHTML = `${Math.round(min)}&#176`;
   dom.windSpeed.innerHTML = "&nbsp;" + wind_speed + "/m";
   dom.pressure.innerHTML = pressure;
-  dom.condition.innerHTML = description;
+  dom.condition.innerHTML = capAllWords(description);
   dom.humidity.innerHTML = "&nbsp" + humidity + "%";
   dom.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;
   dom.sunup.innerHTML = formatTime(sunrise);
@@ -181,7 +181,7 @@ const displayWeatherForWeek = (weatherData, dom) => {
         main,
         description
       ); //  "SVG/sun.svg"; 
-      dom.day[index].condition.innerHTML = weatherData.daily[index].weather[0].description;
+      dom.day[index].condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
       dom.day[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
       dom.day[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
     }    

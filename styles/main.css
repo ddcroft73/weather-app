@@ -276,9 +276,9 @@ input[type="text"]{
     display: flex;
     border: 1px solid rgb(251, 249, 249);
     width: 100px;
-    height: 20px;
+    height: 24px;
     margin-left: 5px;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
     border-radius: 5px;
     text-align:center;
     font-size: 10px;
@@ -480,7 +480,7 @@ input[type="text"]{
     }
 }
 
-@media screen and (max-width: 604px) {
+@media screen and (max-width: 684px) {
     .level-mid {
             height: 50px;
         }
@@ -499,10 +499,10 @@ input[type="text"]{
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480) { /* 480 */
 
         .main-container {
-            height: 660px;
+            height: 680px;
         
         }
         .centered-container {
