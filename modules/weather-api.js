@@ -63,7 +63,7 @@ export const getWeatherWithGPS = async (dom) => {
           const weatherData = await getForecastData(coords);
           dom.spinner.style.visibility = "hidden";
 
-          dom.location1.innerHTML = `${name}, ${state};`;
+          dom.location1.innerHTML = `${name}, ${state}`;
           parseWeatherData(weatherData, dom);
         } catch (err) {
           console.error(err);
