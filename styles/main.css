@@ -202,7 +202,7 @@ body {
     margin-right: 20px;
     margin-left: 20px;
     line-height: 25px;
-    font-size: 14px;
+    font-size: 12px;
     color: rgb(249, 246, 246);
 }
 input[type="text"]{
@@ -340,7 +340,7 @@ input[type="text"]{
     border-radius: 5px;
 }
 .degrees {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
 }
 /*.day:first-child {
@@ -367,6 +367,7 @@ input[type="text"]{
 .day-conditions {
     color: aliceblue;
     padding-left: 7px;
+    margin-top: 8px;
 }
 .level-bottom .day .inside-day-container .icon-temp-container{
     display: flex;
@@ -381,6 +382,7 @@ input[type="text"]{
     flex: 0 40px;
     height: 30px; 
     border: 0px solid rgb(254, 254, 254);
+    padding-top: 8px;
 }
 .level-bottom .day .inside-day-container .icon-temp-container .day-temp {
     display: flex;
@@ -401,7 +403,7 @@ input[type="text"]{
 .hi, .lo {
     border: 0px solid rgb(247, 170, 16);
     border-radius: 3px;
-    font-size: 10px;
+    font-size: 11px;
 }
 .hi {
     color: rgb(205, 20, 20);
@@ -468,7 +470,8 @@ input[type="text"]{
         top: -35px; 
     }
     .search {
-        padding-bottom: 5px;
+        padding-top: 10px;
+        margin-left: 8px;
     }
 
     .inner-container {

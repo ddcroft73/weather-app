@@ -23,3 +23,5 @@ I plan to rebuild the design of this app. I think this will be an exceptional pr
    - Hour by hour weather with icons for the next 48 hours.
  - Descriptive background inages that change by the weather.
  - Colors update and highlight depending on the weather.
+ - Alerts
+  - When there is sever weather a modal will popup displaying this.

@@ -236,7 +236,7 @@ export const getIcon = (night, icon, main, description) => {
   //Sleet, mix rain and snow
   if (
     main === "Snow" ||
-    (main === "Sleet" && description.split(" ").includes("sleet")) ||
+    (main === "Sleet" && description.split(" ").includes("snow")) ||
     (main === "Sleet" && description.split(" ").includes("rain") )
   ) {
     icon = "sleetd";
