@@ -506,15 +506,15 @@ input[type="text"]{
             height: 1230px;
         }
 }
-@media screen and (max-width: 412px) {
+@media screen and (max-width: 414px) {
 
     .main-container {
-        height: 700px;
+        height: 720px; /*690 700 */
 
     }
 
     .centered-container {
-        height: 1275px;
+        height: 1295px; /*1250 1275*/
     }
 }
 @media screen and (max-width: 375px) {
