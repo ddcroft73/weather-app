@@ -153,7 +153,7 @@ const displayCurrentConditions = (weatherData, dom) => {
   const night = isNight(sunset, timezone_offset);
 
   setBackground(main, description, dom, night);
-  dom.weatherIcon.src = getIcon(night, icon);
+  dom.weatherIcon.src = getIcon(night, icon, main, description);
 
   dom.today.textContent = getDateString(dt) + " -> " + time;
   dom.currentTemp.innerHTML = `${Math.round(temp)}`; // replace this with pressure
@@ -169,10 +169,18 @@ const displayCurrentConditions = (weatherData, dom) => {
 };
 
 const displayWeatherForWeek = (weatherData, dom) => {
+
     for (let index = 0; index < 8; index++) {
+     const { main, description, icon } = weatherData.daily[index].weather[0];
+
       dom.day[index].date.innerHTML = getDateString(weatherData.daily[index].dt);
       dom.day[index].temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
-      dom.day[index].icon.src = getIcon(false, weatherData.daily[index].weather[0].icon); //  "SVG/sun.svg"; 
+      dom.day[index].icon.src = getIcon(
+        false,
+        icon,
+        main,
+        description
+      ); //  "SVG/sun.svg"; 
       dom.day[index].condition.innerHTML = weatherData.daily[index].weather[0].description;
       dom.day[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
       dom.day[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";

@@ -88,7 +88,7 @@ export const setBackground = (main, description, dom, night) => {
         dom.body.style = `background-color: ${bgColor};`;
       }
       dom.forty8hourForecast.style= `border: 1px solid ${color};`;
-      
+
       dom.backGround.style = `border: 1px solid ${color};`;
       dom.location.style = `border: 1px solid ${color};`;
       dom.clear.style = `border: 1px solid ${color};`;
@@ -215,17 +215,37 @@ export const setBackground = (main, description, dom, night) => {
 }
 
 // given the description of the weather, return th}e path to the appropriate icon
-export const getIcon = (night, icon) => {
+export const getIcon = (night, icon, main, description) => {
   const dir = "SVG/";
   const ext = ".svg";
   let path;
-  console.log(icon)
+  /*
+  main = 'Snow';
+  description = 'light shower rain'
+  night = true;
+  console.log(`Main: ${main}\nDescription: ${description}`);
+  */
+ 
+  // Showers  
+  if (main === 'Rain' && description.split(" ").includes('shower')) {
+     icon = 'showerd';
+  }
 
+  //Sleet, mix rain and snow
+  if (
+    main === "Snow" ||
+    (main === "Sleet" && description.split(" ").includes("sleet")) ||
+    description.split(" ").includes("rain")
+  ) {
+    icon = "sleetd";
+  }
+  // change to night version
   if (night) {
-    icon.replace('d', 'n');
+    icon = icon.replace("d", "n");
   }
   path = dir + icon + ext;
 
+   console.log(path)
   return path;
 };
 
