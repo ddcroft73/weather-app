@@ -509,12 +509,12 @@ input[type="text"]{
 @media screen and (max-width: 412px) {
 
     .main-container {
-        height: 690px;
+        height: 700px;
 
     }
 
     .centered-container {
-        height: 1260px;
+        height: 1275px;
     }
 }
 @media screen and (max-width: 375px) {
