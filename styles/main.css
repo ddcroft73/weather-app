@@ -82,8 +82,8 @@ body {
     display: flex;
     width: 100%;
     max-width: 1000px;
-    border: 2px solid rgb(0, 0, 3);
-    height: 1200px;
+    border: 0px solid rgb(0, 0, 3);
+    height: 1250px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -95,7 +95,7 @@ body {
     
     background-image: url();
 
-    border: 1px solid rgb(247, 170, 16);
+    border: 0px solid rgb(247, 170, 16);
     
     width: 100%;
     max-width: 1000px;
@@ -423,17 +423,18 @@ input[type="text"]{
     gap: 8px;
 }
 
+/*  THe 48 hour forecast CSS*/
 .inner-left {    
     display: flex;
     flex-direction: column;
     flex: 0 500px;
-    height: 600px;
+    height: 680px;
     min-width: 350px;
     border: 1px solid rgb(11, 11, 11);
     background-color: rgba(44, 44, 96, 0.3);
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-        border-radius: 8px;    
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-radius: 8px;    
 }
 
 .inner-left .three-days-container {
@@ -449,26 +450,50 @@ input[type="text"]{
     border: 0px solid rgb(9, 9, 9);
     width: 320px;
     height: 100%;
-    gap: 4px;
 
 }
 .inner-left .three-days-container .three-days-container-inner .forty-8-days {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    border: 1px solid rgb(18, 18, 18);
+    border-right: 0px solid rgb(18, 18, 18);
     flex: 1 33%;
 }
-.inner-left .three-days-container .three-days-container-inner .forty-8-days .main-icon {
-    display: flex;
-        justify-content: center;
-        align-items: center;
-    border: 1px solid rgb(6, 6, 6);
-    height: 65px;
-    width: 100%;
+.divider {
+    border-left: 1px solid rgb(247, 247, 246);
+    height: 480px;
+    position: relative;
+    top: 120px;
 }
 
+.inner-left .three-days-container .three-days-container-inner .forty-8-days .main-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0px solid rgb(6, 6, 6);
+    height: 50px;
+    width: 100%;
+    padding-left: 5px;
+}
+.date-day {
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bolder;
+    margin-left: 10px;
+    text-align: center;
+    margin-right: 6px;
+    
+}
+.day-hi-lo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 0px solid rgb(6, 6, 6);
+    width: 100%;
+}
 .hour {
     display: flex;
     border: 0px solid rgb(5, 5, 5);
@@ -479,42 +504,48 @@ input[type="text"]{
 .hour-cell-time, .hour-cell-icon, .hour-cell-temp {
     border: 0px solid rgb(5, 5, 5);
     flex: auto;
-    margin-left: 2px;
+    margin-left: 0px;
+    line-height: 20px;
+    font-weight: bolder;
 }
 .hour-cell-time {
-    flex: 35px;
+    flex: 45px;
     margin-left: 5px;
+    text-align: center;
 }
 .hour-cell-icon {
-    flex: 35px;
+    flex: 25px;
 }
 .hour-cell-temp {
     flex: 30px;
-    margin-left: 5px;
+    margin-left: 2px;
 }
 
+/*Deatailed information on each Day CSS*/
 
 .inner-right {
-
     flex: 0 500px;
     height: 300px;
     min-width: 350px;
-    border: 1px solid rgb(247, 170, 16);
+    border: 1px solid rgb(6, 6, 6);
     background-color: rgba(11, 11, 27, 0.3);
-        border-top-right-radius: 8px;
-        border-top-left-radius: 8px;
-        border-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-radius: 8px;
 }
 
 .title {
     margin: 0px;
     padding-left: 5px;
-    background-color:rgba(251, 249, 249, 0.3);
+    background-color:rgba(44, 44, 96, 0.3);
     border: 1px solid rgb(7, 7, 7);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    height: 20px;
-
+    height: 25px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: bolder;
 }
 
 @media screen and (max-width: 800px) {
@@ -592,14 +623,14 @@ input[type="text"]{
 
 }
 
-@media screen and (max-width: 480) { /* 480 */
+@media screen and (max-width: 524px) { /* 480 */
 
         .main-container {
-            height: 680px;
+            height: 690px;
         
         }
         .centered-container {
-            height: 1230px;
+            height: 1330px;
         }
 }
 @media screen and (max-width: 414px) {
@@ -610,13 +641,13 @@ input[type="text"]{
     }
 
     .centered-container {
-        height: 1675px; /*1250 1275*/
+        height: 1730px; /*1250 1275*/
     }
 }
 @media screen and (max-width: 375px) {
 
     .main-container {
-        height: 1100px;
+        height: 730px;
     }
 
     .centered-container {
