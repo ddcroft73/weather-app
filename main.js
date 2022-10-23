@@ -51,7 +51,10 @@ DOM.conditionBorders = document.getElementById("conditionsBorders").childNodes;
 DOM.daysBorders = document.getElementById("daysBorders").childNodes;
 DOM.header =  document.querySelector('.search');
 DOM.body = document.querySelector('body');
-DOM.forty8hourForecast = document.querySelector(".forty8-hour-forecast");
+DOM.leftInfo = document.querySelector(".inner-left");
+DOM.rightInfo = document.querySelector(".inner-right");
+DOM.title = document.querySelector(".title").childNodes;
+
 
 DOM.submit.addEventListener('click', () => {
   const location = DOM.location.value;

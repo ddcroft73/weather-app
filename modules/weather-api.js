@@ -8,7 +8,8 @@ import { getDateString } from "./util.js";
 import { isNight } from "./util.js";
 import { evalName } from "./util.js"; //
 import { capAllWords } from "./util.js";
-import { getHourlyData } from ".util.js";
+import { getHourlyData } from "./util.js";
+import { getHours } from  "./util.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 const excludes = "minutley";
@@ -136,6 +137,10 @@ const getLocationFromCoords = async (coords) => {
 const parseWeatherData = (weatherData, dom) => {
   displayCurrentConditions(weatherData, dom);
   displayWeatherForWeek(weatherData, dom);
+  const hourlyData = getHourlyData(weatherData);
+  
+  console.log(hourlyData);
+
 };
 
 const displayCurrentConditions = (weatherData, dom) => {

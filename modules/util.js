@@ -85,7 +85,18 @@ export const capAllWords = (string) => {
   );
 };
 
-const getHourlyData = (weatherData) => {
+
+export const getHours = (unixTimeStamp) => {
+  let date = new Date(unixTimeStamp * 1000);
+  let hours = date.getHours();
+  if (hours === 0) {
+    hours = 0;
+  }
+  return hours;
+};
+
+
+export const getHourlyData = (weatherData) => {
   const { hourly } = weatherData;
 
   let day = 0;
@@ -115,7 +126,7 @@ const getHourlyData = (weatherData) => {
       day++; // go to next day
     }
   }
-  console.log(hourlyDataByDay);
+  return hourlyDataByDay;
 };
 
 
@@ -134,8 +145,10 @@ export const setBackground = (main, description, dom, night) => {
       } else {
         dom.body.style = `background-color: ${bgColor};`;
       }
-      dom.forty8hourForecast.style= `border: 1px solid ${color};`;
-
+      
+      dom.leftInfo.style= `border: 1px solid ${color};`;
+      dom.rightInfo.style = `border: 1px solid ${color};`;
+      
       dom.backGround.style = `border: 1px solid ${color};`;
       dom.location.style = `border: 1px solid ${color};`;
       dom.clear.style = `border: 1px solid ${color};`;
@@ -265,7 +278,7 @@ export const getIcon = (night, icon, main, description) => {
   main = 'Snow';
   description = 'light shower rain'
   night = true;*/
-  console.log(`Main: ${main}\nDescription: ${description}`);
+  //console.log(`Main: ${main}\nDescription: ${description}`);
 
   // Showers
   if (
@@ -288,7 +301,7 @@ export const getIcon = (night, icon, main, description) => {
   }
 
   path = dir + icon + ext;
-  console.log(path);
+  //console.log(path);
   return path;
 };
 
