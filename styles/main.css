@@ -428,7 +428,7 @@ input[type="text"]{
     display: flex;
     flex-direction: column;
     flex: 0 500px;
-    height: 680px;
+    height: 700px;
     min-width: 350px;
     border: 1px solid rgb(11, 11, 11);
     background-color: rgba(44, 44, 96, 0.3);
@@ -456,14 +456,17 @@ input[type="text"]{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 0px solid rgb(18, 18, 18);
-    flex: 1 33%;
+    margin-left: 0px;
+    border: 0px solid rgb(18, 18, 18);
+    flex: 1 30%;
+    gap: 0px;
 }
 .divider {
     border-left: 1px solid rgb(247, 247, 246);
-    height: 480px;
+    height: 500px;
     position: relative;
-    top: 120px;
+    top: 100px;
+    margin-left: 8px;
 }
 
 .inner-left .three-days-container .three-days-container-inner .forty-8-days .main-icon {
@@ -506,7 +509,8 @@ input[type="text"]{
     flex: auto;
     margin-left: 0px;
     line-height: 20px;
-    font-weight: bolder;
+    font-size: 13px;
+    font-weight: bold;
 }
 .hour-cell-time {
     flex: 45px;
@@ -636,7 +640,7 @@ input[type="text"]{
 @media screen and (max-width: 414px) {
 
     .main-container {
-        height: 700px; /*690 700 */
+        height: 720px; /*690 700 */
 
     }
 
