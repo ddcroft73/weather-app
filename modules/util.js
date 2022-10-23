@@ -83,7 +83,40 @@ export const capAllWords = (string) => {
   return string.replace(/\w\S*/g, (w) =>
     w.replace(/^\w/, (c) => c.toUpperCase())
   );
-}
+};
+
+const getHourlyData = (weatherData) => {
+  const { hourly } = weatherData;
+
+  let day = 0;
+  let totalHour = 0;
+  let hourOnThisDay = 0;
+  let hourlyDataByDay = [];
+
+  // init 2D Array;
+  for (let cnt = 0; cnt < 3; cnt++) {
+    hourlyDataByDay[cnt] = [];
+  }
+
+  // populate the array with the weather data for each day to be used in the
+  // 48 hour forecast.
+  while (totalHour < 47) {
+    hourlyDataByDay[day][hourOnThisDay] = {
+      temp: hourly[totalHour].temp,
+      icon: hourly[totalHour].weather[0].icon,
+      time: `${getHours(hourly[totalHour].dt)}:00`,
+    };
+
+    hourOnThisDay++;
+    totalHour++;
+
+    if (getHours(hourly[totalHour].dt) === 0) {
+      hourOnThisDay = 0; // start hours over for the next day
+      day++; // go to next day
+    }
+  }
+  console.log(hourlyDataByDay);
+};
 
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
