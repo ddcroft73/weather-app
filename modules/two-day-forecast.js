@@ -1,15 +1,13 @@
 import { getDateString } from "./util.js";
 
 /**
- * this module will habdle oall the actions needed to create and populate the 48 hour forecast.
+ * this module will handle all the actions needed to create and populate the 48 hour forecast.
  */
 
 
 // START TESTING CODE
 // importing in test data so i dont have to acceess the API everytime
-// I have included copies of the fcunftiond that extract the daily info from the API DATA
-// for testign so i dont have to query the API everytime.
-import { testJsonData } from "./json.js";
+import { testJsonData } from "./json-test-data.js";
 export const twoDayForecastTest = (dom) => {
   // create the routines exactly as they are called with the real Data
   displayHourlyData(testJsonData, dom);
@@ -31,8 +29,13 @@ export const displayHourlyData = (weatherData) => {
   for (let day = 0; day < numDays; day++) {
     displayHourlyForecastByDay(hourlyData[day], day);
     // add divider and style
-    addDivider();
+    addDivider((day+1));
   }
+};
+
+const addDivider = (cnt) => {
+    // divider should match the hifght of the day to the left
+    addElement("div", threeDayContainer, {className: 'divider'+cnt});
 };
 
 
@@ -58,7 +61,7 @@ const displayHourlyForecastByDay = (data, day) => {
   addElement("div", fortyEightContainer, {
     className: "day-hi-lo",
     idName: "day-hi-lo-" + day,
-    content: "Hi/LO",
+    content: "Hi/LO", // Code in the days hi and lo
   });
   
   // add the forecast for each hour of the day.
@@ -80,7 +83,7 @@ const displayHourlyForecastByDay = (data, day) => {
     addElement("img", iconContainer, {
       idName: "hour-icon-" + hour,
       src: `./SVG/${data[hour].icon}.svg`,
-      width: "20",
+      width: "18",
     });
 
     addElement("div", hourContainer, {
@@ -122,7 +125,7 @@ const getHourlyData = (weatherData) => {
     hourlyDataByDay[day][hourOnThisDay] = {
       temp: hourly[totalHour].temp,
       icon: hourly[totalHour].weather[0].icon,
-      time: `${getHours(hourly[totalHour].dt)}:00`,
+      time: `${padWithZeros(getHours(hourly[totalHour].dt))}`,
       date: getDateString(hourly[totalHour].dt),
     };
 
@@ -137,6 +140,13 @@ const getHourlyData = (weatherData) => {
   return hourlyDataByDay;
 };
 
+// if its a single digit hour pad with a zero and append :00 to all
+const padWithZeros = (time) => {
+    if (time.toString().length == 1) {
+        time = "0" + time;
+    }
+    return time + ':00';
+};
 
 // adds a new element to the page with any attributes and\or content
 const addElement = (
@@ -171,5 +181,3 @@ const addElement = (
   return div;
 };
 
-
-const addDivider = () => {};
