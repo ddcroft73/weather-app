@@ -1,7 +1,6 @@
 
 // module of JS utilitys
 
-
 // API will always be called for fahrenheit, and then converted... the temps will be kept in an object that
 // has both temps fpr each day we record.
 //
@@ -19,7 +18,6 @@ export const findFahrenheit = (celsius) => {
 
 export const getDateString = (unixTimeStamp) => {
      const dateString = dayjs(unixTimeStamp * 1000).$d.toString();    
-
      return dateString.split(" ").splice(0, 4).join(" ");
 };
 
@@ -86,48 +84,6 @@ export const capAllWords = (string) => {
 };
 
 
-export const getHours = (unixTimeStamp) => {
-  let date = new Date(unixTimeStamp * 1000);
-  let hours = date.getHours();
-  if (hours === 0) {
-    hours = 0;
-  }
-  return hours;
-};
-
-
-export const getHourlyData = (weatherData) => {
-  const { hourly } = weatherData;
-
-  let day = 0;
-  let totalHour = 0;
-  let hourOnThisDay = 0;
-  let hourlyDataByDay = [];
-
-  // init 2D Array;
-  for (let cnt = 0; cnt < 3; cnt++) {
-    hourlyDataByDay[cnt] = [];
-  }
-
-  // populate the array with the weather data for each day to be used in the
-  // 48 hour forecast.
-  while (totalHour < 47) {
-    hourlyDataByDay[day][hourOnThisDay] = {
-      temp: hourly[totalHour].temp,
-      icon: hourly[totalHour].weather[0].icon,
-      time: `${getHours(hourly[totalHour].dt)}:00`,
-    };
-
-    hourOnThisDay++;
-    totalHour++;
-
-    if (getHours(hourly[totalHour].dt) === 0) {
-      hourOnThisDay = 0; // start hours over for the next day
-      day++; // go to next day
-    }
-  }
-  return hourlyDataByDay;
-};
 
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow

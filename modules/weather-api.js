@@ -8,8 +8,7 @@ import { getDateString } from "./util.js";
 import { isNight } from "./util.js";
 import { evalName } from "./util.js"; //
 import { capAllWords } from "./util.js";
-import { getHourlyData } from "./util.js";
-import { getHours } from  "./util.js";
+import { displayHourlyData } from "./two-day-forecast.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
 const excludes = "minutley";
@@ -136,10 +135,9 @@ const getLocationFromCoords = async (coords) => {
 
 const parseWeatherData = (weatherData, dom) => {
   displayCurrentConditions(weatherData, dom);
-  displayWeatherForWeek(weatherData, dom);
-  const hourlyData = getHourlyData(weatherData);
-  
-  console.log(hourlyData);
+  displayWeatherForWeek(weatherData, dom); 
+  // start the 48 hour forecast   routines
+  displayHourlyData(weatherData, dom);
 
 };
 
@@ -180,16 +178,16 @@ const displayWeatherForWeek = (weatherData, dom) => {
     for (let index = 0; index < 8; index++) {
      const { main, description, icon } = weatherData.daily[index].weather[0];
 
-      dom.day[index].date.innerHTML = getDateString(weatherData.daily[index].dt);
-      dom.day[index].temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
-      dom.day[index].icon.src = getIcon(
+      dom.daily[index].date.innerHTML = getDateString(weatherData.daily[index].dt);
+      dom.daily[index].temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
+      dom.daily[index].icon.src = getIcon(
         false,
         icon,
         main,
         description
       ); //  "SVG/sun.svg"; 
-      dom.day[index].condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
-      dom.day[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
-      dom.day[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
+      dom.daily[index].condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
+      dom.daily[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
+      dom.daily[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
     }    
 };

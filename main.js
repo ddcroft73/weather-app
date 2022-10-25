@@ -1,5 +1,6 @@
 import { getWeatherWithGPS } from "./modules/weather-api.js";
 import { getForecastFromLocation } from "./modules/weather-api.js";
+import { twoDayForecastTest } from "./modules/two-day-forecast.js";
 
 
 // Create a DOM object to create references to the elements on the page.
@@ -26,10 +27,10 @@ DOM.sunup = document.querySelector('#sunup');
 DOM.sundown = document.querySelector("#sundown");
 
 // info for the next 7 days
-DOM.day = [];
+DOM.daily = [];
 
 for (let index = 0; index < 8; index++) {
-  DOM.day[index] = {
+  DOM.daily[index] = {
     date: document.querySelector("#day-date-" + index),
     icon: document.querySelector("#day-icon-" + index),
     temp: document.querySelector("#day-temp-" + index),
@@ -38,7 +39,8 @@ for (let index = 0; index < 8; index++) {
     tempMin: document.querySelector("#lo" + index)
   };
 }
-
+// the DOM.daily elements are created dynamically and added later
+DOM.threeDaysContainerInner = document.querySelector(".three-days-container-inner");
 
 // user input
 DOM.location = document.querySelector("#location");
@@ -84,6 +86,7 @@ const currLocation = DOM.location.value;
 if (currLocation == "") {
   // gettting GPS
   getWeatherWithGPS(DOM);
+  //twoDayForecastTest(DOM);
 } else {
   // save the last location entered in the search box, and load it?
   // getting the weather at current location

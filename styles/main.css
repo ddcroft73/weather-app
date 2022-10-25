@@ -83,9 +83,10 @@ body {
     width: 100%;
     max-width: 1000px;
     border: 1px solid rgb(0, 0, 3);
-    height: 1250px;
+    height: 1300px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
 }
 
 /*The container that holds the cells that contain all the weather data*/
@@ -191,7 +192,7 @@ body {
     padding-top: 8px;
     margin-top: 0px;
     padding-bottom: 8px;
-    margin-right: 10px;
+    margin-right: 20px;
     width: 100%;
     background-color:rgba(0, 0, 0, 0.4);
     border-top-left-radius: 10px;
@@ -417,10 +418,10 @@ input[type="text"]{
     display: flex;
     align-items: baseline;
     justify-content: center;
-    width: 100%;
     height: 600px;
     padding: 10px;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
 }
 
 /*  THe 48 hour forecast CSS*/
@@ -428,10 +429,10 @@ input[type="text"]{
     display: flex;
     flex-direction: column;
     flex: 0 500px;
-    height: 700px;
+    height: 740px;
     min-width: 350px;
     border: 1px solid rgb(11, 11, 11);
-    background-color: rgba(44, 44, 96, 0.3);
+    background-color: rgba(4, 4, 5, 0.4);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-radius: 8px;    
@@ -461,12 +462,21 @@ input[type="text"]{
     flex: 1 30%;
     gap: 0px;
 }
-.divider {
-    border-left: 1px solid rgb(247, 247, 246);
-    height: 500px;
+.divider1, .divider2 {
+    border: 1px solid rgb(247, 247, 246);
+   
     position: relative;
-    top: 100px;
+    top: 0px;
+    margin-right: 8px;
     margin-left: 8px;
+}
+
+.divider1 {
+    height: 668px;
+}
+
+.divider2 {
+    height: 560px;
 }
 
 .inner-left .three-days-container .three-days-container-inner .forty-8-days .main-icon {
@@ -487,6 +497,7 @@ input[type="text"]{
     margin-left: 10px;
     text-align: center;
     margin-right: 6px;
+    color: rgb(230, 212, 177);
     
 }
 .day-hi-lo {
@@ -496,13 +507,21 @@ input[type="text"]{
     margin-bottom: 15px;
     border: 0px solid rgb(6, 6, 6);
     width: 100%;
+    color: rgb(247, 170, 16);
 }
 .hour {
     display: flex;
     border: 0px solid rgb(5, 5, 5);
     height: 20px;
+    margin-bottom: 2px;
     width: 100%;
 }
+
+/* the effect i need for rain */
+#hour7,#hour8, #hour9, #hour10, #hour11, #hour12 {
+    background: rgb(53, 53, 72);
+}
+
 
 .hour-cell-time, .hour-cell-icon, .hour-cell-temp {
     border: 0px solid rgb(5, 5, 5);
@@ -511,6 +530,7 @@ input[type="text"]{
     line-height: 20px;
     font-size: 13px;
     font-weight: bold;
+    color: white;
 }
 .hour-cell-time {
     flex: 45px;
@@ -523,26 +543,35 @@ input[type="text"]{
 .hour-cell-temp {
     flex: 30px;
     margin-left: 2px;
+    color: rgb(247, 170, 16);
 }
 
 /*Deatailed information on each Day CSS*/
 
 .inner-right {
     flex: 0 500px;
-    height: 300px;
+    height: 375px;
     min-width: 350px;
     border: 1px solid rgb(6, 6, 6);
-    background-color: rgba(11, 11, 27, 0.3);
+    background-color: rgba(4, 4, 5, .3);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     border-radius: 8px;
+}
+.column-container {
+    display: flex;
+    flex-direction: column;
+    height: 740px;
+    width: 500px;
+    min-width: 350px;
+    gap: 10px;
 }
 
 .title {
     margin: 0px;
     padding-left: 5px;
-    background-color:rgba(44, 44, 96, 0.3);
-    border: 1px solid rgb(7, 7, 7);
+    background-color:rgb(9, 9, .8);
+    border: 1px solid rgb(248, 244, 244);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     height: 25px;
@@ -550,11 +579,11 @@ input[type="text"]{
     line-height: 20px;
     font-size: 13px;
     font-weight: bolder;
+    color: white;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .main-container {
-            align-items: center;
             height: 450px;
             margin-bottom: 50px;
         }
@@ -563,6 +592,8 @@ input[type="text"]{
             height: 1250px;
             gap: 20px;
         }
+               
+               
 }
 @media screen and (max-width: 768px) {
     /* make the last three days hide
@@ -576,7 +607,6 @@ input[type="text"]{
         margin-bottom: 5px;
     }
     .main-container {
-        align-items: center;
         height: 450px;
         margin-bottom: 50px;
     }
@@ -594,7 +624,7 @@ input[type="text"]{
     }
     .search {
         padding-top: 10px;
-        margin-left: 8px;
+        margin-left: 0px;
     }
 
     .inner-container {
@@ -620,10 +650,10 @@ input[type="text"]{
     .centered-container {
         height: 1700px;
     }
+.forecast-data-container {
+    flex-flow: row wrap;
 
-    .forecast-data-container {
-        flex-flow: row wrap;
-    }
+}
 
 }
 
@@ -636,6 +666,7 @@ input[type="text"]{
         .centered-container {
             height: 1790px;
         }
+                
 }
 @media screen and (max-width: 414px) {
 
@@ -645,7 +676,7 @@ input[type="text"]{
     }
 
     .centered-container {
-        height: 1800px; /*1250 1275*/
+        height: 1820px; /*1250 1275*/
     }
 }
 @media screen and (max-width: 375px) {

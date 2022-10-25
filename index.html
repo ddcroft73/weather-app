@@ -249,33 +249,47 @@
         </div>
         
        <div class="forecast-data-container">
-        <div class="inner-right">
-            <div class="title">Daily Detailed Information:</div>
+        <div class="column-container">
+            <div class="inner-right">
+                <div class="title">Daily Detailed Information:</div>
+            </div>
+            <div class="inner-right">
+                <div class="title">Daily Detailed Information:</div>
+            </div>
         </div>
-        
+
           <div class="inner-left">
             <div class="title">Forty-eight Hour Forecast:</div>
                 <div class="three-days-container">
+
                     <div class="three-days-container-inner">
-                        <div class="forty-8-days" id="day0">
-                            <div class="date-day" id="date-day0">Mon 28, 2022</div>
-                            <div class="main-icon" id="main-icon0"><img src="SVG/03d.svg" width="60"></div>
-                            <div class="day-hi-lo" id="day-hi-lo0">HI \ LO</div>
-                            <!--Dynamically generate with JS-->
-                            <div class="hour">
-                                <div class="hour-cell-time">19:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/03d.svg" width="20"></div>
-                                <div class="hour-cell-temp">72&#176;</div>
+                        <!--Dynamically generate with JS
+                        <div class="forty-8-days">
+                            <div class="date-day" id="date-day-0">Mon 28, 2022</div>
+                            <div class="main-icon" ><img id="main-icon-0" src="SVG/03d.svg" width="60"></div>     
+                            <div class="day-hi-lo" id="day-hi-lo-0">HI \ LO</div>
+
+
+                            <div class="hour"> 
+                                <div class="hour-cell-time" id="hour-time-0">19:00</div>
+                                <div class="hour-cell-icon">
+                                    <img id="hour-icon-0" src="SVG/03d.svg" width="20">
+                                </div>
+                                <div class="hour-cell-temp" id="hour-temp-0">72&#176;</div>
                             </div>
+
                             <div class="hour">
-                                <div class="hour-cell-time">20:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/03d.svg" width="20"></div>
-                                <div class="hour-cell-temp">72&#176;</div>
+                                <div class="hour-cell-time" id="hour-time-1">19:00</div>
+                                <div class="hour-cell-icon"><img id="hour-icon-1" src="SVG/03d.svg" width="20"></div>
+                                <div class="hour-cell-temp" id="hour-temp-1">72&#176;</div>
                             </div>
+
+
+
                             <div class="hour">
-                                <div class="hour-cell-time">21:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/01d.svg" width="20"></div>
-                                <div class="hour-cell-temp">72&#176;</div>
+                                <div class="hour-cell-time" id="hour-time2">19:00</div>
+                                <div class="hour-cell-icon"><img id="hour-icon-2" src="SVG/03d.svg" width="20"></div>
+                                <div class="hour-cell-temp" id="hour-temp2">72&#176;</div>
                             </div>
                             <div class="hour">
                                 <div class="hour-cell-time">22:00</div>
@@ -286,48 +300,48 @@
                                 <div class="hour-cell-time">23:00</div>
                                 <div class="hour-cell-icon"><img src="SVG/50d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
-                            </div>
-                           
+                            </div>                           
                         </div>
-                        <div class="divider"></div>
+
+                        <div class="divider1"></div>
+
                         <div class="forty-8-days" id="day1">
                             <div class="date-day" id="date-day1">Mon 28, 2022</div>
                             <div class="main-icon" id="main-icon1"><img src="SVG/50d.svg" width="60"></div>
                             <div class="day-hi-lo" id="day-hi-lo1">HI \ LO</div>
-                            <!--Dynamically generate with JS-->
                             <div class="hour">
                                 <div class="hour-cell-time">00:00</div>
                                 <div class="hour-cell-icon"><img src="SVG/03d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour7">
                                 <div class="hour-cell-time">01:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/03d.svg" width="20"></div>
+                                <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour8">
                                 <div class="hour-cell-time">02:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/01d.svg" width="20"></div>
+                                <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour9">
                                 <div class="hour-cell-time">03:00</div>
                                 <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour10">
                                 <div class="hour-cell-time">04:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/50d.svg" width="20"></div>
+                                <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour11">
                                 <div class="hour-cell-time">05:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/50d.svg" width="20"></div>
+                                <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
-                            <div class="hour">
+                            <div class="hour" id="hour12">
                                 <div class="hour-cell-time">06:00</div>
-                                <div class="hour-cell-icon"><img src="SVG/50d.svg" width="20"></div>
+                                <div class="hour-cell-icon"><img src="SVG/13d.svg" width="20"></div>
                                 <div class="hour-cell-temp">72&#176;</div>
                             </div>
                             <div class="hour">
@@ -422,13 +436,12 @@
                             </div>
                         </div>
 
-                        <div class="divider"></div>
+                        <div class="divider2"></div>
 
                         <div class="forty-8-days" id="day2">
                             <div class="date-day" id="date-day1">Mon 28, 2022</div>
                             <div class="main-icon" id="main-icon2"><img src="SVG/13d.svg" width="60"></div>
                             <div class="day-hi-lo" id="day-hi-lo1">HI \ LO</div>
-                            <!--Dynamically generate with JS-->
                             <div class="hour">
                                 <div class="hour-cell-time">12:00</div>
                                 <div class="hour-cell-icon"><img src="SVG/03d.svg" width="20"></div>
@@ -527,8 +540,8 @@
                         </div>
                     </div>
                 </div>
+            -->
           </div>
-
        </div>
     </div>
 </div>
