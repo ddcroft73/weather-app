@@ -7,7 +7,7 @@ import { getDateString } from "./util.js";
 
 // START TESTING CODE
 // importing in test data so i dont have to acceess the API everytime
-import { testJsonData } from "./json-test-data.js";
+//import { testJsonData } from "./json-test-data.js";
 export const twoDayForecastTest = (dom) => {
   // create the routines exactly as they are called with the real Data
   displayHourlyData(testJsonData, dom);
