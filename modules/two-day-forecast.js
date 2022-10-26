@@ -24,6 +24,7 @@ export const displayHourlyData = (weatherData) => {
   const hourlyData = getHourlyData(weatherData);
   const numDays = hourlyData.length;
 
+  removePastData();
   //console.log(hourlyData);
   // systematicallu create the elemetns by the day using the info in hourlyData
   for (let day = 0; day < numDays; day++) {
@@ -43,7 +44,7 @@ const addDivider = (cnt) => {
 const displayHourlyForecastByDay = (data, day) => {
   // create the parent container
   const fortyEightContainer = addElement("div", threeDayContainer, {
-    className: "forty-8-days",
+    className: "forty-8-days-"+day,
   });
   // create the Date, Icon Nad Hi\Lo icons.
   addElement("div", fortyEightContainer, {
@@ -181,3 +182,20 @@ const addElement = (
   return div;
 };
 
+const removePastData = () => {
+    try {
+      for (let i = 0; i< 2; i++) {
+        let divider = document.querySelector(".divider"+(i+1));
+        divider.remove();
+      }
+      for (let i= 0; i < 3; i++) {
+        let innerContainers = document.querySelector(".forty-8-days-"+i);
+        innerContainers.remove();      
+       }
+
+    }
+    catch(err) {
+        console.log(err)
+    }
+    
+};

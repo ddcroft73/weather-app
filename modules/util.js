@@ -96,14 +96,14 @@ export const setBackground = (main, description, dom, night) => {
 
     // sets the colors to correspond to the weather pattern.
     const setColors = (dom, color, bgColor) => {
-      /*if (night) {
+      if (night) {
         dom.body.style = "background-color: black;";
       } else {
         dom.body.style = `background-color: ${bgColor};`;
-      }*/
+      }
       
-      //dom.leftInfo.style= `border: 1px solid ${color};`;
-     // dom.rightInfo.style = `border: 1px solid ${color};`;
+      dom.leftInfo.style= `border: 1px solid ${color};`;
+      dom.rightInfo.style = `border: 1px solid ${color};`;
 
       dom.backGround.style = `border: 1px solid ${color};`;
       dom.location.style = `border: 1px solid ${color};`;

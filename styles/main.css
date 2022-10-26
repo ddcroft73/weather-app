@@ -471,14 +471,18 @@ input[type="text"]{
 }
 
 .divider1 {
-    height: 668px;
+    position: relative;
+    top: 50px;
+    height: 618px;
 }
 
 .divider2 {
-    height: 560px;
+    position: relative;
+    top: 50px;
+    height: 618px;
 }
 
-.inner-left .three-days-container .three-days-container-inner .forty-8-days .main-icon {
+.main-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -533,12 +537,13 @@ input[type="text"]{
     font-weight: bold;
     color: white;
 }
+
 .hour-cell-time {
     flex: 45px;
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
-    color: rgb(11, 11, 10);
+    color: rgb(139, 139, 135);
 }
 .hour-cell-icon {
     flex: 25px;
