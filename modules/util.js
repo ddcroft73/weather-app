@@ -53,7 +53,7 @@ export const isNight = (unixTimeStamp, offset) => {
         ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
        ) {
         return true;
-    } else if (currHour === 0) { // midnight. definitley dark
+    } else if (currHour <= 6) { // midnight. definitley dark
       return true;
     }
 
