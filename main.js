@@ -58,7 +58,7 @@ DOM.header =  document.querySelector('.search');
 DOM.body = document.querySelector('body');
 DOM.leftInfo = document.querySelector(".inner-left");
 DOM.rightInfo = document.querySelector(".inner-right");
-DOM.title = document.querySelector(".title").childNodes;
+//DOM.title = document.querySelector(".title").childNodes;
 
 
 DOM.submit.addEventListener('click', () => {
