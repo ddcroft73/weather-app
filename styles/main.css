@@ -573,6 +573,7 @@ input[type="text"]{
     height: 350px;
     width: 550px;
     min-width: 375px;
+    margin-top: 10px;
     gap: 10px;
 }
 
