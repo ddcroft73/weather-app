@@ -72,7 +72,7 @@ body {
     
     display: flex;
     justify-content: center;
-    background-color:rgb(160, 200, 237);
+    background-color:rgb(78, 122, 162);
     font-size: 10px;
 }
 
@@ -80,11 +80,12 @@ body {
 /* The main container to keep all otheres centered*/
 .centered-container {
     display: flex;
+    justify-content: center;
     width: 100%;
     max-width: 1000px;
     border: 0px solid rgb(0, 0, 3);
     height: 1300px;
-    margin-top: 10px;
+    margin-top: 3px;
     margin-right: 20px;
     margin-left: 10px;
 }
@@ -98,7 +99,7 @@ body {
 
     border: 0px solid rgb(247, 170, 16);
     
-    width: 100%;
+    width: 95%;
     max-width: 1000px;
     height: 500px;
     border-radius: 10px;
@@ -430,9 +431,9 @@ input[type="text"]{
     flex-direction: column;
     flex: 0 400px;
     height: 740px;
-    min-width: 350px;
+    min-width: 375px;
     border: 1px solid rgb(11, 11, 11);
-    background-color: rgba(4, 4, 5, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-radius: 8px;    
@@ -535,7 +536,6 @@ input[type="text"]{
     line-height: 20px;
     font-size: 13px;
     font-weight: bold;
-    color: white;
 }
 
 .hour-cell-time {
@@ -543,7 +543,7 @@ input[type="text"]{
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
-    color: rgb(139, 139, 135);
+    color: rgb(230, 212, 177);
 }
 .hour-cell-icon {
     flex: 25px;
@@ -560,7 +560,7 @@ input[type="text"]{
 .inner-right {
     flex: 0 500px;
     height: 375px;
-    min-width: 350px;
+    min-width: 375px;
     border: 1px solid rgb(6, 6, 6);
     background-color: rgba(4, 4, 5, .3);
     border-top-right-radius: 8px;
@@ -572,7 +572,7 @@ input[type="text"]{
     flex-direction: column;
     height: 350px;
     width: 550px;
-    min-width: 350px;
+    min-width: 375px;
     gap: 10px;
 }
 
@@ -642,7 +642,7 @@ input[type="text"]{
     }
 }
 
-@media screen and (max-width: 678px) {
+@media screen and (max-width: 714px) {
     .level-mid {
             height: 50px;
         }
@@ -666,7 +666,7 @@ input[type="text"]{
 
 }
 
-@media screen and (max-width: 524px) { /* 480 */
+@media screen and (max-width: 546px) { /* 480 */
 
         .main-container {
             height: 690px;
@@ -680,12 +680,12 @@ input[type="text"]{
 @media screen and (max-width: 414px) {
 
     .main-container {
-        height: 720px; /*690 700 */
-
+        height: 720px; /*690 700 */ 
+        width: 375px;
     }
 
     .centered-container {
-        height: 1950px; /*1250 1275*/
+        height: 1900px; /*1250 1275*/
     }
 }
 @media screen and (max-width: 375px) {

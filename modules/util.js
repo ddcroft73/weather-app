@@ -53,7 +53,7 @@ export const isNight = (unixTimeStamp, offset) => {
         ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
        ) {
         return true;
-    } else if (currHour <= 6) { // midnight. definitley dark
+    } else if (currHour <= 6) { // midnight. definitley dark  === 0
       return true;
     }
 
@@ -132,7 +132,7 @@ export const setBackground = (main, description, dom, night) => {
     description = description.split(" ")[0];    
 
     /* Lazy mans TDD */
-       //main = 'Tornado';
+       //main = 'Mist';
        //description = 'powerful';
     //console.log(main, description);
 
@@ -143,7 +143,7 @@ export const setBackground = (main, description, dom, night) => {
         } else {
           fileName = "clear-BG.jpg";
         }
-        setColors(dom, "white", "lightblue");
+        setColors(dom, "white", "gray");
         break;
 
       case "Clouds":

@@ -1,6 +1,9 @@
-import { getWeatherWithGPS } from "./modules/weather-api.js";
-import { getForecastFromLocation } from "./modules/weather-api.js";
-import { twoDayForecastTest } from "./modules/two-day-forecast.js";
+import {
+  getWeatherWithGPS,
+  getForecastFromLocation,
+} from "./modules/weather-api.js";
+
+//import { twoDayForecastTest } from "./modules/two-day-forecast.js";
 
 
 // Create a DOM object to create references to the elements on the page.

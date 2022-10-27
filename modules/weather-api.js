@@ -1,13 +1,16 @@
 
-import { findCelsius } from "./util.js";
-import { findFahrenheit } from "./util.js";
-import { formatTime } from "./util.js";
-import { getIcon } from "./util.js";
-import { setBackground } from "./util.js";
-import { getDateString } from "./util.js";
-import { isNight } from "./util.js";
-import { evalName } from "./util.js"; //
-import { capAllWords } from "./util.js";
+import {
+  findCelsius,
+  findFahrenheit,
+  formatTime,
+  getIcon,
+  setBackground,
+  getDateString,
+  isNight,
+  evalName,
+  capAllWords
+} from "./util.js";
+
 import { displayHourlyData } from "./two-day-forecast.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // for 3.0 '69eb4c4ba2a0b741f04a495fd8e76b06'; // 2.5 20f7632ffc2c022654e4093c6947b4f4
