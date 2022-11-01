@@ -75,9 +75,14 @@ class SearchComboBox {
             if (newItem !== "") {
                 // are we saving this?
                 if (this.state.save) {
-                    // add the input to the menuItems array.
-                    const itemObj = addNewItem(newItem);
-                    addToMenu(itemObj, itemObj.itemID); // add the item to the menu.
+                    // Check to see if this item already exists...
+                    // if it does exist, dont save again.
+                    const exists = itemExists(newItem);
+                    if (!exists) {
+                        // add the input to the menuItems array.
+                        const itemObj = addNewItem(newItem);
+                        addToMenu(itemObj, itemObj.itemID); // add the item to the menu.
+                    }
                 }
 
                 // Turn over the location to be searched...
@@ -93,6 +98,16 @@ class SearchComboBox {
         });
 
         // Methods //
+        const itemExists = (itemText) => {
+            // if this text is already there. nope!
+            this.state.menuItems.forEach((item) => {
+                if (item.text.toLowerCase() === itemText.toLowerCase()) {
+                    return true;
+                }
+            });
+            return false;
+        };
+
         const showClearButton = (show) => {
             return show
                 ? (this.clearButton.style = "visibility: visible;")
@@ -119,6 +134,48 @@ class SearchComboBox {
             }
         };
 
+        // remove this item from the menu and from storage.
+        const removeItem = (itemID) => {
+            const getItemIndex = (array, id) => {
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].itemID == id) {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+            const removeFromDOM = (id) => {
+                const menuItems = document.querySelectorAll(".item-container");
+                const container = document.querySelector(".menu");
+                let thisID = null;
+
+                for (let i = 0; i < menuItems.length; i++) {
+                    // slice off the id # after "item-"
+                    thisID = menuItems[i].getAttribute("id").split("-")[2];
+                    //console.log(thisID)
+                    if (thisID == id) {
+                        container.removeChild(menuItems[i]);
+                        //console.log('match');
+                    }
+                }
+            };
+            const removeFromStorage = (index) => {
+                if (index != -1) {
+                    //console.log(index + " " + bookID);
+                    this.state.menuItems.splice(index, 1);
+
+                    localStorage.setItem(
+                        "searches",
+                        JSON.stringify(this.state.menuItems)
+                    );
+                }
+            };
+
+            removeFromDOM(itemID);
+            const itemIndex = getItemIndex(this.state.menuItems, itemID);
+            removeFromStorage(itemIndex);
+        };
+
         // listen for the clicks on both the item and the delete Icon and
         // handle accordingly
         const bindItemToDOM = (itemID) => {
@@ -135,6 +192,7 @@ class SearchComboBox {
                 console.log(`deleteItem: ${itemID} clicked`);
 
                 // remove this menuitem from the menu and from storage.
+                removeItem(itemID);
             });
 
             item.addEventListener("mouseover", () => {
@@ -188,6 +246,7 @@ class SearchComboBox {
                 // add the item container
                 const newItemContainer = addElement("div", this.menu, {
                     className: "item-container",
+                    idName: "item-container-" + itemID,
                 });
                 // add the item
                 addElement("div", newItemContainer, {
@@ -207,9 +266,10 @@ class SearchComboBox {
             bindItemToDOM(itemID);
         };
 
-        // populate the menu from storage
+        // populate the menu fro storage
         const loadMenu = (menuItems) => {
             for (let i = 0; i < menuItems.length; i++) {
+                console.log(menuItems[i].text);
                 addToMenu(menuItems[i], menuItems[i].itemID);
             }
         };
@@ -282,8 +342,10 @@ class SearchComboBox {
             return this.state.menuItems;
         };
 
+        // Display all previoulsy saved locations
         loadMenu(getSearches());
     }
 }
 
 searchBox = new SearchComboBox();
+
