@@ -14,8 +14,8 @@
 
 import {
     getForecastFromLocation,
-} from "./modules/weather-api.js";
-import { DOM } from "/main.js";
+} from "../modules/weather-api.js";
+import { DOM } from "../main.js";
 
 class SearchComboBox {
     constructor() {
