@@ -78,6 +78,7 @@ class SearchComboBox {
                     // Check to see if this item already exists...
                     // if it does exist, dont save again.
                     const exists = itemExists(newItem);
+                    console.log(exists)
                     if (!exists) {
                         // add the input to the menuItems array.
                         const itemObj = addNewItem(newItem);
@@ -99,12 +100,16 @@ class SearchComboBox {
 
         // Methods //
         const itemExists = (itemText) => {
-            // if this text is already there. nope!
-            this.state.menuItems.forEach((item) => {
-                if (item.text.toLowerCase() === itemText.toLowerCase()) {
-                    return true;
-                }
-            });
+            
+            for (let i = 0; i < this.state.menuItems.length; i++) {
+                   if (
+                       this.state.menuItems[i].text.toLowerCase() ===
+                       itemText.toLowerCase()
+                   ) {
+                       console.log("it exists");
+                       return true;
+                   }
+            }
             return false;
         };
 
