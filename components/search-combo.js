@@ -8,10 +8,14 @@
  * 
  * I have no idea if this is even remotely how this is done. and I figure this is where React and the like
  * come into play.
+ * 
+ *  SO it seems in order to make use I have to add code into the component code that calls the API fetch fucntions
+ *  This is cumbersome. THis had to be done in order to get access to the API code to fetch the weather by location
+ * It was hardly convieneint to have to click the search button once a location is recalled as previouslly saved.
  */
 
-// this is some fanagling i had to do to get this to work, it should not be done this way, Im sure. 
 
+// this is some fanagling i had to do to get this to work, it should not be done this way, Im sure. 
 import {
     getForecastFromLocation,
 } from "../modules/weather-api.js";
@@ -274,7 +278,7 @@ class SearchComboBox {
                 addElement("div", newItemContainer, {
                     className: "close",
                     idName: "close-" + itemID,
-                    content: "&#x2612;", //'<i class="fa-solid fa-trash"></i>',
+                    content: '<i class="fa-solid fa-trash"></i>', //"&#x2612;", //'<i class="fa-solid fa-trash"></i>',
                 });
             };
 

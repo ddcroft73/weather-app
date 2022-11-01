@@ -7,6 +7,8 @@ import {
 
 
 // Create a DOM object to create references to the elements on the page.
+
+// When I added the search combo "Component" I have to export this put to be used in the code.
 export let DOM = {};
 
 DOM.spinner = document.querySelector('.spin');

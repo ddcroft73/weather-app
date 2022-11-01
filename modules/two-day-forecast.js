@@ -25,7 +25,6 @@ export const displayHourlyData = (weatherData) => {
   const numDays = hourlyData.length;
 
   removePastData();
-  //console.log(hourlyData);
   // systematicallu create the elemetns by the day using the info in hourlyData
   for (let day = 0; day < numDays; day++) {
     displayHourlyForecastByDay(hourlyData[day], day);
