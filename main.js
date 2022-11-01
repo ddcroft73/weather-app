@@ -70,6 +70,6 @@ DOM.submit.addEventListener('click', ()=> {
     console.log(`location == ${DOM.locationInput.value}`)
 });
 
-//getWeatherWithGPS(DOM);
+getWeatherWithGPS(DOM);
 
 
