@@ -10,6 +10,12 @@
  * come into play.
  */
 
+// this is some fanagling i had to do to get this to work, it should not be done this way, Im sure. 
+import {
+    getForecastFromLocation,
+} from "/modules/weather-api.js";
+import { DOM } from "/main.js";
+
 class SearchComboBox {
     constructor() {
         // Psuedo Component State
@@ -192,6 +198,10 @@ class SearchComboBox {
                 this.state.currentItem = getItemText(itemID);
                 this.textBox.value = this.state.currentItem;
                 showClearButton(true);
+                // had to import this from the API module. Doesnt feel right but it does work
+                // Seems like i shoud be able to get access to this a better way like if this were a 
+                // true self contained compoment
+                getForecastFromLocation(this.state.currentItem, DOM);
             });
             deleteItem.addEventListener("click", () => {
                 console.log(`deleteItem: ${itemID} clicked`);
@@ -352,5 +362,5 @@ class SearchComboBox {
     }
 }
 
-searchBox = new SearchComboBox();
+const searchBox = new SearchComboBox();
 

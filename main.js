@@ -7,7 +7,7 @@ import {
 
 
 // Create a DOM object to create references to the elements on the page.
-let DOM = {};
+export let DOM = {};
 
 DOM.spinner = document.querySelector('.spin');
 //DOM.clear = document.querySelector(".clear");
