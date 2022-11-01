@@ -68,7 +68,7 @@ export const getWeatherWithGPS = async (dom) => {
           const weatherData = await getForecastData(coords);
           dom.spinner.style.visibility = "hidden";
 
-          dom.location1.innerHTML = `${name}, ${state}`;
+          dom.curentLocation.innerHTML = `${name}, ${state}`;
           parseWeatherData(weatherData, dom);
         } catch (err) {
           console.error(err);
@@ -89,7 +89,7 @@ export const getForecastFromLocation = async (location, dom) => {
     const weatherData = await getForecastData(coords);
     dom.spinner.style.visibility = "hidden";
 
-    dom.location1.innerHTML = `${capAllWords(location)}`;
+    dom.curentLocation.innerHTML = `${capAllWords(location)}`;
     parseWeatherData(weatherData, dom);
   }
   catch(err) {

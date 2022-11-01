@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <script src="https://kit.fontawesome.com/aebcb9f7bd.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -19,14 +20,32 @@
 
     <div class="main-container">
         <div class="spin"></div>
-
-        <div class="search">
-            <div class="location">location, text text text</div>
-            <input type="text" id="location">
-            <div class="clear">X</div>
-            <input type="button" value="Search" id="submit">
+         
+        <div class="search">            
+            <div class="location">location, text</div>
+                    
+            <div class="component-container">
+                <div class="component">
+                    <input class="text" id="text">
+                    <button class="button" id="submit">
+                        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <div class="save">
+                        <input type="checkbox" id="save">
+                    </div>
+                    <div class="expand" id="expand">
+                        <i class="fa-sharp fa-solid fa-caret-down"></i>
+                    </div>            
+                    <div class="clear" id="clear">X</div>            
+                </div>
+                <div class="menu-container">
+                    <div class="menu" id="menu"></div>
+                </div>
+            </div>
+        
         </div>
-
+    
+        
         <div class="level-top">
             <div class="weather-icon">
                 <img src="SVG/rainy.svg" id="weather-icon" width="225">
@@ -47,7 +66,7 @@
                 </div>
 
                 <div class="condition">
-                     <span class="condition-text">yo, condition go here...</span>
+                     <span class="condition-text">Current Condition</span>
                 </div>
                 
             </div>
@@ -269,7 +288,7 @@
 
 
 <script type="module" src="main.js" ></script>
-
+<script src="./components/search-combo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script>dayjs().format()</script>
 </body>

@@ -183,7 +183,15 @@ body {
     color:rgb(245, 249, 249);
     font-size: 14px;
 }
+.location {
+    margin-right: 20px;
+    margin-left: 20px;
+    line-height: 25px;
+    font-size: 12px;
+    color: rgb(249, 246, 246);
+}
 
+/*----------------------------Style for submit and textbox-----------------------------------*/
 .search {
     border: 0px solid black;
     display:flex;
@@ -200,14 +208,11 @@ body {
     border-top-right-radius: 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
 }
-.location {
-    margin-right: 20px;
-    margin-left: 20px;
-    line-height: 25px;
-    font-size: 12px;
-    color: rgb(249, 246, 246);
+#location:focus {
+    outline: none;
 }
-input[type="text"]{
+
+input[type="search"]{
     border: 0px solid rgb(251, 249, 249);
     background-color: rgb(175, 175, 175);
     border-right: 0px solid rgb(249, 249, 249);
@@ -218,41 +223,15 @@ input[type="text"]{
     font-size: 14px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
+    border-radius: 5px;
     height: 25px;
 }
 
-
-#location:focus {
-    outline:none;
-}
-
-.clear {
-    border-right: 0px solid rgb(246, 245, 245);
-    border-top: 0px solid rgb(249, 249, 249);
-    border-bottom: 0px solid rgb(249, 249, 249);
-    padding: 3px;
-    line-height: 21px;
-    font-size: 12px;
-    background-color: rgb(175, 175, 175);
-
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    height: 25px;
-    font-weight: 600;
-}
-.clear:hover {
-    color: white;
-    cursor: pointer;
-}
-
-.clear:active {
-    color: black;
-}
 #submit {
     border: 0px solid rgb(247, 247, 247);
     border-radius: 5px;
     background-color: rgb(175, 175, 175);
-    margin-left: 5px;
+    margin-left: 0px;
     margin-right: 10px;
     height: 25px;
 }
@@ -264,6 +243,8 @@ input[type="text"]{
 #submit:active {
     color: black;
 }
+/*--------------------------------------------------------*/
+
 
 .level-mid {
     display: flex;
@@ -591,6 +572,8 @@ input[type="text"]{
     font-weight: bolder;
 }
 
+
+
 @media screen and (max-width: 996px) {
     .main-container {
             height: 480px;
@@ -723,4 +706,176 @@ input[type="text"]{
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     will-change: transform;
+  }
+
+
+  
+
+  /* component styling */
+  .component-container {
+      /* Change this */
+      font-size: 14px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      border: 0px solid rgb(26, 24, 24);
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      height: 27px;
+  }
+
+  .component {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 295px;
+      height: 25px;
+      margin: 0px;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: rgb(128, 120, 120);
+      text-align: center;
+      content: 'main';
+      border: 0px solid black;
+
+      /*box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, .3);*/
+  }
+
+  .text {
+      border-radius: 5px;
+      margin-right: 3px;
+      border: 1px solid rgb(99, 97, 97);
+      height: 25px;
+      width: 215px;
+      padding-left: 8px;
+      background-color: rgb(234, 232, 228)
+          /*transition: width .5s;*/
+  }
+
+  .button {
+      margin-right: 0px;
+      margin-left: 3px;
+      border: 1px solid black;
+      border-radius: 3px;
+      width: 30px;
+      height: 25px;
+      background-color: rgba(193, 196, 195, 0.1);
+      cursor: pointer;
+  }
+
+
+  .button:active {
+      color: white;
+      /*transform: scale(-1,-10);*/
+  }
+
+  .expand {
+      visibility: visible;
+      position: relative;
+      left: -78px;
+      top: 7px;
+      width: 22px;
+
+      height: 21px;
+      padding-left: 1px;
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+      border: 0px solid gray;
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px;
+      color: rgb(12, 12, 12);
+      background-color: rgba(193, 196, 195, 0.1);
+  }
+
+  .clear {
+      visibility: hidden;
+      position: relative;
+      left: -105px;
+      top: 1px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: rgb(86, 77, 77);
+  }
+
+  .clear:hover {
+      color: rgb(76, 9, 9);
+  }
+
+  .clear:active {
+      color: rgb(248, 247, 247);
+
+  }
+
+  .save {
+      height: 100%;
+      width: 18px;
+      border: 0px solid black;
+  }
+
+  input[type="checkbox"] {
+      margin-left: 5px;
+      margin-top: 4px;
+      opacity: 5;
+      height: 18px;
+      width: 18px;
+      cursor: pointer;
+      accent-color: rgb(27, 53, 92);
+  }
+
+  .menu-container {
+      margin: 0px;
+  }
+
+  .menu {
+      display: flex;
+      flex-direction: column;
+      visibility: hidden;
+      position: relative;
+      overflow: auto;
+
+      top: 1px;
+      left: -15x;
+      z-index: 1;
+      width: 215px;
+      height: 133px;
+      /* max height 125px*/
+      background-color: rgb(234, 232, 228);
+      border: 1px solid rgb(171, 165, 165);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-radius: 5px;
+      box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, .9);
+  }
+
+  .item-container {
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .item {
+      border-bottom: 0px solid black;
+      padding-left: 5px;
+      margin-bottom: 3px;
+      height: 23px;
+      width: 215px;
+      cursor: pointer;
+      overflow: hidden;
+      border-bottom: 0px solid gray;
+      background-color: rgba(35, 31, 22, .1);
+      line-height: 25px;
+  }
+
+  .item:nth-child(even) {
+      background-color: rgba(8, 8, 8, 0.9);
+  }
+
+  .close {
+      margin-right: 3px;
+      /* keep the icon over the item name incase its longer than the menu */
+      z-index: 1;
+      font-size: 22px;
+      font-weight: bolder;
+      color: rgb(48, 47, 47);
+      cursor: default;
+      background-color: rgba(35, 31, 22, .1);
+      height: 23px;
+      line-height: 25px;
   }

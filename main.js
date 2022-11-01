@@ -10,8 +10,8 @@ import {
 let DOM = {};
 
 DOM.spinner = document.querySelector('.spin');
-DOM.clear = document.querySelector(".clear");
-DOM.location1 = document.querySelector('.location');
+//DOM.clear = document.querySelector(".clear");
+DOM.curentLocation = document.querySelector('.location');
 
 // info for today
 DOM.weatherIcon = document.querySelector("#weather-icon");
@@ -46,8 +46,8 @@ for (let index = 0; index < 8; index++) {
 DOM.threeDaysContainerInner = document.querySelector(".three-days-container-inner");
 
 // user input
-DOM.location = document.querySelector("#location");
-DOM.submit = document.querySelector("#submit")
+//DOM.location = document.querySelector("#location");
+//DOM.submit = document.querySelector("#submit")
 
 // for color changes due to tofays weather
 DOM.dayBackground = document.querySelector(".day");
@@ -60,41 +60,16 @@ DOM.leftInfo = document.querySelector(".inner-left");
 DOM.rightInfo = document.querySelector(".inner-right");
 //DOM.title = document.querySelector(".title").childNodes;
 
+DOM.locationInput = document.querySelector(".text");
 
-DOM.submit.addEventListener('click', () => {
-  const location = DOM.location.value;
-  
-  if (location != "") {
-    getForecastFromLocation(location, DOM);
-  } else {
-    alert("You must enter a location.")
-  }
+DOM.submit = document.querySelector('.button');
+
+
+DOM.submit.addEventListener('click', ()=> {
+    getForecastFromLocation(DOM.locationInput.value, DOM);
+    console.log(`location == ${DOM.locationInput.value}`)
 });
 
-DOM.clear.addEventListener("click", () => {
-  DOM.location.value = "";
-});
-
-/*
-window.addEventListener("beforeunload",  (e) => {
-  e.preventDefault();
-  e.returnValue = "";
-  console.log(DOM.location.value);
-});
-*/
-
-// decide if the user is trying to get the gps location eather, or if they are trying to refresh and get the weather of the current location
-const currLocation = DOM.location.value;
-
-if (currLocation == "") {
-  // gettting GPS
-  getWeatherWithGPS(DOM);
-  //twoDayForecastTest(DOM);
-} else {
-  // save the last location entered in the search box, and load it?
-  // getting the weather at current location
-  // Chrome deltes the values in the text box, FireFox, does not... wtf?
- // getForecastFromLocation(currLocation, DOM);
-}
+//getWeatherWithGPS(DOM);
 
 

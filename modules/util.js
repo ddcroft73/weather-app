@@ -106,9 +106,6 @@ export const setBackground = (main, description, dom, night) => {
       dom.rightInfo.style = `border: 1px solid ${color};`;
 
       dom.backGround.style = `border: 1px solid ${color};`;
-      dom.location.style = `border: 1px solid ${color};`;
-      dom.clear.style = `border: 1px solid ${color};`;
-      dom.submit.style = `border: 1px solid ${color};`;
       // the condition divs
       for (let i = 0; i < dom.conditionBorders.length; i++) {
         if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
