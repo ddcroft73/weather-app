@@ -1,4 +1,3 @@
-
 // module of JS utilitys
 
 // API will always be called for fahrenheit, and then converted... the temps will be kept in an object that
@@ -6,255 +5,249 @@
 //
 // convert F to C
 export const findCelsius = (fahrenheit) => {
-  const celsius = ((fahrenheit - 32) * 5) / 9;
-  return celsius;
+    const celsius = ((fahrenheit - 32) * 5) / 9;
+    return celsius;
 };
 
 // C to F
 export const findFahrenheit = (celsius) => {
-  return (9 * celsius + 160) / 5;
+    return (9 * celsius + 160) / 5;
 };
 
-
 export const getDateString = (unixTimeStamp) => {
-     const dateString = dayjs(unixTimeStamp * 1000).$d.toString();    
-     return dateString.split(" ").splice(0, 4).join(" ");
+    const dateString = dayjs(unixTimeStamp * 1000).$d.toString();
+    return dateString.split(" ").splice(0, 4).join(" ");
 };
 
 export const formatTime = (unixTimeStamp) => {
     const date = new Date(unixTimeStamp * 1000);
     let hours = date.getHours();
-    const minutes = "0" + date.getMinutes();    
-    if (hours < 10) {hours = "0" + date.getHours();}
+    const minutes = "0" + date.getMinutes();
+    if (hours < 10) {
+        hours = "0" + date.getHours();
+    }
     const formattedTime = hours + ":" + minutes.slice(-2);
     return formattedTime;
 };
 
 export const isNight = (unixTimeStamp, offset) => {
-  // Tue Oct 11 2022 18:58:27 GMT-0400
-  try {
-    const currHour = dayjs().hour();
-    const currMinute = dayjs().minute();
-    // extract the sunset time
-    const date = dayjs((unixTimeStamp) * 1000);
-    const sunset = date.$d.toString().split(" ").splice(4, 1).join();
-    const ssHour = sunset.split(":")[0];
-    const ssMinute = sunset.split(":")[1];
-    const ssHourInt = parseInt(ssHour, 10);
-    const ssMinuteInt = parseInt(ssMinute, 10);
+    // Tue Oct 11 2022 18:58:27 GMT-0400
+    try {
+        const currHour = dayjs().hour();
+        const currMinute = dayjs().minute();
+        // extract the sunset time
+        const date = dayjs(unixTimeStamp * 1000);
+        const sunset = date.$d.toString().split(" ").splice(4, 1).join();
+        const ssHour = sunset.split(":")[0];
+        const ssMinute = sunset.split(":")[1];
+        const ssHourInt = parseInt(ssHour, 10);
+        const ssMinuteInt = parseInt(ssMinute, 10);
 
-    //const now = currHour.toString() + currMinute.toString();
-    //const sunDown = ssHour + ssMinute;
-    //console.log(now, sunDown);
-    //console.log(ssHourInt, ssMinuteInt, currHour, currMinute);    
-    if (
-        (currHour > ssHourInt) || 
-        (currHour === ssHourInt) && currMinute > ssMinuteInt || 
-        ((currHour-1) === ssHourInt && ssMinuteInt > currMinute)
-       ) {
-        return true;
-    } else if (currHour <= 6) { // midnight. definitley dark  === 0
-      return true;
+        //const now = currHour.toString() + currMinute.toString();
+        //const sunDown = ssHour + ssMinute;
+        //console.log(now, sunDown);
+        //console.log(ssHourInt, ssMinuteInt, currHour, currMinute);
+        if (
+            currHour > ssHourInt ||
+            (currHour === ssHourInt && currMinute > ssMinuteInt) ||
+            (currHour - 1 === ssHourInt && ssMinuteInt > currMinute)
+        ) {
+            return true;
+        } else if (currHour <= 6) {
+            // midnight. definitley dark  === 0
+            return true;
+        }
+
+        return false;
+    } catch (err) {
+        alert(err.message);
     }
-
-    return false;
-
-  } catch (err) {
-    alert(err.message);
-  }
-  
 };
 
 // removes unneeded fluff on names in order to shorten them.
 export const evalName = (name) => {
     // if there is "County" in the name, remove it and return the town name.
     const nameArray = name.split(" ");
-    if (nameArray.includes('County')) {
-        name = nameArray.join("").replace('County', "");
+    if (nameArray.includes("County")) {
+        name = nameArray.join("").replace("County", "");
     }
     // capitialize all words before returning
     return capAllWords(name);
-    
 };
 
 export const capAllWords = (string) => {
-  return string.replace(/\w\S*/g, (w) =>
-    w.replace(/^\w/, (c) => c.toUpperCase())
-  );
+    return string.replace(/\w\S*/g, (w) =>
+        w.replace(/^\w/, (c) => c.toUpperCase())
+    );
 };
-
-
-
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
 // and storms
 export const setBackground = (main, description, dom, night) => {
-    const url = ["url(",  ")"];    
+    const url = ["url(", ")"];
     const dir = "bg-images/";
 
-    let fileName = "clear-BG.jpg";  // Default
+    let fileName = "clear-BG.jpg"; // Default
 
     // sets the colors to correspond to the weather pattern.
     const setColors = (dom, color, bgColor) => {
-      if (night) {
-        dom.body.style = "background-color: black;";
-      } else {
-        dom.body.style = `background-color: ${bgColor};`;
-      }
-      
-      dom.leftInfo.style= `border: 1px solid ${color};`;
-      dom.rightInfo.style = `border: 1px solid ${color};`;
+        if (night) {
+            dom.body.style = "background-color: black;";
+        } else {
+            dom.body.style = `background-color: ${bgColor};`;
+        }
 
-      dom.backGround.style = `border: 1px solid ${color};`;
-      // the condition divs
-      for (let i = 0; i < dom.conditionBorders.length; i++) {
-        if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
-          dom.conditionBorders[i].style = `border: 1px solid ${color};`;
-          dom.conditionBorders[i].style.color = color;
+        dom.leftInfo.style = `border: 1px solid ${color};`;
+        dom.rightInfo.style = `border: 1px solid ${color};`;
+
+        dom.backGround.style = `border: 1px solid ${color};`;
+        // the condition divs
+        for (let i = 0; i < dom.conditionBorders.length; i++) {
+            if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
+                dom.conditionBorders[i].style = `border: 1px solid ${color};`;
+                dom.conditionBorders[i].style.color = color;
+            }
         }
-      }
-      // the day cards
-      for (let i = 0; i < dom.daysBorders.length; i++) {
-        if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
-          dom.daysBorders[i].style = `border: 1px solid ${color};`;
-          dom.daysBorders[i].style.color = color;
+        // the day cards
+        for (let i = 0; i < dom.daysBorders.length; i++) {
+            if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
+                dom.daysBorders[i].style = `border: 1px solid ${color};`;
+                dom.daysBorders[i].style.color = color;
+            }
         }
-      }
     };
-      
-    
+
     // is it day or night? decide if it is day or night and then pick the appropriate images?
 
     // slice off the first word in the description to use to select the right BG image
-    description = description.split(" ")[0];    
+    description = description.split(" ")[0];
 
     /* Lazy mans TDD */
-       //main = 'Mist';
-       //description = 'powerful';
+    //main = 'Mist';
+    //description = 'powerful';
     //console.log(main, description);
 
     switch (main) {
-      case "Clear":
-        if (night) {
-          fileName = "night-clear-BG.jpg";
-        } else {
-          fileName = "clear-BG.jpg";
-        }
-        setColors(dom, "white", "gray");
-        break;
+        case "Clear":
+            if (night) {
+                fileName = "night-clear-BG.jpg";
+            } else {
+                fileName = "clear-BG.jpg";
+            }
+            setColors(dom, "white", "gray");
+            break;
 
-      case "Clouds":
-        if (night) {
-          description = "night";
-        }
-        fileName = description + "-clouds-BG.jpg";
-        setColors(dom, "orange", "gray");
-        break;
+        case "Clouds":
+            if (night) {
+                description = "night";
+            }
+            fileName = description + "-clouds-BG.jpg";
+            setColors(dom, "orange", "gray");
+            break;
 
-      case "Rain":
-        // 3 types of rain are enough...
-        if (
-          description != "moderate" &&
-          description != "heavy" &&
-          description != "freezing"
-        ) {
-          fileName = "moderate-rain-BG.jpg";
-        } else {
-          fileName = description + "-rain-BG.jpg";
-        }
-        setColors(dom, "black", "darkgray");
-        break;
+        case "Rain":
+            // 3 types of rain are enough...
+            if (
+                description != "moderate" &&
+                description != "heavy" &&
+                description != "freezing"
+            ) {
+                fileName = "moderate-rain-BG.jpg";
+            } else {
+                fileName = description + "-rain-BG.jpg";
+            }
+            setColors(dom, "black", "darkgray");
+            break;
 
-      // just thunderstorm, one is plenty
-      case "Thunderstorm":
-        fileName = "thunderstorm-BG.jpg";
-        setColors(dom, "black", "darkgray");
-        break;
+        // just thunderstorm, one is plenty
+        case "Thunderstorm":
+            fileName = "thunderstorm-BG.jpg";
+            setColors(dom, "black", "darkgray");
+            break;
 
-      case "Drizzle":
-        fileName = "drizzle-BG.jpg";
-        setColors(dom, "black", "gray");
-        break;
+        case "Drizzle":
+            fileName = "drizzle-BG.jpg";
+            setColors(dom, "black", "gray");
+            break;
 
-      case "Mist" || "Haze":
-        if (night) {
-          fileName = "night-misty-BG.jpg";
-        } else {
-          fileName = "misty-BG.png";
-        }
-        setColors(dom, "orange", "gray");
-        break;
+        case "Mist" || "Haze":
+            if (night) {
+                fileName = "night-misty-BG.jpg";
+            } else {
+                fileName = "misty-BG.png";
+            }
+            setColors(dom, "orange", "gray");
+            break;
 
-      case "Snow": // light heavy snow sleet
-        if (night) {
-          fileName = "night-snow-BG.jpg";
-        } else {
-          fileName = "snow-BG.jpg";
-        }
-        setColors(dom, "blue", "lightgray");
-        break;
+        case "Snow": // light heavy snow sleet
+            if (night) {
+                fileName = "night-snow-BG.jpg";
+            } else {
+                fileName = "snow-BG.jpg";
+            }
+            setColors(dom, "blue", "lightgray");
+            break;
 
-      case "Squall":
-        fileName = "squall-BG.jpg";
-        setColors(dom, "black");
-        break;
+        case "Squall":
+            fileName = "squall-BG.jpg";
+            setColors(dom, "black");
+            break;
 
-      case "Fog":
-        if (night) {
-          fileName = "night-fog-BG.jpg";
-        } else {
-          fileName = "fog-BG.jpg";
-        }
-        setColors(dom, "black");
-        break;
+        case "Fog":
+            if (night) {
+                fileName = "night-fog-BG.jpg";
+            } else {
+                fileName = "fog-BG.jpg";
+            }
+            setColors(dom, "black");
+            break;
 
-      case "Tornado":
-        fileName = "tornado-BG.jpg";
-        setColors(dom, "maroon");
-        break;
+        case "Tornado":
+            fileName = "tornado-BG.jpg";
+            setColors(dom, "maroon");
+            break;
 
-      default:
-        fileName = fileName;
-    } 
+        default:
+            fileName = fileName;
+    }
     url.splice(1, 0, dir + fileName);
-    
+
     console.log(url);
     dom.backGround.style.backgroundImage = url.join("");
 };
 
 // given the description of the weather, return th}e path to the appropriate icon
 export const getIcon = (night, icon, main, description) => {
-  const dir = "SVG/";
-  const ext = ".svg";
-  let path;
-  /*
+    const dir = "SVG/";
+    const ext = ".svg";
+    let path;
+    /*
   main = 'Snow';
   description = 'light shower rain'
   night = true;*/
-  //console.log(`Main: ${main}\nDescription: ${description}`);
+    //console.log(`Main: ${main}\nDescription: ${description}`);
 
-  // Showers
-  if (
-    (main === "Rain" && description.split(" ").includes("shower")) ||
-    (main === "Rain" && description.split(" ").includes("light"))
-  ) {
-    icon = "showerd";
-  }
-  //Sleet, mix rain and snow
-  if (
-    main === "Snow" ||
-    (main === "Sleet" && description.split(" ").includes("snow")) ||
-    (main === "Sleet" && description.split(" ").includes("rain") )
-  ) {
-    icon = "sleetd";
-  }
-  // change to night version
-  if (night) {
-    icon = icon.replace("d", "n");
-  }
+    // Showers
+    if (
+        (main === "Rain" && description.split(" ").includes("shower")) ||
+        (main === "Rain" && description.split(" ").includes("light"))
+    ) {
+        icon = "showerd";
+    }
+    //Sleet, mix rain and snow
+    if (
+        main === "Snow" ||
+        (main === "Sleet" && description.split(" ").includes("snow")) ||
+        (main === "Sleet" && description.split(" ").includes("rain"))
+    ) {
+        icon = "sleetd";
+    }
+    // change to night version
+    if (night) {
+        icon = icon.replace("d", "n");
+    }
 
-  path = dir + icon + ext;
-  //console.log(path);
-  return path;
+    path = dir + icon + ext;
+    //console.log(path);
+    return path;
 };
-

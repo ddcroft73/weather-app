@@ -1,24 +1,20 @@
-
 /**
  * a drop down component, sort of.. I want to learn either Web Components and\or react
  * to make things like this more often.
- * 
- * Allows the user to both enter and select saved locations. The premise being the ability to 
+ *
+ * Allows the user to both enter and select saved locations. The premise being the ability to
  * quickly check the wearther in multiple locations.
- * 
+ *
  * I have no idea if this is even remotely how this is done. and I figure this is where React and the like
  * come into play.
- * 
+ *
  *  SO it seems in order to make use I have to add code into the component code that calls the API fetch fucntions
  *  This is cumbersome. THis had to be done in order to get access to the API code to fetch the weather by location
  * It was hardly convieneint to have to click the search button once a location is recalled as previouslly saved.
  */
 
-
-// this is some fanagling i had to do to get this to work, it should not be done this way, Im sure. 
-import {
-    getForecastFromLocation,
-} from "../modules/weather-api.js";
+// this is some fanagling i had to do to get this to work, it should not be done this way, Im sure.
+import { getForecastFromLocation } from "../modules/weather-api.js";
 import { DOM } from "../main.js";
 
 class SearchComboBox {
@@ -89,7 +85,7 @@ class SearchComboBox {
                     // Check to see if this item already exists...
                     // if it does exist, dont save again.
                     const exists = itemExists(newItem);
-                    console.log(exists)
+                    console.log(exists);
                     if (!exists) {
                         // add the input to the menuItems array.
                         const itemObj = addNewItem(newItem);
@@ -111,15 +107,14 @@ class SearchComboBox {
 
         // Methods //
         const itemExists = (itemText) => {
-            
             for (let i = 0; i < this.state.menuItems.length; i++) {
-                   if (
-                       this.state.menuItems[i].text.toLowerCase() ===
-                       itemText.toLowerCase()
-                   ) {
-                       console.log("it exists");
-                       return true;
-                   }
+                if (
+                    this.state.menuItems[i].text.toLowerCase() ===
+                    itemText.toLowerCase()
+                ) {
+                    console.log("it exists");
+                    return true;
+                }
             }
             return false;
         };
@@ -204,7 +199,7 @@ class SearchComboBox {
                 this.textBox.value = this.state.currentItem;
                 showClearButton(true);
                 // had to import this from the API module. Doesnt feel right but it does work
-                // Seems like i shoud be able to get access to this a better way like if this were a 
+                // Seems like i shoud be able to get access to this a better way like if this were a
                 // true self contained compoment
                 getForecastFromLocation(this.state.currentItem, DOM);
             });
@@ -368,4 +363,3 @@ class SearchComboBox {
 }
 
 const searchBox = new SearchComboBox();
-
