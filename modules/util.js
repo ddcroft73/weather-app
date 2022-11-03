@@ -123,7 +123,7 @@ export const setBackground = (main, description, dom, night) => {
     description = description.split(" ")[0];
 
     /* Lazy mans TDD */
-    //main = 'Mist';
+    //main = 'Clear';
     //description = 'powerful';
     //console.log(main, description);
 
@@ -134,7 +134,7 @@ export const setBackground = (main, description, dom, night) => {
             } else {
                 fileName = "clear-BG.jpg";
             }
-            setColors(dom, "white", "gray");
+            setColors(dom, "orange", "gray");
             break;
 
         case "Clouds":
@@ -156,21 +156,21 @@ export const setBackground = (main, description, dom, night) => {
             } else {
                 fileName = description + "-rain-BG.jpg";
             }
-            setColors(dom, "black", "darkgray");
+            setColors(dom, "yellow", "darkgray");
             break;
 
         // just thunderstorm, one is plenty
         case "Thunderstorm":
             fileName = "thunderstorm-BG.jpg";
-            setColors(dom, "black", "darkgray");
+            setColors(dom, "white", "white");
             break;
 
         case "Drizzle":
             fileName = "drizzle-BG.jpg";
-            setColors(dom, "black", "gray");
+            setColors(dom, "white", "gray");
             break;
 
-        case "Mist" || "Haze":
+        case "Mist":
             if (night) {
                 fileName = "night-misty-BG.jpg";
             } else {
@@ -178,19 +178,26 @@ export const setBackground = (main, description, dom, night) => {
             }
             setColors(dom, "orange", "gray");
             break;
-
+        case "Haze":
+            if (night) {
+                fileName = "night-misty-BG.jpg";
+            } else {
+                fileName = "misty-BG.png";
+            }
+            setColors(dom, "orange", "gray");
+            break;
         case "Snow": // light heavy snow sleet
             if (night) {
                 fileName = "night-snow-BG.jpg";
             } else {
                 fileName = "snow-BG.jpg";
             }
-            setColors(dom, "blue", "lightgray");
+            setColors(dom, "white", "lightgray");
             break;
 
         case "Squall":
             fileName = "squall-BG.jpg";
-            setColors(dom, "black");
+            setColors(dom, "orange", "black");
             break;
 
         case "Fog":
@@ -199,12 +206,12 @@ export const setBackground = (main, description, dom, night) => {
             } else {
                 fileName = "fog-BG.jpg";
             }
-            setColors(dom, "black");
+            setColors(dom, "cyan", "black");
             break;
 
         case "Tornado":
             fileName = "tornado-BG.jpg";
-            setColors(dom, "maroon");
+            setColors(dom, "maroon", "gray");
             break;
 
         default:
