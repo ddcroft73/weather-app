@@ -20,13 +20,17 @@ const threeDayContainer = document.querySelector(".three-days-container-inner");
 // function takes the array set up by getHourlyData and calls other functions to dynamically create the
 // elements according to the data, and display the information.
 export const displayHourlyData = (weatherData) => {
-    const hourlyData = getHourlyData(weatherData);
-    const numDays = hourlyData.length;
-
+    let hourlyData = getHourlyData(weatherData);
+    hourlyData = getHighsAndLows(weatherData, hourlyData);
+    const numDays = hourlyData.length - 1; // the last array is the daily his\los
+    
     removePastData();
 
     for (let day = 0; day < numDays; day++) {
-        displayHourlyForecastByDay(hourlyData[day], day);
+        // the object witht he hiLo daily Data
+        const hiLo = hourlyData[hourlyData.length - 1][day];
+        console.log(hiLo);
+        displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]);
         addDivider(day + 1); // code this so that it stays one div longer than the height of the day to the left.
     }
 };
@@ -35,8 +39,30 @@ const addDivider = (cnt) => {
     addElement("div", threeDayContainer, { className: "divider" + cnt });
 };
 
+
+// dig out the hi lo temps for the next 48 hours. add each days hi and lo to the end of the 
+// hourly data array to be accessed when displaying the info
+const getHighsAndLows = (weatherData, hourlyData) => {
+    const { daily } = weatherData;
+    let highsLows = [];
+    // ony get the temp for up to the next 3 days depending on the size of the
+    // array.
+    const numDays = hourlyData.length;
+    for (let i = 0; i < numDays; i++) {
+        highsLows[i] = [
+            {
+                max: Math.round(daily[i].temp.max),
+                min: Math.round(daily[i].temp.min)
+            },
+        ];
+    }
+    hourlyData.push(highsLows);
+    return hourlyData;
+};
+
+
 // creates the elements needed to make up one day as forecasted by each hour up to 48 hours
-const displayHourlyForecastByDay = (data, day) => {
+const displayHourlyForecastByDay = (data, day, hiLo) => {
     const fortyEightContainer = addElement("div", threeDayContainer, {
         className: "forty-8-days-" + day,
     });
@@ -56,7 +82,7 @@ const displayHourlyForecastByDay = (data, day) => {
     addElement("div", fortyEightContainer, {
         className: "day-hi-lo",
         idName: "day-hi-lo-" + day,
-        content: "Hi/LO", // Code in the days hi and lo!!
+        content: `<span class="hi">${hiLo.max}&#176</span> /</span><span class="lo">${hiLo.min}&#176</span>`,
     });
 
     // add the forecast for each hour of the day.
@@ -86,6 +112,8 @@ const displayHourlyForecastByDay = (data, day) => {
             content: Math.round(data[hour].temp) + "&#176;",
         });
     }
+
+    //console.log(hiLo)
 };
 
 // returns the hour of the day
@@ -134,7 +162,7 @@ const getHourlyData = (weatherData) => {
 
         if (getHours(hourly[totalHour].dt) === 0) {
             hourOnThisDay = 0; // start hours over for the next day
-            day++; // go to next day
+            day++;             // go to next day
         }
     }
     return hourlyDataByDay;

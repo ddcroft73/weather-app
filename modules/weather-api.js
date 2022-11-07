@@ -8,6 +8,7 @@ import {
     isNight,
     evalName,
     capAllWords,
+    getWindDirection
 } from "./util.js";
 
 import { displayHourlyData } from "./two-day-forecast.js";
@@ -64,8 +65,10 @@ export const getWeatherWithGPS = async (dom) => {
                     const { name, state } = await getLocationFromCoords(coords);
                     const weatherData = await getForecastData(coords);
                     dom.spinner.style.visibility = "hidden";
-
                     dom.curentLocation.innerHTML = `${name}, ${state}`;
+
+                    dom.locationInput.value = `${name}, ${state}`;
+                    
                     parseWeatherData(weatherData, dom);
                 } catch (err) {
                     console.error(err);
@@ -83,12 +86,14 @@ export const getWeatherWithGPS = async (dom) => {
 export const getForecastFromLocation = async (location, dom) => {
     try {
         dom.spinner.style.visibility = "visible";
+        
         const coords = await getCoordinatesFromLocation(location);
         const weatherData = await getForecastData(coords);
-        dom.spinner.style.visibility = "hidden";
 
-        dom.curentLocation.innerHTML = `${capAllWords(location)}`;
+        dom.curentLocation.innerHTML = location;
         parseWeatherData(weatherData, dom);
+        dom.spinner.style.visibility = "hidden";    
+       
     } catch (err) {
         // most likely the location is not found...
         dom.spinner.style.visibility = "hidden";
@@ -123,7 +128,6 @@ const getLocationFromCoords = async (coords) => {
             state: data[0].state, // THis is better if not. Makes the name way to long.
         };
 
-        console.log(location);
         return location;
     } catch (err) {
         console.log(err.message);
@@ -131,6 +135,7 @@ const getLocationFromCoords = async (coords) => {
 };
 
 const parseWeatherData = (weatherData, dom) => {
+
     displayCurrentConditions(weatherData, dom);
     displayWeatherForWeek(weatherData, dom);
     displayHourlyData(weatherData, dom);
@@ -147,6 +152,8 @@ const displayCurrentConditions = (weatherData, dom) => {
         feels_like,
         wind_speed,
         pressure,
+        wind_deg,
+        dew_point
     } = weatherData.current;
     const { max, min } = weatherData.daily[0].temp;
     const { main, description, icon } = weatherData.current.weather[0];
@@ -157,15 +164,21 @@ const displayCurrentConditions = (weatherData, dom) => {
     setBackground(main, description, dom, night);
     dom.weatherIcon.src = getIcon(night, icon, main, description);
 
+
     dom.today.textContent = getDateString(dt) + " -> " + time;
     dom.currentTemp.innerHTML = `${Math.round(temp)}`; // replace this with pressure
     dom.hiTemp.innerHTML = `${Math.round(max)}&#176`;
     dom.loTemp.innerHTML = `${Math.round(min)}&#176`;
-    dom.windSpeed.innerHTML = "&nbsp;" + wind_speed + "/m";
+    dom.windSpeed.innerHTML =
+        "&nbsp;" +
+        Math.round(wind_speed) +
+        "/mph" ;
+    dom.windDirection.src = getWindDirection(wind_deg);    
     dom.pressure.innerHTML = pressure;
     dom.condition.innerHTML = capAllWords(description);
     dom.humidity.innerHTML = "&nbsp" + humidity + "%";
     dom.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;
+    dom.dewPoint.innerHTML = `&nbsp;${Math.round(dew_point)}&#176`;
     dom.sunup.innerHTML = formatTime(sunrise);
     dom.sundown.innerHTML = formatTime(sunset);
 };

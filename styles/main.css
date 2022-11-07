@@ -223,7 +223,7 @@ body {
 .current-stats {
     display: flex;
     border: 1px solid rgb(251, 249, 249);
-    width: 100px;
+    width: 90px;
     height: 24px;
     margin-left: 5px;
     margin-bottom: 6px;
@@ -234,12 +234,18 @@ body {
     color:rgb(247, 170, 16);
     background-color: rgba(118, 118, 180, 0.4);
 }
+#deg {
+    margin-left: 2px;
+    border: 0px solid rgb(251, 249, 249);
+    height: 25px;
+    width: 25px;
+}
 /*
 .current-stats:first-child {
     margin-left: 15px;
 } */
 .current-stats:last-child{
-    width: 120px;
+    width: 110px;
 }
 .icon {
     border: 0px solid black;
@@ -375,7 +381,7 @@ body {
 .inner-left {    
     display: flex;
     flex-direction: column;
-    flex: 0 400px;
+    flex: 0 650px;
     height: 740px;
     min-width: 375px;
     border: 1px solid rgb(11, 11, 11);
@@ -390,7 +396,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 20px;
-    flex: 1;
+    flex: 0;
     border: 0px solid rgb(8, 8, 8);
 }
 .inner-left .three-days-container .three-days-container-inner {
@@ -504,7 +510,7 @@ body {
 /*Deatailed information on each Day CSS*/
 
 .inner-right {
-    flex: 0 500px;
+    flex: 0 400px;
     height: 375px;
     min-width: 375px;
     border: 1px solid rgb(6, 6, 6);
@@ -588,6 +594,9 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
+        .column-container {
+            display: none;
+        }
 }
 
 @media screen and (max-width: 714px) {
@@ -605,8 +614,9 @@ body {
 
     }
     .centered-container {
-        height: 1940px;
+        height: 1540px;
     }
+
 .forecast-data-container {
     flex-flow: row wrap;
 
@@ -647,8 +657,9 @@ body {
     }
 
     .centered-container {
-        height: 1900px; /*1250 1275*/
+        height: 1550px; /*1250 1275*/
     }
+
 }
 @media screen and (max-width: 375px) {
 
@@ -699,6 +710,7 @@ body {
       background-color: rgba(0, 0, 0, 0);
       border-radius: 5px;
       height: 27px;
+      margin-right: 20px;
   }
 
   .component {
@@ -853,9 +865,63 @@ body {
       /* keep the icon over the item name incase its longer than the menu */
       z-index: 1;
       font-size: 22px;
-      font-weight: bolder;
-      color: rgb(48, 47, 47);
-      cursor: default;
-      background-color: rgba(35, 31, 22, .1);
+      font-weight: light;
+      color: rgba(0, 0, 0, 0.9);
+      cursor: pointer;
+      background-color:  rgba(35, 31, 22, .1);
       height: 23px;
+      line-height: 25px;
+  }
+
+  /* checkbox styling */
+
+  .switch {
+      margin-left: 6px;
+      margin-top: 2px;
+      display: inline-block;
+      height: 21px;
+      position: relative;
+      width: 47px;
+  }
+
+  .switch input {
+      display: none;
+  }
+
+  .slider {
+      background-color: rgba(187, 175, 146, 0.5);
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: .4s;
+  }
+
+  .slider:before {
+      background-color: #fff;
+      bottom: 3px;
+      content: "";
+      height: 15px;
+      left: 4px;
+      position: absolute;
+      transition: .4s;
+      width: 15px;
+  }
+
+  input:checked+.slider {
+      background-color: #415ea6;
+  }
+
+  input:checked+.slider:before {
+      transform: translateX(24px);
+  }
+
+  .slider.round {
+      border-radius: 34px;
+  }
+
+  .slider.round:before {
+      border-radius: 50%;
   }

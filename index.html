@@ -17,13 +17,13 @@
 <div class="centered-container">
     <!--THis container will be the flex container that holds the cells for weather info
         3 in all. The contents should change according to the screen size.-->
-
     <div class="main-container">
         <div class="spin"></div>
          
         <div class="search">            
             <div class="location">location, text</div>
-                    
+            <!-- Setup for the search and Save widget Learn the proper way to build and implement Web Components
+            or React to make these things better. As it is its too much boilerplate to reuse, among other issues.-->
             <div class="component-container">
                 <div class="component">
                     <input class="text" id="text">
@@ -31,7 +31,10 @@
                         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </button>
                     <div class="save">
-                        <input type="checkbox" id="save">
+                        <label class="switch" for="checkbox">
+                          <input type="checkbox" id="checkbox">
+                          <div class="slider round"></div>
+                        </label>
                     </div>
                     <div class="expand" id="expand">
                         <i class="fa-sharp fa-solid fa-caret-down"></i>
@@ -87,11 +90,24 @@
             <div class="current-stats">
                 <div class="icon"></div>
                 <img src="SVG/wind.svg" width="15"> <span id="wind-speed"></span>
+                <img id="deg" src="SVG/N.svg" width="25">
             </div>
+
             <div class="current-stats">
                 <div class="icon"></div>
                 <img src="SVG/humidity.svg" width="15"> <span id="current-humidity"></span>
             </div>
+
+            <div class="current-stats">
+                <div class="icon"></div>
+                <img src="SVG/dewpoint.svg" width="15"> <span id="dewpoint"></span>
+            </div>
+            <!--
+<div class="current-stats">
+    <div class="icon"></div>
+    <img src="SVG/dewpoint.svg" width="15"> <span id="dewpoint"></span>
+</div>
+-->
             <div class="current-stats">
             <div class="icon"></div>
             <img src="SVG/sun.svg" width="10"> &nbsp;<span id="sunup"></span>
@@ -288,7 +304,6 @@
 
 
 <script type="module" src="main.js" ></script>
-<script type ="module" src="./psuedo-components/search-and-save.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script>dayjs().format()</script>
 </body>

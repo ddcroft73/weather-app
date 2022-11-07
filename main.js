@@ -3,11 +3,11 @@ import {
     getForecastFromLocation,
 } from "./modules/weather-api.js";
 
+import { SearchAndSave } from "./psuedo-components/search-and-save.js"
+
 //import { twoDayForecastTest } from "./modules/two-day-forecast.js";
 
 // Create a DOM object to create references to the elements on the page.
-
-// When I added the search combo "Component" I have to export this put to be used in the code.
 export let DOM = {};
 
 DOM.spinner = document.querySelector(".spin");
@@ -25,8 +25,10 @@ DOM.hiTemp = document.querySelector(".hi");
 DOM.loTemp = document.querySelector(".lo");
 DOM.condition = document.querySelector(".condition-text");
 DOM.humidity = document.querySelector("#current-humidity");
+DOM.dewPoint = document.querySelector("#dewpoint");
 DOM.feelsLike = document.querySelector("#feels-like");
 DOM.windSpeed = document.querySelector("#wind-speed");
+DOM.windDirection = document.querySelector("#deg");
 DOM.sunup = document.querySelector("#sunup");
 DOM.sundown = document.querySelector("#sundown");
 
@@ -72,4 +74,13 @@ DOM.submit.addEventListener("click", () => {
     console.log(`location == ${DOM.locationInput.value}`);
 });
 
+
+// load the search save widget type thing
+const searchBox = new SearchAndSave();
+const locations = searchBox.getSearches();
+searchBox.loadMenu(locations);
+
 getWeatherWithGPS(DOM);
+
+
+

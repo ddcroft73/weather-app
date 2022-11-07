@@ -3,6 +3,40 @@
 // API will always be called for fahrenheit, and then converted... the temps will be kept in an object that
 // has both temps fpr each day we record.
 //
+
+export const getWindDirection = (degrees) => {
+    // given the degrees return the closest direction via a path to the corresonding image
+    const dir = "SVG/";
+    const ext = ".svg";
+    let direction;
+
+    if(degrees >= 0 && degrees <= 23) {
+         direction  = 'N';
+    }
+    if (degrees > 24 && degrees <= 45) {
+         direction = "NE";
+    }
+    if (degrees > 45 && degrees <= 90) {
+         direction = "E";
+    }
+    if (degrees > 90 && degrees <= 135) {
+         direction = "SE";
+    }
+    if (degrees > 135 && degrees <= 180) {
+         direction = "S";
+    }
+    if (degrees > 180 && degrees <= 225) {
+        direction = "SW";
+    }
+    if (degrees > 225 && degrees <= 270) {
+        direction = "W";
+    }
+    if (degrees > 270 && degrees <= 315) {
+        direction = "NW";
+    }
+
+    return dir + direction + ext;
+};
 // convert F to C
 export const findCelsius = (fahrenheit) => {
     const celsius = ((fahrenheit - 32) * 5) / 9;
@@ -219,7 +253,7 @@ export const setBackground = (main, description, dom, night) => {
     }
     url.splice(1, 0, dir + fileName);
 
-    console.log(url);
+    //console.log(url);
     dom.backGround.style.backgroundImage = url.join("");
 };
 
