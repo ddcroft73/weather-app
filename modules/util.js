@@ -124,59 +124,77 @@ export const setBackground = (main, description, dom, night) => {
     let fileName = "clear-BG.jpg"; // Default
 
     // sets the colors to correspond to the weather pattern.
-    const setColors = (dom, color, bgColor) => {
+    const setColors = (dom, borderColor, bgColor, accentColor) => {
         if (night) {
             dom.body.style = "background-color: black;";
         } else {
             dom.body.style = `background-color: ${bgColor};`;
         }
 
-        dom.leftInfo.style = `border: 1px solid ${color};`;
-        dom.rightInfo.style = `border: 1px solid ${color};`;
+        dom.leftInfo.style = `border: 1px solid ${borderColor};`;
+        dom.rightInfo.style = `border: 1px solid ${borderColor};`;
 
-        dom.backGround.style = `border: 1px solid ${color};`;
+        dom.backGround.style = `border: 1px solid ${borderColor};`;
+        
+        // change all the text to a differnet color except the Temp
+        // If no value is passd in nothig changes
+        // I actually dont even use this.. but it took me a while to get it right so
+        // in it stays
+        for (let i = 0; i < dom.insideDayNodes.length; i++) {
+            if (
+                dom.insideDayNodes[i].nodeName.toLowerCase() == "div" &&
+                dom.insideDayNodes[i].className != "day-temp"
+            ) {
+                console.log(dom.insideDayNodes[i].nodeName);
+                dom.insideDayNodes[i].style.color = accentColor;
+            }
+        }        
+
         // the condition divs
         for (let i = 0; i < dom.conditionBorders.length; i++) {
             if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
-                dom.conditionBorders[i].style = `border: 1px solid ${color};`;
-                dom.conditionBorders[i].style.color = color;
+                dom.conditionBorders[i].style = `border: 1px solid ${borderColor};`;
+                //dom.conditionBorders[i].style.color = color;
             }
         }
-        // the day cards
+        // the day cards .what-day
         for (let i = 0; i < dom.daysBorders.length; i++) {
             if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
-                dom.daysBorders[i].style = `border: 1px solid ${color};`;
-                dom.daysBorders[i].style.color = color;
+                dom.daysBorders[i].style = `border: 1px solid ${borderColor};`;
+                //dom.daysBorders[i].style.color = color;
             }
         }
+        
     };
-
-    // is it day or night? decide if it is day or night and then pick the appropriate images?
 
     // slice off the first word in the description to use to select the right BG image
     description = description.split(" ")[0];
 
     /* Lazy mans TDD */
-    //main = 'Clear';
+    //main = 'Fog';
     //description = 'powerful';
     //console.log(main, description);
 
     switch (main) {
         case "Clear":
             if (night) {
-                fileName = "night-clear-BG.jpg";
+                fileName = "night-clear-BG.jpg";                
+                setColors(dom, "#f5f5f5", "#181D26");
             } else {
                 fileName = "clear-BG.jpg";
+                setColors(dom, "#f5f5f5", "#77BEF2");
             }
-            setColors(dom, "orange", "gray");
             break;
 
         case "Clouds":
             if (night) {
                 description = "night";
+               setColors(dom, "orange", "#181717");
+            } else {
+               setColors(dom, "orange", "#3F5968");
             }
+
             fileName = description + "-clouds-BG.jpg";
-            setColors(dom, "orange", "gray");
             break;
 
         case "Rain":
@@ -190,62 +208,66 @@ export const setBackground = (main, description, dom, night) => {
             } else {
                 fileName = description + "-rain-BG.jpg";
             }
-            setColors(dom, "yellow", "darkgray");
+            setColors(dom, "#F2ED08", "#282221");
             break;
 
         // just thunderstorm, one is plenty
         case "Thunderstorm":
             fileName = "thunderstorm-BG.jpg";
-            setColors(dom, "white", "white");
+            setColors(dom, "white", "#25140E");
             break;
 
         case "Drizzle":
             fileName = "drizzle-BG.jpg";
-            setColors(dom, "white", "gray");
+            setColors(dom, "#F0C306", "#061311", "#F8F2ED");
             break;
 
         case "Mist":
             if (night) {
-                fileName = "night-misty-BG.jpg";
+                fileName = "night-misty-BG.jpg";                
+               setColors(dom, "#F59D02", "#100A05");
             } else {
                 fileName = "misty-BG.png";
+               setColors(dom, "#F59D02", "#344731");
             }
-            setColors(dom, "orange", "gray");
             break;
         case "Haze":
             if (night) {
                 fileName = "night-misty-BG.jpg";
+                setColors(dom, "#F59D02", "#100A05");
             } else {
                 fileName = "misty-BG.png";
+                setColors(dom, "#F59D02", "#344731");
             }
-            setColors(dom, "orange", "gray");
             break;
         case "Snow": // light heavy snow sleet
             if (night) {
-                fileName = "night-snow-BG.jpg";
+                fileName = "night-snow-BG.jpg";                
+                setColors(dom, "white", "#0D142A");
             } else {
                 fileName = "snow-BG.jpg";
+                setColors(dom, "white", "#A55E1F");
             }
-            setColors(dom, "white", "lightgray");
             break;
 
         case "Squall":
             fileName = "squall-BG.jpg";
-            setColors(dom, "orange", "black");
+            setColors(dom, "#272F30", "#465E61");
             break;
 
         case "Fog":
             if (night) {
                 fileName = "night-fog-BG.jpg";
+                 setColors(dom, "#12C4C6", "#172B37");
             } else {
                 fileName = "fog-BG.jpg";
+                setColors(dom, "#12C4C6", "#86A16C");
             }
-            setColors(dom, "cyan", "black");
             break;
 
         case "Tornado":
             fileName = "tornado-BG.jpg";
-            setColors(dom, "maroon", "gray");
+            setColors(dom, "#F3C908", "#3D5353");
             break;
 
         default:

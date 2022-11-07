@@ -8,9 +8,10 @@ import { getDateString } from "./util.js";
 // importing in test data so i dont have to acceess the API everytime
 //import { testJsonData } from "./json-test-data.js";
 
+//import { textData } from "../test.js";
 export const twoDayForecastTest = (dom) => {
     // create the routines exactly as they are called with the real Data
-    displayHourlyData(testJsonData, dom);
+    displayHourlyData(textData, dom);
 };
 // END TEST CODE FOR FOrecast
 
@@ -30,7 +31,7 @@ export const displayHourlyData = (weatherData) => {
         // the object witht he hiLo daily Data
         const hiLo = hourlyData[hourlyData.length - 1][day];
         console.log(hiLo);
-        displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]);
+        displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]); //
         addDivider(day + 1); // code this so that it stays one div longer than the height of the day to the left.
     }
 };
@@ -136,20 +137,27 @@ const getHourlyData = (weatherData) => {
         }
         return time + ":00";
     };
+    const getActualDays = (hour) => {
+        // if the current time is between 0, 12am then only 2 days needs
+        // to be built in the array
+        if (hour == 0) return 2;
+        return 3;
+    };
 
     const { hourly } = weatherData;
-
     let day = 0;
     let totalHour = 0;
     let hourOnThisDay = 0;
     let hourlyDataByDay = [];
 
     // init 2D Array;
-    for (let cnt = 0; cnt < 3; cnt++) {
+    // make sure there is an accuraat count on the days
+    const numDays = getActualDays(getHours(hourly[totalHour].dt));
+    for (let cnt = 0; cnt < numDays; cnt++) {
         hourlyDataByDay[cnt] = [];
     }
 
-    while (totalHour < 47) {
+    while (totalHour <= 47) {
         hourlyDataByDay[day][hourOnThisDay] = {
             temp: hourly[totalHour].temp,
             icon: hourly[totalHour].weather[0].icon,
@@ -158,13 +166,15 @@ const getHourlyData = (weatherData) => {
         };
 
         hourOnThisDay++;
-        totalHour++;
 
-        if (getHours(hourly[totalHour].dt) === 0) {
+        if (getHours(hourly[totalHour].dt) == 23) {
             hourOnThisDay = 0; // start hours over for the next day
             day++;             // go to next day
         }
+        
+        totalHour++;
     }
+
     return hourlyDataByDay;
 };
 

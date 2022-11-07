@@ -4,4 +4,4 @@ design.txt
 *.jpg:Zone.Identifier
 *.png:Zone.Identifier
 test.html
-modules/json-test-data.js
+*.json

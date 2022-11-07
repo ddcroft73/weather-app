@@ -64,7 +64,24 @@ DOM.body = document.querySelector("body");
 DOM.leftInfo = document.querySelector(".inner-left");
 DOM.rightInfo = document.querySelector(".inner-right");
 //DOM.title = document.querySelector(".title").childNodes;
+/*
+DOM.whatDays = [];
+for (let cnt = 0; cnt < 8; cnt++) {
+    DOM.whatDays[cnt] = [];
+   
+}
 
+let x = 0;
+
+for (let node = 0; node < 8; node++) {
+  DOM.whatDays[node][x] = document.getElementById("day-"+node).childNodes;  
+  console.log(DOM.whatDays[node][0]);
+  if(x >= 2) x=0;
+}
+*/
+DOM.insideDayNodes = document.querySelectorAll(".inside-day-container div");
+
+console.log(DOM.insideDayNodes)
 DOM.locationInput = document.querySelector(".text");
 
 DOM.submit = document.querySelector(".button");

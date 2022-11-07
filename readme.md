@@ -26,10 +26,8 @@ The more I look at this the more Im dissatisfied with the design. I still have a
    - A combo option box that accepts text input.
    - Alows user to save and delete location.
  - Descriptive background images that change by the weather.
- - Precipitation map of the local area.
  - Colors update and highlight depending on the weather.
- - Alerts
-  - When there is sever weather a modal will popup displaying this.
+ 
 
 - TODO:
   - Add detailed info for each day in the forecast
@@ -37,5 +35,8 @@ The more I look at this the more Im dissatisfied with the design. I still have a
     - Info will slide in from the side.
     Desktop
     - Information will be shown in the blank div bedise the 48 hour forcast.
+ - Alerts
+  - When there is sever weather a modal will popup displaying this.
 
+  
   View it [live]( https://ddcroft73.github.io/weather-app/).

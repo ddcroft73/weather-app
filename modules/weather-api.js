@@ -13,6 +13,8 @@ import {
 
 import { displayHourlyData } from "./two-day-forecast.js";
 
+//import { twoDayForecastTest } from "./two-day-forecast.js";
+
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // I only did this because it is a free API key and therefore no need to house on a server, etc.
 const excludes = "minutley"; // 1000 calls per-day
 
@@ -90,7 +92,7 @@ export const getForecastFromLocation = async (location, dom) => {
         const coords = await getCoordinatesFromLocation(location);
         const weatherData = await getForecastData(coords);
 
-        dom.curentLocation.innerHTML = location;
+        dom.curentLocation.innerHTML = capAllWords(location);
         parseWeatherData(weatherData, dom);
         dom.spinner.style.visibility = "hidden";    
        
@@ -135,9 +137,9 @@ const getLocationFromCoords = async (coords) => {
 };
 
 const parseWeatherData = (weatherData, dom) => {
-
     displayCurrentConditions(weatherData, dom);
     displayWeatherForWeek(weatherData, dom);
+    //twoDayForecastTest(twoDayForecastTest, dom);
     displayHourlyData(weatherData, dom);
 };
 

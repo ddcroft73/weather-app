@@ -151,7 +151,7 @@ body {
     font-size: 40px;
     font-weight: 600;
     padding-left: 3px;
-    color:rgb(247, 170, 16);
+    color:rgb(254, 170, 2);
 }
 
 .temp-type {
@@ -231,7 +231,7 @@ body {
     text-align:center;
     font-size: 10px;
     line-height: 20px;
-    color:rgb(247, 170, 16);
+    color:rgb(254, 170, 2);
     background-color: rgba(118, 118, 180, 0.4);
 }
 #deg {
@@ -345,7 +345,7 @@ body {
     flex: 0 40px;
     height: 25px;
     border: 0px solid rgb(254, 254, 254);color:
-    rgb(247, 170, 16);
+    rgb(254, 170, 2);
     font-size: 25px;
     line-height: 28px;
 }
@@ -355,16 +355,16 @@ body {
     line-height: 20px;
 }
 .hi, .lo {
-    border: 0px solid rgb(247, 170, 16);
+    border: 0px solid rgb(255, 171, 3);
     border-radius: 3px;
     font-size: 11px;
 }
 .hi {
-    color: rgb(205, 20, 20);
+    color: rgb(205, 82, 20);
 }
 
 .lo {
-    color: rgb(69, 228, 6);
+    color: rgb(29, 188, 69);
 }
 
 .forecast-data-container {
@@ -555,6 +555,9 @@ body {
             height: 1300px;
             gap: 20px;
         }
+                .column-container {
+                    display: none;
+                }
                
                
 }
@@ -594,9 +597,6 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
-        .column-container {
-            display: none;
-        }
 }
 
 @media screen and (max-width: 714px) {
