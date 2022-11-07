@@ -555,9 +555,6 @@ body {
             height: 1300px;
             gap: 20px;
         }
-                .column-container {
-                    display: none;
-                }
                
                
 }
@@ -597,6 +594,9 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
+        .column-container {
+            display: none;
+        }
 }
 
 @media screen and (max-width: 714px) {
