@@ -29,7 +29,7 @@ export class SearchAndSave {
         this.menu = document.querySelector(".menu");
         this.saveCheck = document.querySelector("#checkbox");
         this.component = document.querySelector(".component");
-        this.clearButton = document.querySelector("#clear");
+        this.clearButton = document.querySelector("#delete");
 
         this.textBox.addEventListener("click", () => {
             this.viewMenu(false);
@@ -49,11 +49,7 @@ export class SearchAndSave {
 
         // show the clear button when needed
         this.textBox.addEventListener("keydown", (e) => {
-            if (this.textBox.value.length >= 3) {
-                this.showClearButton(true);
-            } else if (this.textBox.value.length <= 1) {
-                this.showClearButton(false);
-            }
+            
             console.log(e)
             if (e.key ==='ArrowDown') {
                 this.viewMenu(true);
@@ -93,7 +89,7 @@ export class SearchAndSave {
 
         this.clearButton.addEventListener("click", () => {
             this.textBox.value = "";
-            this.showClearButton(false);
+            //this.showClearButton(false);
         });
 
         // hide menu when clicked outside component

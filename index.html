@@ -20,10 +20,10 @@
     <div class="main-container">
         <div class="spin"></div>
          
-        <div class="search">            
+        <div class="search-container">            
             <div class="location">location, text</div>
             <!-- Setup for the search and Save widget Learn the proper way to build and implement Web Components
-            or React to make these things better. As it is its too much boilerplate to reuse, among other issues.-->
+            or React to make these things better. As it is its too much boilerplate to reuse, among other issues.
             <div class="component-container">
                 <div class="component">
                     <input class="text" id="text">
@@ -45,7 +45,27 @@
                     <div class="menu" id="menu"></div>
                 </div>
             </div>
-        
+        -->
+        <div class="component-container">
+            <div class="search-component"><button class="button" id="submit"><i
+                        class="fa-sharp fa-solid fa-magnifying-glass"></i></button></div>
+            <div class="component">
+                <input class="text" id="text">
+                <div class="expand" id="expand">
+                    <i class="fa-sharp fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="delete"><button class="button" id="delete">&#x2716;</button></div>
+            <div class="save">
+                <label class="switch" for="checkbox">
+                    <input type="checkbox" id="checkbox">
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <div class="menu-container">
+                <div class="menu" id="menu"></div>
+            </div>
+        </div>
         </div>
     
         
