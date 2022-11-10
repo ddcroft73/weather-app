@@ -715,7 +715,6 @@ body {
     height: 30px;
     padding: 2px;
     padding-top: 3px;
-    overflow: hidden;
 }
 
 .component {
@@ -848,7 +847,7 @@ input[type="checkbox"] {
 
     top: 25px;
     left: -222px;
-    z-index: 1;
+    z-index: 3;
     width: 215px;
     height: 133px;
     /* max height 125px*/
