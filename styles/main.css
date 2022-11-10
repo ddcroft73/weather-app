@@ -715,6 +715,7 @@ body {
     height: 30px;
     padding: 2px;
     padding-top: 3px;
+    overflow: hidden;
 }
 
 .component {
