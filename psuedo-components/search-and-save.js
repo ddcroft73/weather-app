@@ -90,6 +90,7 @@ export class SearchAndSave {
         this.clearButton.addEventListener("click", () => {
             this.textBox.value = "";
             //this.showClearButton(false);
+            
         });
 
         // hide menu when clicked outside component
