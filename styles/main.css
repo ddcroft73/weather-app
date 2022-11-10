@@ -634,13 +634,13 @@ body {
             height: 2050px;
         }
 
-        .search {
+        .search-container {
             flex-direction:column;
             justify-content:center;
             align-items: flex-end;
             gap: 10px;
         }
-        .search:nth-child(1) {
+        .search-container:nth-child(1) {
             justify-content:flex-start;
         } 
         .location {
