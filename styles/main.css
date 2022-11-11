@@ -196,7 +196,7 @@ body {
 /*----------------------------Style for submit and textbox-----------------------------------*/
 .search-container {
     border: 0px solid rgb(247, 247, 247);
-    display: inline-flex;
+    display: inline-block;
 
     line-height: 10px;
     padding-top: 8px;
@@ -640,15 +640,13 @@ body {
             align-items:center;
             gap: 10px;
         }
-        .search-container:last-child {
-            justify-content: flex-start;
-        } 
         .component-container {
             margin: 0px;
         }
         .location {
             margin: 0px;
             margin-right: 15px;
+            text-align: center;
         }
                 
 }
