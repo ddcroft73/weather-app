@@ -189,14 +189,14 @@ body {
     line-height: 25px;
     font-size: 12px;
     color: rgb(249, 246, 246);
-    border: 0px solid black;
+    border: 1px solid black;
+    text-align:end;
 }
 
 /*----------------------------Style for submit and textbox-----------------------------------*/
 .search-container {
     border: 0px solid rgb(247, 247, 247);
-    display:flex;
-    justify-content: flex-end;
+    display: inline-flex;
 
     line-height: 10px;
     padding-top: 8px;
@@ -635,14 +635,17 @@ body {
         }
 
         .search-container {
-            flex-direction:column;
+            flex-direction: column;
             justify-content:center;
-            align-items: flex-end;
+            align-items:center;
             gap: 10px;
         }
-        .search-container:nth-child(1) {
-            justify-content:flex-start;
+        .search-container:last-child {
+            justify-content: flex-start;
         } 
+        .component-container {
+            margin: 0px;
+        }
         .location {
             margin: 0px;
             margin-right: 15px;
@@ -653,7 +656,7 @@ body {
 
     .main-container {
         height: 720px; /*690 700 */ 
-        width: 375px;
+        width: 380px;
     }
 
     .centered-container {
@@ -702,27 +705,29 @@ body {
   
 
   /* component styling */
+
 .component-container {
     display: flex;
-    width: 290px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     /* Change this */
+    width: 370px;
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border: 0px solid rgb(247, 243, 243);
-    background-color: rgba(168, 168, 162, 0.4);
-    border-radius: 15px;
+    background-color: rgba(168, 168, 162, 0.1);
+    border-radius: 5px;
     height: 30px;
     padding: 2px;
     padding-top: 3px;
 }
 
 .component {
-    display: flex;
-    width: 180px;
+    display: inline;
+    width: 320px;
     height: 25px;
     margin: 0px;
-    background-color: rgba(250, 235, 215, 0.3);
+    background-color: rgba(250, 235, 215, 0.0);
     color: rgb(128, 120, 120);
 
     border: 0px solid rgb(224, 202, 202);
@@ -730,7 +735,7 @@ body {
 }
 
 .search-component {
-    min-width: 25px;
+    width: 25px;
     border: 0px solid black;
     margin-right: 7px;
 }
@@ -747,15 +752,15 @@ body {
     height: 24px;
     background-color: rgba(32, 35, 133, 0);
     cursor: pointer;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 15px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .text {
-    border: 0px solid rgb(99, 97, 97);
+    border: 1px solid rgb(99, 97, 97);
     margin-top: 1px;
     height: 22px;
-    width: 180px;
+    width: 250px;
     padding-left: 4px;
     background-color: rgb(234, 232, 228);
     border-radius: 5px;
@@ -768,8 +773,8 @@ body {
     height: 24px;
     background-color: rgba(32, 35, 133, 0);
     cursor: pointer;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 
@@ -781,12 +786,12 @@ body {
 .expand {
     visibility: visible;
     position: relative;
-    left: -22px;
-    top: 0px;
+    left: 228px;
+    top: -22px;
     width: 22px;
 
-    height: 24px;
-    padding-top: 4px;
+    height: 21px;
+    padding-top: 3px;
     padding-left: 6px;
     padding-right: 6px;
     padding-bottom: 10px;
@@ -841,14 +846,15 @@ input[type="checkbox"] {
 .menu {
     display: flex;
     flex-direction: column;
+    justify-content:flex-start;
     visibility: hidden;
     position: relative;
     overflow: auto;
 
     top: 25px;
-    left: -222px;
+    left: -291px;
     z-index: 3;
-    width: 215px;
+    width: 228px;
     height: 133px;
     /* max height 125px*/
     background-color: rgb(234, 232, 228);
@@ -903,6 +909,7 @@ input[type="checkbox"] {
     display: inline-block;
     height: 8px;
     position: relative;
+    left: 0px;
     top: 6px;
     width: 40px;
     border: 1px solid rgb(245, 240, 240);
