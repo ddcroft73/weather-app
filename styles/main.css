@@ -189,7 +189,7 @@ body {
     line-height: 25px;
     font-size: 12px;
     color: rgb(249, 246, 246);
-    border: 1px solid black;
+    border: 0px solid black;
     text-align:end;
 }
 
@@ -713,7 +713,7 @@ body {
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border: 0px solid rgb(247, 243, 243);
-    background-color: rgba(168, 168, 162, 0.1);
+    background-color: rgba(168, 168, 162, 0);
     border-radius: 5px;
     height: 30px;
     padding: 2px;

@@ -120,6 +120,8 @@ export const capAllWords = (string) => {
 export const setBackground = (main, description, dom, night) => {
     const url = ["url(", ")"];
     const dir = "bg-images/";
+            const submit = document.querySelector("#submit");
+            const deleteBut = document.querySelector("#delete");
 
     let fileName = "clear-BG.jpg"; // Default
 
@@ -127,6 +129,8 @@ export const setBackground = (main, description, dom, night) => {
     const setColors = (dom, borderColor, bgColor, accentColor) => {
         if (night) {
             dom.body.style = "background-color: black;";
+            submit.style.color = 'white';
+            deleteBut.style.color = 'white';
         } else {
             dom.body.style = `background-color: ${bgColor};`;
         }
