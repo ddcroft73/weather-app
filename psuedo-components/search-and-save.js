@@ -49,7 +49,6 @@ export class SearchAndSave {
         // show the clear button when needed
         this.textBox.addEventListener("keydown", (e) => {
             
-            console.log(e)
             if (e.key ==='ArrowDown') {
                 this.viewMenu(true);
             }
@@ -191,7 +190,6 @@ export class SearchAndSave {
         const deleteItem = document.querySelector("#close-" + itemID);
 
         item.addEventListener("click", () => {
-            console.log(`Item: ${itemID} clicked`);
             this.state.currentItem = this.getItemText(itemID);
             this.textBox.value = this.state.currentItem;
             this.showClearButton(true);
@@ -200,7 +198,6 @@ export class SearchAndSave {
             getForecastFromLocation(this.state.currentItem);
         });
         deleteItem.addEventListener("click", () => {
-            console.log(`deleteItem: ${itemID} clicked`);
 
             // remove this menuitem from the menu and from storage.
             this.removeItem(itemID);

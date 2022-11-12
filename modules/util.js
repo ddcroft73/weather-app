@@ -34,6 +34,10 @@ export const getWindDirection = (degrees) => {
     if (degrees > 270 && degrees <= 315) {
         direction = "NW";
     }
+    if (degrees > 316 && degrees <= 360) {
+        direction = "N";
+    }
+
 
     return dir + direction + ext;
 };
@@ -129,7 +133,7 @@ export const setBackground = (main, description,  night) => {
     //const header = document.querySelector(".search");
     const body = document.querySelector("body");
     const leftInfo = document.querySelector(".inner-left");
-    const rightInfo = document.querySelector(".inner-right");
+    //const rightInfo = document.querySelector(".inner-right");
 
     const insideDayNodes = document.querySelectorAll(".inside-day-container div");
     let fileName = "clear-BG.jpg"; // Default
@@ -147,7 +151,7 @@ export const setBackground = (main, description,  night) => {
         }
 
         leftInfo.style = `border: 1px solid ${borderColor};`;
-        rightInfo.style = `border: 1px solid ${borderColor};`;
+      //  rightInfo.style = `border: 1px solid ${borderColor};`;
 
         backGround.style = `border: 1px solid ${borderColor};`;
         
@@ -160,7 +164,6 @@ export const setBackground = (main, description,  night) => {
                 insideDayNodes[i].nodeName.toLowerCase() == "div" &&
                 insideDayNodes[i].className != "day-temp"
             ) {
-                console.log(insideDayNodes[i].nodeName);
                 insideDayNodes[i].style.color = accentColor;
             }
         }        

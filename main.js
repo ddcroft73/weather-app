@@ -12,7 +12,6 @@ const submit = document.querySelector(".button");
 
 submit.addEventListener("click", () => {
     getForecastFromLocation(locationInput.value);
-    console.log(`location == ${locationInput.value}`);
 });
 
 

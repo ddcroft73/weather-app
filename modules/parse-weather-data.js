@@ -64,6 +64,7 @@ const displayCurrentConditions = (weatherData) => {
     hiTemp.innerHTML = `${Math.round(max)}&#176`;
     loTemp.innerHTML = `${Math.round(min)}&#176`;
     windSpeed.innerHTML = "&nbsp;" + Math.round(wind_speed) + "/mph";
+    
     windDirection.src = getWindDirection(wind_deg);
     DOMpressure.innerHTML = pressure;
     condition.innerHTML = capAllWords(description);
@@ -89,20 +90,13 @@ const displayWeatherForWeek = (weatherData) => {
     }
     for (let index = 0; index < 8; index++) {
         const { main, description, icon } = weatherData.daily[index].weather[0];
-
-        daily[index].date.innerHTML = getDateString(
-            weatherData.daily[index].dt
-        );
+        daily[index].date.innerHTML = getDateString(weatherData.daily[index].dt);
         daily[index].temp.innerHTML = `${Math.round(
             weatherData.daily[index].temp.day
         )} <span class="degrees">&#176;</span>`;
         daily[index].icon.src = getIcon(false, icon, main, description); //  "SVG/sun.svg";
-        daily[index].condition.innerHTML = capAllWords(
-            weatherData.daily[index].weather[0].description
-        );
-        daily[index].tempMax.innerHTML =
-            Math.round(weatherData.daily[index].temp.max) + "&#176";
-        daily[index].tempMin.innerHTML =
-            Math.round(weatherData.daily[index].temp.min) + "&#176";
+        daily[index].condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
+        daily[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
+        daily[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
     }
 };

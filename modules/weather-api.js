@@ -16,27 +16,6 @@ const options = {
     timeout: 27000,
 };
 
-const handleError = (error) => {
-    let errorStr;
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            errorStr = "User denied the request for Geolocation.";
-            break;
-        case error.POSITION_UNAVAILABLE:
-            errorStr = "Location information is unavailable.";
-            break;
-        case error.TIMEOUT:
-            errorStr = "The request to get user location timed out.";
-            break;
-        case error.UNKNOWN_ERROR:
-            errorStr = "An unknown error occurred.";
-            break;
-        default:
-            errorStr = "An unknown error occurred.";
-    }
-    alert("Error occurred: " + errorStr);
-};
-
 const getForecastData = async (coordinates) => {
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=${excludes}&units=imperial&appid=${API_KEY_30}`;
     const resp = await fetch(url, { mode: "cors" });
@@ -126,4 +105,25 @@ const getLocationFromCoords = async (coords) => {
     } catch (err) {
         console.log(err.message);
     }
+};
+
+const handleError = (error) => {
+    let errorStr;
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            errorStr = "User denied the request for Geolocation.";
+            break;
+        case error.POSITION_UNAVAILABLE:
+            errorStr = "Location information is unavailable.";
+            break;
+        case error.TIMEOUT:
+            errorStr = "The request to get user location timed out.";
+            break;
+        case error.UNKNOWN_ERROR:
+            errorStr = "An unknown error occurred.";
+            break;
+        default:
+            errorStr = "An unknown error occurred.";
+    }
+    alert("Error occurred: " + errorStr);
 };

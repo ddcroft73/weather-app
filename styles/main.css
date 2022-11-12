@@ -78,7 +78,7 @@ body {
 
 
 /* The main container to keep all otheres centered*/
-.centered-container {
+.centered-container, .huge-container {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -88,6 +88,12 @@ body {
     margin-top: 3px;
     margin-right: 20px;
     margin-left: 10px;
+
+}
+
+.huge-container {
+    flex-direction:column;
+
 }
 
 /*The container that holds the cells that contain all the weather data*/
@@ -371,10 +377,12 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    height: 400px;
+    height: 800px;
     padding: 10px;
     gap: 10px;
     width: 100%;
+    border: 1px solid rgb(11, 11, 11);
+
 }
 
 /*  THe 48 hour forecast CSS*/
@@ -385,7 +393,7 @@ body {
     height: 740px;
     min-width: 375px;
     border: 1px solid rgb(11, 11, 11);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.9);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-radius: 8px;    
@@ -616,12 +624,12 @@ body {
     .centered-container {
         height: 1540px;
     }
-
+/*
 .forecast-data-container {
     flex-flow: row wrap;
 
 }
-
+*/
 }
 
 @media screen and (max-width: 546px) { /* 480 */
@@ -659,6 +667,10 @@ body {
 
     .centered-container {
         height: 1550px; /*1250 1275*/
+    }
+
+    .forecast-data-container {
+        top: 15px;
     }
 
 }
@@ -958,4 +970,17 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+.main-container {
+    position:fixed;
+    z-index: 0;
+}
+
+.forecast-data-container {
+    position: relative;
+    z-index: 10;
+    top: 150px;
+    margin-left: 10px;
 }

@@ -30,7 +30,6 @@ export const displayHourlyData = (weatherData) => {
     for (let day = 0; day < numDays; day++) {
         // the object witht he hiLo daily Data
         const hiLo = hourlyData[hourlyData.length - 1][day];
-        console.log(hiLo);
         displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]); //
         addDivider(day + 1); // code this so that it stays one div longer than the height of the day to the left.
     }
