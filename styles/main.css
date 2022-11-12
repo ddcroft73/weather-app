@@ -555,12 +555,10 @@ body {
 
 
 .main-container {
-    position: fixed;
     z-index: 0;
 }
 
 .forecast-data-container {
-    position: relative;
     z-index: 10;
     top: 10px;
     margin-left: 10px;
@@ -571,6 +569,7 @@ body {
     .main-container {
             height: 500px;
             margin-bottom: 50px;
+
         }
     
         .centered-container {
@@ -597,6 +596,7 @@ body {
     .main-container {
         height: 550px;
         margin-bottom: 50px;
+        top: 50px;;
     }
     .centered-container {
         height: 1250px;
@@ -619,8 +619,13 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
+
         .forecast-data-container {
-            top: 30px;
+            position: relative;
+        }
+
+        .main-container {
+            position: relative;
         }
 }
 
@@ -628,12 +633,6 @@ body {
     .level-mid {
             height: 50px;
         }
-    /*.current-stats {
-        margin-left: 15px;
-    } 
-    .day-container-centered {
-        margin-left: 30px;
-    }*/
     .main-container {
         height: 600px;
 
@@ -653,7 +652,8 @@ body {
 
         .main-container {
             height: 690px;
-        
+            position: fixed;
+            top: 10px;
         }
         .centered-container {
             height: 2050px;
@@ -674,6 +674,7 @@ body {
             text-align: center;
         }
         .forecast-data-container {
+            position: relative;
             top: 180px;
 
         }
@@ -690,7 +691,7 @@ body {
     }
 
     .forecast-data-container {
-        top: 175px;
+        top: 200px;
     }
 
 }
