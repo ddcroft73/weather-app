@@ -90,7 +90,7 @@ export class SearchAndSave {
         this.clearButton.addEventListener("click", () => {
             this.textBox.value = "";
             //this.showClearButton(false);
-            
+
         });
 
         // hide menu when clicked outside component
@@ -318,7 +318,7 @@ export class SearchAndSave {
 
         // returns a shortened name if its longer than maxLength
         const truncName = (text) => {
-            const maxLen = 20;
+            const maxLen = 30;
             return text.length > maxLen ? text.slice(0, maxLen) + "..." : null;
         };
 
