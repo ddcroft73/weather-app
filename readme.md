@@ -16,6 +16,7 @@ I however did enjoy the JS and tweaking my code to work with all the different A
 ### Proposed optimization of code:
 As it is I do not generate the UI, except the 48 hour forecast. I plan to rewrite the UI so that its mostly all generated when the app starts.
 
+
 The more I look at this the more Im dissatisfied with the design. I still have a lot to learn.
 ## Features
  - Current weather information with:
@@ -32,15 +33,13 @@ The more I look at this the more Im dissatisfied with the design. I still have a
  - Descriptive background images that change by the weather.
  - Colors update and highlight depending on the weather.
  
-
-- TODO:
-  - Add detailed info for each day in the forecast
-  - Mobile
-    - Info will slide in from the side.
-    Desktop
-    - Information will be shown in the blank div bedise the 48 hour forcast.
- - Alerts
-  - When there is sever weather a modal will popup displaying this.
+### To-DOs:
+ - Change C to F and back.
+ - Desktop and Tablet views.
+ - Add detailed info for each Day.
+ - Add Weather alerts:
+    - I am making a WebComponnet to be used for this and wil double as a way to 
+      show the daily details on desktop.
 
   
   View it [live]( https://ddcroft73.github.io/weather-app/).
