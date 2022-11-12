@@ -33,6 +33,8 @@ export const displayHourlyData = (weatherData) => {
         displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]); //
         addDivider(day + 1); // code this so that it stays one div longer than the height of the day to the left.
     }
+
+    document.querySelector(".title").innerHTML = "Forty-Eight Hour Forecast"
 };
 
 const addDivider = (cnt) => {
@@ -178,7 +180,6 @@ const getHourlyData = (weatherData) => {
 };
 
 // if its a single digit hour pad with a zero and append :00 to all
-
 // adds a new element to the page with any attributes and\or content
 const addElement = (
     tag,

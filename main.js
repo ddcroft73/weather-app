@@ -10,7 +10,7 @@ import { SearchAndSave } from "./psuedo-components/search-and-save.js"
 const locationInput = document.querySelector(".text");
 const submit = document.querySelector(".button");
 
-submit.addEventListener("click", () => {
+submit.addEventListener("click", () => {//
     getForecastFromLocation(locationInput.value);
 });
 
