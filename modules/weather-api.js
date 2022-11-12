@@ -1,22 +1,14 @@
 import {
-    findCelsius,
-    findFahrenheit,
-    formatTime,
-    getIcon,
-    setBackground,
-    getDateString,
-    isNight,
     evalName,
-    capAllWords,
-    getWindDirection
+    capAllWords
 } from "./util.js";
-
-import { displayHourlyData } from "./two-day-forecast.js";
-
-//import { twoDayForecastTest } from "./two-day-forecast.js";
+import { parseWeatherData } from  "./parse-weather-data.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // I only did this because it is a free API key and therefore no need to house on a server, etc.
 const excludes = "minutley"; // 1000 calls per-day
+const spinner = document.querySelector(".spin");
+const curentLocation = document.querySelector(".location");
+const locationInput = document.querySelector(".text");
 
 const options = {
     enableHighAccuracy: true,
@@ -53,8 +45,8 @@ const getForecastData = async (coordinates) => {
 };
 
 // USE GPS
-export const getWeatherWithGPS = async (dom) => {
-    dom.spinner.style.visibility = "visible";
+export const getWeatherWithGPS = async () => {
+    spinner.style.visibility = "visible";
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -66,12 +58,12 @@ export const getWeatherWithGPS = async (dom) => {
 
                     const { name, state } = await getLocationFromCoords(coords);
                     const weatherData = await getForecastData(coords);
-                    dom.spinner.style.visibility = "hidden";
-                    dom.curentLocation.innerHTML = `${name}, ${state}`;
+                    spinner.style.visibility = "hidden";
+                    curentLocation.innerHTML = `${name}, ${state}`;
 
-                    dom.locationInput.value = `${name}, ${state}`;
+                    locationInput.value = `${name}, ${state}`;
                     
-                    parseWeatherData(weatherData, dom);
+                    parseWeatherData(weatherData);
                 } catch (err) {
                     console.error(err);
                 }
@@ -87,18 +79,18 @@ export const getWeatherWithGPS = async (dom) => {
 //USE A LOCATION
 export const getForecastFromLocation = async (location, dom) => {
     try {
-        dom.spinner.style.visibility = "visible";
+        spinner.style.visibility = "visible";
         
         const coords = await getCoordinatesFromLocation(location);
         const weatherData = await getForecastData(coords);
 
-        dom.curentLocation.innerHTML = capAllWords(location);
-        parseWeatherData(weatherData, dom);
-        dom.spinner.style.visibility = "hidden";    
+        curentLocation.innerHTML = capAllWords(location);
+        parseWeatherData(weatherData);
+        spinner.style.visibility = "hidden";    
        
     } catch (err) {
         // most likely the location is not found...
-        dom.spinner.style.visibility = "hidden";
+        spinner.style.visibility = "hidden";
     }
 };
 
@@ -133,75 +125,5 @@ const getLocationFromCoords = async (coords) => {
         return location;
     } catch (err) {
         console.log(err.message);
-    }
-};
-
-const parseWeatherData = (weatherData, dom) => {
-    displayCurrentConditions(weatherData, dom);
-    displayWeatherForWeek(weatherData, dom);
-    //twoDayForecastTest(twoDayForecastTest, dom);
-    displayHourlyData(weatherData, dom);
-};
-
-const displayCurrentConditions = (weatherData, dom) => {
-    const { timezone_offset } = weatherData;
-    const {
-        dt,
-        temp,
-        humidity,
-        sunrise,
-        sunset,
-        feels_like,
-        wind_speed,
-        pressure,
-        wind_deg,
-        dew_point
-    } = weatherData.current;
-    const { max, min } = weatherData.daily[0].temp;
-    const { main, description, icon } = weatherData.current.weather[0];
-    const current = new Date();
-    const time = current.toLocaleTimeString("en-US");
-    const night = isNight(sunset, timezone_offset);
-
-    setBackground(main, description, dom, night);
-    dom.weatherIcon.src = getIcon(night, icon, main, description);
-
-
-    dom.today.textContent = getDateString(dt) + " -> " + time;
-    dom.currentTemp.innerHTML = `${Math.round(temp)}`; // replace this with pressure
-    dom.hiTemp.innerHTML = `${Math.round(max)}&#176`;
-    dom.loTemp.innerHTML = `${Math.round(min)}&#176`;
-    dom.windSpeed.innerHTML =
-        "&nbsp;" +
-        Math.round(wind_speed) +
-        "/mph" ;
-    dom.windDirection.src = getWindDirection(wind_deg);    
-    dom.pressure.innerHTML = pressure;
-    dom.condition.innerHTML = capAllWords(description);
-    dom.humidity.innerHTML = "&nbsp" + humidity + "%";
-    dom.feelsLike.innerHTML = `${Math.round(feels_like)}&#176`;
-    dom.dewPoint.innerHTML = `&nbsp;${Math.round(dew_point)}&#176`;
-    dom.sunup.innerHTML = formatTime(sunrise);
-    dom.sundown.innerHTML = formatTime(sunset);
-};
-
-const displayWeatherForWeek = (weatherData, dom) => {
-    for (let index = 0; index < 8; index++) {
-        const { main, description, icon } = weatherData.daily[index].weather[0];
-
-        dom.daily[index].date.innerHTML = getDateString(
-            weatherData.daily[index].dt
-        );
-        dom.daily[index].temp.innerHTML = `${Math.round(
-            weatherData.daily[index].temp.day
-        )} <span class="degrees">&#176;</span>`;
-        dom.daily[index].icon.src = getIcon(false, icon, main, description); //  "SVG/sun.svg";
-        dom.daily[index].condition.innerHTML = capAllWords(
-            weatherData.daily[index].weather[0].description
-        );
-        dom.daily[index].tempMax.innerHTML =
-            Math.round(weatherData.daily[index].temp.max) + "&#176";
-        dom.daily[index].tempMin.innerHTML =
-            Math.round(weatherData.daily[index].temp.min) + "&#176";
     }
 };

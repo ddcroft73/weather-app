@@ -11,7 +11,7 @@ import { getDateString } from "./util.js";
 //import { textData } from "../test.js";
 export const twoDayForecastTest = (dom) => {
     // create the routines exactly as they are called with the real Data
-    displayHourlyData(textData, dom);
+    displayHourlyData(textData);
 };
 // END TEST CODE FOR FOrecast
 

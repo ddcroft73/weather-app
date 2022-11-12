@@ -10,7 +10,6 @@
  */
 
 import { getForecastFromLocation } from "../modules/weather-api.js";
-import { DOM } from "../main.js";
 
 export class SearchAndSave {
     constructor() {
@@ -70,13 +69,12 @@ export class SearchAndSave {
             if (newItem !== "") {
                 // are we saving this?
                 if (this.state.save) {
-                    // Check to see if this item already exists...
-                    // if it does exist, dont save again.
+                    
                     const exists = this.itemExists(newItem);
                     if (!exists) {
                         // add the input to the menuItems array.
                         const itemObj = this.addNewItem(newItem);
-                        this.addToMenu(itemObj, itemObj.itemID); // add the item to the menu.
+                        this.addToMenu(itemObj, itemObj.itemID); 
                     }
                 }
 
@@ -199,7 +197,7 @@ export class SearchAndSave {
             this.showClearButton(true);
 
             // conduct a search
-            getForecastFromLocation(this.state.currentItem, DOM);
+            getForecastFromLocation(this.state.currentItem);
         });
         deleteItem.addEventListener("click", () => {
             console.log(`deleteItem: ${itemID} clicked`);

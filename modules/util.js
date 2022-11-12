@@ -117,54 +117,65 @@ export const capAllWords = (string) => {
 
 // sets the back gorund depending on the type of weather. supports differnt types of cloads, rain, snow
 // and storms
-export const setBackground = (main, description, dom, night) => {
+export const setBackground = (main, description,  night) => {
     const url = ["url(", ")"];
     const dir = "bg-images/";
-            const submit = document.querySelector("#submit");
-            const deleteBut = document.querySelector("#delete");
+    const submit = document.querySelector("#submit");
+    const deleteBut = document.querySelector("#delete");
+    //const dayBackground = document.querySelector(".day");
+    const backGround = document.querySelector(".main-container");
+    const conditionBorders = document.getElementById("conditionsBorders").childNodes;
+    const daysBorders = document.getElementById("daysBorders").childNodes;
+    //const header = document.querySelector(".search");
+    const body = document.querySelector("body");
+    const leftInfo = document.querySelector(".inner-left");
+    const rightInfo = document.querySelector(".inner-right");
 
+    const insideDayNodes = document.querySelectorAll(".inside-day-container div");
     let fileName = "clear-BG.jpg"; // Default
-
+    
     // sets the colors to correspond to the weather pattern.
-    const setColors = (dom, borderColor, bgColor, accentColor) => {
+    const setColors = (borderColor, bgColor, accentColor) => {
+
+
         if (night) {
-            dom.body.style = "background-color: black;";
+            body.style = "background-color: black;";
             submit.style.color = 'white';
             deleteBut.style.color = 'white';
         } else {
-            dom.body.style = `background-color: ${bgColor};`;
+            body.style = `background-color: ${bgColor};`;
         }
 
-        dom.leftInfo.style = `border: 1px solid ${borderColor};`;
-        dom.rightInfo.style = `border: 1px solid ${borderColor};`;
+        leftInfo.style = `border: 1px solid ${borderColor};`;
+        rightInfo.style = `border: 1px solid ${borderColor};`;
 
-        dom.backGround.style = `border: 1px solid ${borderColor};`;
+        backGround.style = `border: 1px solid ${borderColor};`;
         
         // change all the text to a differnet color except the Temp
-        // If no value is passd in nothig changes
+        // If no value is passd in nothing changes
         // I actually dont even use this.. but it took me a while to get it right so
         // in it stays
-        for (let i = 0; i < dom.insideDayNodes.length; i++) {
+        for (let i = 0; i < insideDayNodes.length; i++) {
             if (
-                dom.insideDayNodes[i].nodeName.toLowerCase() == "div" &&
-                dom.insideDayNodes[i].className != "day-temp"
+                insideDayNodes[i].nodeName.toLowerCase() == "div" &&
+                insideDayNodes[i].className != "day-temp"
             ) {
-                console.log(dom.insideDayNodes[i].nodeName);
-                dom.insideDayNodes[i].style.color = accentColor;
+                console.log(insideDayNodes[i].nodeName);
+                insideDayNodes[i].style.color = accentColor;
             }
         }        
 
         // the condition divs
-        for (let i = 0; i < dom.conditionBorders.length; i++) {
-            if (dom.conditionBorders[i].nodeName.toLowerCase() == "div") {
-                dom.conditionBorders[i].style = `border: 1px solid ${borderColor};`;
+        for (let i = 0; i < conditionBorders.length; i++) {
+            if (conditionBorders[i].nodeName.toLowerCase() == "div") {
+                conditionBorders[i].style = `border: 1px solid ${borderColor};`;
                 //dom.conditionBorders[i].style.color = color;
             }
         }
         // the day cards .what-day
-        for (let i = 0; i < dom.daysBorders.length; i++) {
-            if (dom.daysBorders[i].nodeName.toLowerCase() == "div") {
-                dom.daysBorders[i].style = `border: 1px solid ${borderColor};`;
+        for (let i = 0; i < daysBorders.length; i++) {
+            if (daysBorders[i].nodeName.toLowerCase() == "div") {
+                daysBorders[i].style = `border: 1px solid ${borderColor};`;
                 //dom.daysBorders[i].style.color = color;
             }
         }
@@ -183,19 +194,19 @@ export const setBackground = (main, description, dom, night) => {
         case "Clear":
             if (night) {
                 fileName = "night-clear-BG.jpg";                
-                setColors(dom, "#f5f5f5", "#181D26");
+                setColors("#f5f5f5", "#181D26");
             } else {
                 fileName = "clear-BG.jpg";
-                setColors(dom, "#f5f5f5", "#77BEF2");
+                setColors( "#f5f5f5", "#77BEF2");
             }
             break;
 
         case "Clouds":
             if (night) {
                 description = "night";
-               setColors(dom, "orange", "#181717");
+               setColors("orange", "#181717");
             } else {
-               setColors(dom, "orange", "#3F5968");
+               setColors("orange", "#3F5968");
             }
 
             fileName = description + "-clouds-BG.jpg";
@@ -212,66 +223,66 @@ export const setBackground = (main, description, dom, night) => {
             } else {
                 fileName = description + "-rain-BG.jpg";
             }
-            setColors(dom, "#F2ED08", "#282221");
+            setColors("#F2ED08", "#282221");
             break;
 
         // just thunderstorm, one is plenty
         case "Thunderstorm":
             fileName = "thunderstorm-BG.jpg";
-            setColors(dom, "white", "#25140E");
+            setColors("white", "#25140E");
             break;
 
         case "Drizzle":
             fileName = "drizzle-BG.jpg";
-            setColors(dom, "#F0C306", "#061311", "#F8F2ED");
+            setColors("#F0C306", "#061311", "#F8F2ED");
             break;
 
         case "Mist":
             if (night) {
                 fileName = "night-misty-BG.jpg";                
-               setColors(dom, "#F59D02", "#100A05");
+               setColors("#F59D02", "#100A05");
             } else {
                 fileName = "misty-BG.png";
-               setColors(dom, "#F59D02", "#344731");
+               setColors("#F59D02", "#344731");
             }
             break;
         case "Haze":
             if (night) {
                 fileName = "night-misty-BG.jpg";
-                setColors(dom, "#F59D02", "#100A05");
+                setColors("#F59D02", "#100A05");
             } else {
                 fileName = "misty-BG.png";
-                setColors(dom, "#F59D02", "#344731");
+                setColors("#F59D02", "#344731");
             }
             break;
         case "Snow": // light heavy snow sleet
             if (night) {
                 fileName = "night-snow-BG.jpg";                
-                setColors(dom, "white", "#0D142A");
+                setColors("white", "#0D142A");
             } else {
                 fileName = "snow-BG.jpg";
-                setColors(dom, "white", "#A55E1F");
+                setColors("white", "#A55E1F");
             }
             break;
 
         case "Squall":
             fileName = "squall-BG.jpg";
-            setColors(dom, "#272F30", "#465E61");
+            setColors("#272F30", "#465E61");
             break;
 
         case "Fog":
             if (night) {
                 fileName = "night-fog-BG.jpg";
-                 setColors(dom, "#12C4C6", "#172B37");
+                 setColors("#12C4C6", "#172B37");
             } else {
                 fileName = "fog-BG.jpg";
-                setColors(dom, "#12C4C6", "#86A16C");
+                setColors("#12C4C6", "#86A16C");
             }
             break;
 
         case "Tornado":
             fileName = "tornado-BG.jpg";
-            setColors(dom, "#F3C908", "#3D5353");
+            setColors("#F3C908", "#3D5353");
             break;
 
         default:
@@ -280,7 +291,7 @@ export const setBackground = (main, description, dom, night) => {
     url.splice(1, 0, dir + fileName);
 
     //console.log(url);
-    dom.backGround.style.backgroundImage = url.join("");
+    backGround.style.backgroundImage = url.join("");
 };
 
 // given the description of the weather, return th}e path to the appropriate icon
@@ -309,7 +320,7 @@ export const getIcon = (night, icon, main, description) => {
     ) {
         icon = "sleetd";
     }
-    // change to night version
+    
     if (night) {
         icon = icon.replace("d", "n");
     }
