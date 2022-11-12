@@ -10,6 +10,7 @@ import {
     evalName,
     capAllWords,
     getWindDirection,
+    showUI
 } from "./util.js";
 
 const weatherIcon = document.querySelector("#weather-icon");
@@ -30,6 +31,8 @@ const sunup = document.querySelector("#sunup");
 const sundown = document.querySelector("#sundown");
 
 export const parseWeatherData = (weatherData) => {
+    
+    showUI();
     displayCurrentConditions(weatherData);
     displayWeatherForWeek(weatherData);
     //twoDayForecastTest(twoDayForecastTest, dom);

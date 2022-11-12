@@ -4,6 +4,11 @@
 // has both temps fpr each day we record.
 //
 
+export const showUI = () => {
+    document.querySelector(".centered-container").style.visibility = "visible";     
+    document.querySelector(".spin").style.visibility = "visible";          
+    document.querySelector(".forecast-data-container").style.visibility = "visible";     
+}
 export const getWindDirection = (degrees) => {
     // given the degrees return the closest direction via a path to the corresonding image
     const dir = "SVG/";
@@ -140,7 +145,6 @@ export const setBackground = (main, description,  night) => {
     
     // sets the colors to correspond to the weather pattern.
     const setColors = (borderColor, bgColor, accentColor) => {
-
 
         if (night) {
             body.style = "background-color: black;";

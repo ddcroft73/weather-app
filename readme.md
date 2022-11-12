@@ -1,16 +1,22 @@
 
 # Weather APP using OpeanWeather API
 
-This app uses a free API so I negelected to hide the key. I am planning on buildind a proxy inbetween to practice before I go all in to backend. I'm not a very good frontend designer
-So far this app is only optimized for mobile. It will work on any, but I have to be honest, the CSS turned into  a real nightmare and i'm still trying to dig my way out of it. I built a serch bar that lets you save locations, and I stole a design addition from [Nick Place's](https://github.com/enPlace/top-weather-app) app.
+This app uses a free API so I negelected to hide the key. I am planning on buildind a proxy inbetween to practice before I go all in to backend. I'm not a very good frontend designer, but I am learning.
+So far this app is only optimized for mobile. It will work on any, but I have to be honest, the CSS turned into  a real nightmare and I'm still trying to dig my way out of it. I'm at the point of, "Get it to work", and dealing with almost 1000 lines of CSS. I built a search bar that lets you save locations, and I stole a design addition from [Nick Place's](https://github.com/enPlace/top-weather-app) app.
 
-I plan to continue and optimize the look for desktop and tablet view, so it's still being developed. It's taking a lot of patience to continue at this point and not just go straight to learning front-end libraries. But no, apparently I love the frustration.
+I plan to continue and optimize the look for desktop and tablet view, so it's still being developed. It's taking a lot of patience to continue at this point and not just go straight to learning front-end libraries. But no, apparently I love the frustration. 
 I still need to learn webpack, and so much more. I'm actually just doing what I want before I get serious about all this. 
 
 I however did enjoy the JS and tweaking my code to work with all the different API calls. I went a step further and I used the "OneCall" API to get more data to work with. I got that idea from a past student: [Scotty](https://github.com/bscottnz/weather-app). I saw they used it and I liked the fact of doing more. The icons I used were a combination of "scotties" and an awesome library I found that was used by the weather app on my phone. [erik Flowers](https://erikflowers.github.io/weather-icons/). I heavily edited some of them, but left most intact.
 
 
-The more I look at this the more Im dissatisfied with the design. I still have a lot to learn, and 
+### Proposed changes for desktop versus Mobile.
+ - Make the forty-eight hour forecast work horizantally rather than vertically to fill the screen. Thats it.
+
+### Proposed optimization of code:
+As it is I do not generate the UI, except the 48 hour forecast. I plan to rewrite the UI so that its mostly all generated when the app starts.
+
+The more I look at this the more Im dissatisfied with the design. I still have a lot to learn.
 ## Features
  - Current weather information with:
    - Temperature

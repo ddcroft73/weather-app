@@ -37,12 +37,13 @@ export const getWeatherWithGPS = async () => {
 
                     const { name, state } = await getLocationFromCoords(coords);
                     const weatherData = await getForecastData(coords);
-                    spinner.style.visibility = "hidden";
                     curentLocation.innerHTML = `${name}, ${state}`;
 
                     locationInput.value = `${name}, ${state}`;
                     
                     parseWeatherData(weatherData);
+                    
+                    spinner.style.visibility = "hidden";
                 } catch (err) {
                     console.error(err);
                 }
@@ -56,7 +57,7 @@ export const getWeatherWithGPS = async () => {
 };
 
 //USE A LOCATION
-export const getForecastFromLocation = async (location, dom) => {
+export const getForecastFromLocation = async (location) => {
     try {
         spinner.style.visibility = "visible";
         

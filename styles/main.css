@@ -76,6 +76,9 @@ body {
     font-size: 10px;
 }
 
+.centered-container, .forecast-data-container{
+    visibility: hidden;
+}
 
 /* The main container to keep all otheres centered*/
 .centered-container, .huge-container {
@@ -88,7 +91,6 @@ body {
     margin-top: 3px;
     margin-right: 20px;
     margin-left: 10px;
-
 }
 
 .huge-container {
@@ -291,7 +293,7 @@ body {
 
     flex: 0 155px;
     border: 1px solid rgb(254, 254, 254);
-    background-color: rgba(67, 67, 139, 0.2);
+    background-color: rgba(59, 59, 115, 0.3);
     height: 95px;
 
     margin-left: 5px;
@@ -709,9 +711,12 @@ body {
             top: 175px;
         }
 }
+
 .spin {
     visibility: hidden;
+    z-index: 10;
 }
+
 @keyframes spinner {
     0% {
       transform: translate3d(-50%, -50%, 0) rotate(0deg);
@@ -822,8 +827,8 @@ body {
 }
 
 .expand {
-    display:inline-block;
-    visibility: visible;
+    display:inline-block;/*
+    visibility: visible;*/
     position: relative;
     left: 228px;
     top: -22px;
@@ -929,7 +934,7 @@ input[type="checkbox"] {
 .close {
     margin-right: 0px;
     /* keep the icon over the item name incase its longer than the menu */
-    z-index: 1;
+    z-index: 5;
     font-size: 22px;
     font-weight: bolder;
     color: rgb(48, 47, 47);
@@ -937,6 +942,7 @@ input[type="checkbox"] {
     background-color: rgba(35, 31, 22, .1);
     height: 23px;
     line-height: 25px;
+    margin-right: 5px; 
 }
 
 
