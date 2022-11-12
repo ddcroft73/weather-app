@@ -554,10 +554,22 @@ body {
 }
 
 
+.main-container {
+    position: fixed;
+    z-index: 0;
+}
+
+.forecast-data-container {
+    position: relative;
+    z-index: 10;
+    top: 10px;
+    margin-left: 10px;
+}
+
 
 @media screen and (max-width: 996px) {
     .main-container {
-            height: 480px;
+            height: 500px;
             margin-bottom: 50px;
         }
     
@@ -566,6 +578,9 @@ body {
             gap: 20px;
         }
                
+        .forecast-data-container {
+            top: 10px;
+        }
                
 }
 @media screen and (max-width: 800px) {
@@ -580,7 +595,7 @@ body {
         margin-bottom: 5px;
     }
     .main-container {
-        height: 500px;
+        height: 550px;
         margin-bottom: 50px;
     }
     .centered-container {
@@ -604,12 +619,12 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
-        .column-container {
-            display: none;
+        .forecast-data-container {
+            top: 30px;
         }
 }
 
-@media screen and (max-width: 714px) {
+@media screen and (max-width: 700px) {
     .level-mid {
             height: 50px;
         }
@@ -626,12 +641,12 @@ body {
     .centered-container {
         height: 1540px;
     }
-/*
+
 .forecast-data-container {
-    flex-flow: row wrap;
+    top: 100px;
 
 }
-*/
+
 }
 
 @media screen and (max-width: 546px) { /* 480 */
@@ -658,7 +673,10 @@ body {
             margin-right: 15px;
             text-align: center;
         }
-                
+        .forecast-data-container {
+            top: 180px;
+
+        }
 }
 @media screen and (max-width: 414px) {
 
@@ -672,7 +690,7 @@ body {
     }
 
     .forecast-data-container {
-        top: 15px;
+        top: 175px;
     }
 
 }
@@ -685,6 +703,10 @@ body {
     .centered-container {
         height: 2200px;
     }
+
+        .forecast-data-container {
+            top: 175px;
+        }
 }
 .spin {
     visibility: hidden;
@@ -975,16 +997,3 @@ input:checked+.slider:before {
 }
 
 
-
-
-.main-container {
-    position: fixed;
-    z-index: 0;
-}
-
-.forecast-data-container {
-    position: relative;
-    z-index: 10;
-    top: 200px;
-    margin-left: 10px;
-}
