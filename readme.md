@@ -27,6 +27,7 @@ The more I look at this the more Im dissatisfied with the design. I still have a
  - 8 day forecast containing all the above info for each day.
  - Forty-eight hour forecast (design I copied and really loved.)
    - Hour by hour weather with icons for the next 48 hours.
+   - Rainy days and nights are highlighted so you know with a glance.
  - Custom location Search box.
    - A combo option box that accepts text input.
    - Alows user to save and delete location.

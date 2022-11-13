@@ -131,6 +131,12 @@ body {
     margin: 10px;
     border-radius: 5px;
 }
+
+.pulse {
+    transition-timing-function: ease-in;
+    transition: width 1s, height 2s;
+}
+
 .level-top .current-condition-container {
     flex: 1 75%;
     border: 0px solid black;
@@ -756,7 +762,7 @@ body {
     margin-right: 5px;
     /* Change this */
     font-size: 14px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 0px solid rgb(247, 243, 243);
     background-color: rgba(247, 247, 240, .1);
     border-radius: 5px;
@@ -1008,3 +1014,79 @@ input:checked+.slider:before {
 }
 
 
+
+/* Playing with animations.... I;m so lost! */
+.weather-icon.pulse {
+    /*background: black;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    margin: 10px;
+    height: 20px;
+    width: 20px; */
+    transform: scale(1);
+    /*animation: pulse-white 1s infinite; */
+    animation-name: pulse-white;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+    animation-delay: 0s;
+}
+.weather-icon.white {
+    background: transparent;
+    /*box-shadow: 0 0 0 0 rgba(255, 255, 255, 1); */
+    /*animation: pulse-white 1s infinite; */
+    animation-name: pulse-white;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-delay: 0s;
+}
+
+@keyframes pulse-white {
+    0% {
+        transform: scale(1);
+        /*box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);*/
+    }
+    50% {
+        transform: scale(1.5);
+        /*box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);*/
+    }
+    100% {
+        transform: scale(1);
+       /* box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);*/
+    }
+}
+
+/*.weather-icon {
+    /*background: black;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    margin: 10px;
+    height: 20px;
+    width: 20px; /*
+    transform: scale(1);
+    animation: pulse-white 1s infinite;
+}/*
+
+.weather-icon.white {
+    background: transparent;
+    animation: pulse-white 1s infinite;
+} 
+
+
+@keyframes pulse-white {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+ */

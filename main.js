@@ -19,8 +19,18 @@ submit.addEventListener("click", () => {//
 const searchBox = new SearchAndSave();
 const locations = searchBox.getSearches();
 searchBox.loadMenu(locations);
+//import {
+//    showUI
+//} from "./modules/util.js";
 
+//showUI();
 getWeatherWithGPS();
 
-
+const pulseIcon = document.querySelector(".weather-icon");
+pulseIcon.addEventListener('click', () => {
+    pulseIcon.classList.add("pulse");
+    setTimeout(() => {
+        pulseIcon.classList.remove("pulse");
+    }, "1000");
+});
 
