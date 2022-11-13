@@ -27,7 +27,7 @@ searchBox.loadMenu(locations);
 getWeatherWithGPS();
 
 const pulseIcon = document.querySelector(".weather-icon");
-pulseIcon.addEventListener('click', () => {
+pulseIcon.addEventListener('mouseover', () => {
     pulseIcon.classList.add("pulse");
     setTimeout(() => {
         pulseIcon.classList.remove("pulse");
