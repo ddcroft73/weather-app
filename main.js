@@ -26,11 +26,11 @@ searchBox.loadMenu(locations);
 //showUI();
 getWeatherWithGPS();
 
-const pulseIcon = document.querySelector(".weather-icon");
+    /*
 pulseIcon.addEventListener('mouseover', () => {
     pulseIcon.classList.add("pulse");
     setTimeout(() => {
         pulseIcon.classList.remove("pulse");
     }, "1000");
 });
-
+*/

@@ -37,6 +37,13 @@ export const parseWeatherData = (weatherData) => {
     displayWeatherForWeek(weatherData);
     //twoDayForecastTest(twoDayForecastTest, dom);
     displayHourlyData(weatherData);
+    
+const pulseIcon = document.querySelector(".weather-icon");
+
+ pulseIcon.classList.add("pulse");
+ setTimeout(() => {
+     pulseIcon.classList.remove("pulse");
+ }, "3000");
 };
 
 const displayCurrentConditions = (weatherData) => {

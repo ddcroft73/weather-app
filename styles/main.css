@@ -492,12 +492,12 @@ body {
 }
 
 .hour-rain {
-    background-color: rgb(34, 34, 52);
+    background-color: rgb(29, 29, 45);
 }
 
 /* the effect i need for rain */
 #hour7,#hour8, #hour9, #hour10, #hour11, #hour12 {
-    background-color: rgb(53, 53, 72);
+    background-color: rgb(58, 58, 68);
 }
 
 
@@ -1016,7 +1016,7 @@ input:checked+.slider:before {
 
 
 /* Playing with animations.... I;m so lost! */
-.weather-icon.pulse {
+.weather-icon.pulse, #day-0.pulse {
     /*background: black;
     border-radius: 50%;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
@@ -1028,8 +1028,10 @@ input:checked+.slider:before {
     animation-name: pulse-white;
         animation-duration: 1s;
         animation-iteration-count: 1;
-    animation-delay: 0s;
+    animation-delay: 1s;
 }
+
+
 .weather-icon.white {
     background: transparent;
     /*box-shadow: 0 0 0 0 rgba(255, 255, 255, 1); */
@@ -1037,9 +1039,8 @@ input:checked+.slider:before {
     animation-name: pulse-white;
         animation-duration: 1s;
         animation-iteration-count: 1;
-        animation-delay: 0s;
+        animation-delay: 1s;
 }
-
 @keyframes pulse-white {
     0% {
         transform: scale(1);
