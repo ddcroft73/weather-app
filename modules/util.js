@@ -6,8 +6,8 @@
 
 export const showUI = () => {
     document.querySelector(".centered-container").style.visibility = "visible";     
-    document.querySelector(".spin").style.visibility = "visible";          
-    document.querySelector(".forecast-data-container").style.visibility = "visible";     
+    document.querySelector(".forecast-data-container").style.visibility = "visible";         
+    document.querySelector(".spin").style.visibility = "hidden";          
 }
 export const getWindDirection = (degrees) => {
     // given the degrees return the closest direction via a path to the corresonding image

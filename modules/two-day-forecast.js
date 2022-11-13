@@ -35,6 +35,7 @@ export const displayHourlyData = (weatherData) => {
     }
 
     document.querySelector(".title").innerHTML = "Forty-Eight Hour Forecast"
+    
 };
 
 const addDivider = (cnt) => {
@@ -64,6 +65,7 @@ const getHighsAndLows = (weatherData, hourlyData) => {
 
 
 // creates the elements needed to make up one day as forecasted by each hour up to 48 hours
+// Let me just say, this was not very easy, or clean.. Next time use innerHTML to create the elements
 const displayHourlyForecastByDay = (data, day, hiLo) => {
     const fortyEightContainer = addElement("div", threeDayContainer, {
         className: "forty-8-days-" + day,
@@ -87,15 +89,37 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
         content: `<span class="hi">${hiLo.max}&#176</span> /</span><span class="lo">${hiLo.min}&#176</span>`,
     });
 
+    // determine if its raining and returns path to a blue icon
+    const raining = (icon) => {
+        const rain = ['09', '10', '11','50']
+        //09 == shower
+        //10 ==rain
+        //11 == storm
+        //50 == mist
+        // if the icon name is in the array
+        if(rain.includes(icon.slice(0,2))) {
+            console.log(`icon: ${icon} == rain`);
+            return true;
+        }
+        return false;
+    };
+    const swapIconForBlue = (icon) => {
+        // tack "-blue.svg onto the name"
+        const directory = './SVG/'
+        const ext = '-blue.svg'
+        let newIcon = directory + icon.slice(0, 3) + ext;
+        console.log(newIcon)
+        return newIcon;
+    };
     // add the forecast for each hour of the day.
     for (let hour in data) {
-        const hourContainer = addElement("div", fortyEightContainer, {
-            className: "hour",
+        const hourContainer = addElement("div", fortyEightContainer, {  // darken this cell if raining
+            className: "hour",                                          // set up a "rain" class CSS and add the classname if raining
         });
 
         addElement("div", hourContainer, {
             className: "hour-cell-time",
-            idName: "hour-time-" + hour,
+            idName: "day-" + day + "-hour-" + hour,           // "day-" + day + "-hour-" + hour (ha... LOL)
             content: data[hour].time,
         });
 
@@ -103,8 +127,8 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
             className: "hour-cell-icon",
         });
         addElement("img", iconContainer, {
-            idName: "hour-icon-" + hour,
-            src: `./SVG/${data[hour].icon}.svg`,
+            idName: "day-" + day + "-hour-" + hour + "-icon", // "day-" + day + "-hour-icon-" + hour
+            src: `./SVG/${data[hour].icon}.svg`,         
             width: "18",
         });
 
@@ -113,6 +137,15 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
             idName: "hour-temp-" + hour,
             content: Math.round(data[hour].temp) + "&#176;",
         });
+
+        // if its raining this hour, change the icon and add hour-rain class        
+        if (raining(data[hour].icon)) {
+            hourContainer.classList.add("hour-rain");
+            const icon = document.querySelector(
+                "#day-" + day + "-hour-" + hour + "-icon"
+            );
+            icon.src = swapIconForBlue(data[hour].icon);
+        }
     }
 
     //console.log(hiLo)
@@ -224,6 +257,6 @@ const removePastData = () => {
             innerContainers.remove();
         }
     } catch (err) {
-        console.log(err);
+        console.log("it's nothing");
     }
 };

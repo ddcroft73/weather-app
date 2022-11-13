@@ -86,7 +86,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 1000px;
-    border: 0px solid rgb(236, 236, 239);
+    border: 0px solid rgb(91, 91, 214);
     height: 1300px;
     margin-top: 3px;
     margin-right: 20px;
@@ -480,14 +480,18 @@ body {
 .hour {
     display: flex;
     border: 0px solid rgb(5, 5, 5);
-    height: 20px;
-    margin-bottom: 2px;
+    height: 22px;
+    padding-bottom: 4px;
     width: 100%;
+}
+
+.hour-rain {
+    background-color: rgb(34, 34, 52);
 }
 
 /* the effect i need for rain */
 #hour7,#hour8, #hour9, #hour10, #hour11, #hour12 {
-    background: rgb(53, 53, 72);
+    background-color: rgb(53, 53, 72);
 }
 
 
