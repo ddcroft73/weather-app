@@ -19,18 +19,15 @@ submit.addEventListener("click", () => {//
 const searchBox = new SearchAndSave();
 const locations = searchBox.getSearches();
 searchBox.loadMenu(locations);
-//import {
-//    showUI
-//} from "./modules/util.js";
 
-//showUI();
 getWeatherWithGPS();
 
     /*
-pulseIcon.addEventListener('mouseover', () => {
-    pulseIcon.classList.add("pulse");
+const day0 = document.querySelector("#day-0");
+day0.addEventListener("mouseover", () => {
+    day0.classList.add("pulse");
     setTimeout(() => {
-        pulseIcon.classList.remove("pulse");
+        day0.classList.remove("pulse");
     }, "1000");
 });
 */

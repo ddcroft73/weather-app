@@ -132,10 +132,6 @@ body {
     border-radius: 5px;
 }
 
-.pulse {
-    transition-timing-function: ease-in;
-    transition: width 1s, height 2s;
-}
 
 .level-top .current-condition-container {
     flex: 1 75%;
@@ -153,7 +149,8 @@ body {
     font-weight: 100;
     color: rgb(160, 252, 1);
 }
-
+.temp- {transition: 1s ease-in-out;
+}
 .temp {
     display: flex;
     border: 0px solid black;
@@ -177,8 +174,7 @@ body {
     height: 80px;
     padding-top: 0px;
     line-height: 10px;
-
-
+    transition: .5s ease-in-out;
 }
 
 .temp-high-low {
@@ -282,6 +278,8 @@ body {
     align-items: center;
 
     border: 0px solid rgb(5, 5, 5);
+    transition: .5s ease-in-out;
+
 }
 .day-container-centered {
     display: flex;
@@ -306,6 +304,7 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
+    transition: all ease-in-out;
 }
 .degrees {
     font-size: 18px;
@@ -670,7 +669,12 @@ body {
         .centered-container {
             height: 2050px;
         }
-
+.temp {
+    font-size: 60px;
+    margin-bottom: 5px;
+    /*10*/
+    margin-top: 10px;
+}
         .search-container {
             flex-direction: column;
             justify-content:center;
@@ -1014,9 +1018,8 @@ input:checked+.slider:before {
 }
 
 
-
 /* Playing with animations.... I;m so lost! */
-.weather-icon.pulse, #day-0.pulse {
+.weather-icon.pulse {
     /*background: black;
     border-radius: 50%;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
@@ -1030,7 +1033,6 @@ input:checked+.slider:before {
         animation-iteration-count: 1;
     animation-delay: 1s;
 }
-
 
 .weather-icon.white {
     background: transparent;
