@@ -109,9 +109,10 @@ body {
     
     width: 95%;
     max-width: 1000px;
-    height: 500px;
+    height: 520px;
     border-radius: 10px;
     margin: 5px;
+    background-size: cover;
 }
 
 /* three levels to hold the celss of the data*/
@@ -130,6 +131,11 @@ body {
     border: 0px solid black;
     margin: 10px;
     border-radius: 5px;
+    transition: .5s ease-in-out;
+}
+
+#weather-icon {
+    transition: .5s ease-in-out;
 }
 
 
@@ -670,15 +676,15 @@ body {
         .centered-container {
             height: 2050px;
         }
-.temp {
-    font-size: 60px;
-    margin-bottom: 5px;
-    /*10*/
-    margin-top: 15px;
-}
-.condition {
-    margin-left: -5px;
-}
+        .temp {
+            font-size: 60px;
+            margin-bottom: 5px;
+            /*10*/
+            margin-top: 15px;
+        }
+        .condition {
+            margin-left: -5px;
+        }
         .search-container {
             flex-direction: column;
             justify-content:center;
@@ -713,7 +719,6 @@ body {
     .forecast-data-container {
         top: 200px;
     }
-
 }
 @media screen and (max-width: 375px) {
 
