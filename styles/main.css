@@ -113,6 +113,7 @@ body {
     border-radius: 10px;
     margin: 5px;
     background-size: cover;
+    transition: .1s ease-in-out;
 }
 
 /* three levels to hold the celss of the data*/
@@ -121,6 +122,7 @@ body {
     flex: 0 auto;
     border: 0px solid black;
     height: 170px;
+    transition: .1s ease-in-out;
 }
 .level-top .weather-icon {
     display: flex;
