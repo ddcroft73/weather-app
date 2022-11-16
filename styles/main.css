@@ -149,18 +149,18 @@ body {
     font-weight: 100;
     color: rgb(160, 252, 1);
 }
-.temp- {transition: 1s ease-in-out;
+.temp- {transition: .5s ease-in-out;
 }
 .temp {
     display: flex;
     border: 0px solid black;
     height: 35px;
     margin: 3px;
-    margin-bottom: -5px;
+    margin-bottom: 5px;
     width: 150px;
     line-height: 15px;
-    font-size: 40px;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 300;
     padding-left: 3px;
     color:rgb(254, 170, 2);
 }
@@ -192,6 +192,7 @@ body {
     margin-top: 0px;
     color:rgb(245, 249, 249);
     font-size: 14px;
+    transition: .5s ease-in-out;
 }
 .location {
     margin-right: 20px;
@@ -673,7 +674,10 @@ body {
     font-size: 60px;
     margin-bottom: 5px;
     /*10*/
-    margin-top: 10px;
+    margin-top: 15px;
+}
+.condition {
+    margin-left: -5px;
 }
         .search-container {
             flex-direction: column;
