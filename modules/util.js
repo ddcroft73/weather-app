@@ -173,12 +173,12 @@ export const setBackground = (main, description,  night) => {
         }        
 
         // the condition divs
-        for (let i = 0; i < conditionBorders.length; i++) {
-            if (conditionBorders[i].nodeName.toLowerCase() == "div") {
-                conditionBorders[i].style = `border: 1px solid ${borderColor};`;
+        //for (let i = 0; i < conditionBorders.length; i++) {
+        //    if (conditionBorders[i].nodeName.toLowerCase() == "div") {
+              //  conditionBorders[i].style = `border: 1px solid ${borderColor};`;
                 //dom.conditionBorders[i].style.color = color;
-            }
-        }
+        //    }
+        //}
         // the day cards .what-day
         for (let i = 0; i < daysBorders.length; i++) {
             if (daysBorders[i].nodeName.toLowerCase() == "div") {

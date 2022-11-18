@@ -313,8 +313,9 @@ export class SearchAndSave {
 
         // returns a shortened name if its longer than maxLength
         const truncName = (text) => {
-            const maxLen = 30;
-            return text.length > maxLen ? text.slice(0, maxLen) + "..." : null;
+            const maxLen = 25;
+            console.log(text.length >= maxLen)
+            return text.length >= maxLen ? text.slice(0, maxLen) + "..." : null;
         };
 
         // get all known IDs
