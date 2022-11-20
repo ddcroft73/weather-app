@@ -24,7 +24,7 @@ This has turned into quite a project. It started out as a simple way to get and 
 I stole a design addition from [Nick Place's](https://github.com/enPlace/top-weather-app) app. I went a step further and I used the "OneCall" API to get more data to work with. I got that idea from a past student: [Scotty](https://github.com/bscottnz/weather-app). I saw they used it and I liked the fact of doing more. The icons I used were a combination of "scotties" and an awesome library I found that was used by the weather app on my phone. [erik Flowers](https://erikflowers.github.io/weather-icons/). I heavily edited some of them, but left most intact.
 
 
-### Proposed changes for desktop versus Mobile.
+### Proposed changes for desktop versus mobile.
  - Make the forty-eight hour forecast work horizantally rather than vertically to fill the screen. Thats it.
 
 ### To-DOs:
