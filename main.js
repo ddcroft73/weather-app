@@ -3,7 +3,7 @@ import {
     getForecastFromLocation,
 } from "./modules/weather-api.js";
 
-import { SearchAndSave } from "./psuedo-components/search-and-save.js"
+import { SearchAndSave } from "./modules/search-and-save.js"
 
 //import { twoDayForecastTest } from "./modules/two-day-forecast.js";
 
@@ -20,6 +20,8 @@ const searchBox = new SearchAndSave();
 const locations = searchBox.getSearches();
 searchBox.loadMenu(locations);
 
+//import {showUI} from "./modules/util.js"
+//showUI();
 getWeatherWithGPS();
 
     /*

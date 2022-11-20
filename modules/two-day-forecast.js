@@ -68,7 +68,7 @@ const getHighsAndLows = (weatherData, hourlyData) => {
 // Let me just say, this was not very easy, or clean.. Next time use innerHTML to create the elements
 const displayHourlyForecastByDay = (data, day, hiLo) => {
     const fortyEightContainer = addElement("div", threeDayContainer, {
-        className: "forty-8-days-" + day,
+        className: "forty-8-days"
     });
 
     addElement("div", fortyEightContainer, {
@@ -253,10 +253,10 @@ const removePastData = () => {
             divider.remove();
         }
         for (let i = 0; i < 3; i++) {
-            let innerContainers = document.querySelector(".forty-8-days-" + i);
+            let innerContainers = document.querySelector(".forty-8-days");
             innerContainers.remove();
         }
-    } catch (err) {
+    } catch (err) {        
         console.log("it's nothing");
     }
 };

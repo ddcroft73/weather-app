@@ -9,7 +9,7 @@
  * If nothing else it will be a nice look back at my progress.
  */
 
-import { getForecastFromLocation } from "../modules/weather-api.js";
+import { getForecastFromLocation } from "./weather-api.js";
 
 export class SearchAndSave {
     constructor() {
@@ -29,6 +29,7 @@ export class SearchAndSave {
         this.saveCheck = document.querySelector("#checkbox");
         this.component = document.querySelector(".component");
         this.clearButton = document.querySelector("#delete");
+        this.saveToolTip = document.querySelector("#search-and-save-tip");
 
         this.textBox.addEventListener("click", () => {
             this.viewMenu(false);
@@ -42,8 +43,13 @@ export class SearchAndSave {
 
         this.saveCheck.addEventListener("click", () => {
             let checked = document.getElementById("checkbox").checked;
-            if (checked) this.state.save = true;
-            else this.state.save = false;
+            if (checked) { 
+                this.state.save = true;
+                this.showTip(this.saveToolTip, 1);
+            } else {
+                this.state.save = false;
+                this.showTip(this.saveToolTip, 0);
+            }
         });
 
         // show the clear button when needed
@@ -68,7 +74,7 @@ export class SearchAndSave {
             if (newItem !== "") {
                 // are we saving this?
                 if (this.state.save) {
-                    
+
                     const exists = this.itemExists(newItem);
                     if (!exists) {
                         // add the input to the menuItems array.
@@ -106,6 +112,28 @@ export class SearchAndSave {
     }
 
     // Methods //
+// This is unacceptable. 
+// create a better re-usable tooltip method. 
+// This will be the start of a Custom element
+    showTip = (element, save) => {
+        // will show a tooltip for a few seconds.
+
+        element.style.display = "inline-block";        
+        element.innerHTML = text;        
+        if (save) {
+            element.innerHTML = "Save location";
+            element.style.width = 120 + 'px';
+        } else {
+            element.innerHTML = "Don't Save";
+            element.style.width = 80 +'px';
+        }
+        
+
+        setTimeout(() => {
+            element.style.display = "none";
+        }, "1000");
+    };
+
     itemExists = (itemText) => {
         for (let i = 0; i < this.state.menuItems.length; i++) {
             if (

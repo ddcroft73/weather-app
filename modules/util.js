@@ -333,6 +333,5 @@ export const getIcon = (night, icon, main, description) => {
     }
 
     path = dir + icon + ext;
-    //console.log(path);
     return path;
 };

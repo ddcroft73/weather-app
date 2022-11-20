@@ -1,0 +1,199 @@
+/* 48 hour-forecast */
+.forecast-data-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    height: 800px;
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+    border: 0px solid rgb(11, 11, 11);
+
+}
+
+/*  THe 48 hour forecast CSS*/
+.inner-left {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1000px;
+    height: 740px;
+    min-width: 375px;
+    border: 0px solid rgb(11, 11, 11);
+    background-color: rgba(12, 11, 11, 0.9);
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-radius: 8px;
+}
+
+.inner-left .three-days-container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    margin: 20px;
+    flex: 0;
+    border: 0px solid rgb(8, 8, 8);
+}
+
+.inner-left .three-days-container .three-days-container-inner {
+    display: flex;
+    border: 0px solid rgb(9, 9, 9);
+    width: 340px;
+    height: 100%;
+
+}
+
+.inner-left .three-days-container .three-days-container-inner .forty-8-days {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0px solid rgb(18, 18, 18);
+    flex: 1 80px;
+    gap: 0px;
+}
+
+.divider1,
+.divider2 {
+    border: 1px solid rgb(247, 247, 246);
+
+    position: relative;
+    top: 0px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.divider1 {
+    position: relative;
+    top: 50px;
+    height: 618px;
+}
+
+.divider2 {
+    position: relative;
+    top: 50px;
+    height: 618px;
+}
+
+.main-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0px solid rgb(6, 6, 6);
+    height: 50px;
+    width: 100%;
+    padding-left: 5px;
+}
+
+.date-day {
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bolder;
+    margin-left: 10px;
+    text-align: center;
+    margin-right: 6px;
+    color: rgb(230, 212, 177);
+
+}
+
+.day-hi-lo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border: 0px solid rgb(6, 6, 6);
+    width: 100%;
+    color: rgb(247, 170, 16);
+    font-weight: bolder;
+}
+
+.hour {
+    display: flex;
+    border: 0px solid rgb(5, 5, 5);
+    height: 22px;
+    padding-bottom: 4px;
+    width: 100%;
+}
+
+.hour-rain {
+    background-color: rgb(29, 29, 45);
+}
+
+
+
+.hour-cell-time,
+.hour-cell-icon,
+.hour-cell-temp {
+    border: 0px solid rgb(5, 5, 5);
+    flex: auto;
+    margin-left: 0px;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hour-cell-time {
+    flex: 45px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    color: rgb(230, 212, 177);
+}
+
+.hour-cell-icon {
+    flex: 25px;
+    margin-right: 0px;
+}
+
+.hour-cell-temp {
+    flex: 30px;
+    margin-left: 0px;
+    color: rgb(247, 170, 16);
+}
+
+/*Deatailed information on each Day CSS*/
+
+.inner-right {
+    flex: 0 400px;
+    height: 375px;
+    min-width: 375px;
+    border: 1px solid rgb(6, 6, 6);
+    background-color: rgba(4, 4, 5, .3);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-radius: 8px;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 550px;
+    min-width: 375px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.title {
+    margin: 0px;
+    padding-left: 5px;
+    background-color: rgba(238, 238, 235, 0.0);
+    border: 1px solid rgba(248, 244, 244, 0.1);
+    color: white;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    height: 25px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: bolder;
+    content: "Forty-eight hour Forecast"
+}
+
+
+@media screen and (min-width: 800px) {
+
+   
+}
