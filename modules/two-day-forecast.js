@@ -26,13 +26,17 @@ export const displayHourlyData = (weatherData) => {
     const numDays = hourlyData.length - 1; // the last array is the daily his\los
     
     removePastData();
-
+    
+    // Mobile
     for (let day = 0; day < numDays; day++) {
         // the object witht he hiLo daily Data
         const hiLo = hourlyData[hourlyData.length - 1][day];
         displayHourlyForecastByDay(hourlyData[day], day, hiLo[0]); //
         addDivider(day + 1); // code this so that it stays one div longer than the height of the day to the left.
     }
+    // Desk\tablet
+    
+
 
     document.querySelector(".title").innerHTML = "Forty-Eight Hour Forecast"
     
@@ -90,15 +94,15 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
     });
 
     // determine if its raining and returns path to a blue icon
-    const raining = (icon) => {
-        const rain = ['09', '10', '11','50']
+    const precipitation = (icon) => {
+        const rain_snow = ['09', '10', '11','50', '13']
         //09 == shower
         //10 ==rain
         //11 == storm
+        //13 == snow
         //50 == mist
         // if the icon name is in the array
-        if(rain.includes(icon.slice(0,2))) {
-            console.log(`icon: ${icon} == rain`);
+        if(rain_snow.includes(icon.slice(0,2))) {
             return true;
         }
         return false;
@@ -108,7 +112,6 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
         const directory = './SVG/'
         const ext = '-blue.svg'
         let newIcon = directory + icon.slice(0, 3) + ext;
-        console.log(newIcon)
         return newIcon;
     };
     // add the forecast for each hour of the day.
@@ -138,12 +141,13 @@ const displayHourlyForecastByDay = (data, day, hiLo) => {
             content: Math.round(data[hour].temp) + "&#176;",
         });
 
-        // if its raining this hour, change the icon and add hour-rain class        
-        if (raining(data[hour].icon)) {
-            hourContainer.classList.add("hour-rain");
+        // if its raining\snowing this hour, change the icon and add hour-rain-snow class        
+        if (precipitation(data[hour].icon)) {
+            hourContainer.classList.add("hour-rain-snow");
             const icon = document.querySelector(
                 "#day-" + day + "-hour-" + hour + "-icon"
             );
+            
             icon.src = swapIconForBlue(data[hour].icon);
         }
     }

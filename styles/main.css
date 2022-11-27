@@ -340,7 +340,6 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
-    transition: all ease-in-out;
 }
 .degrees {
     font-size: 18px;
@@ -443,6 +442,9 @@ body {
         .forecast-data-container {
             top: 10px;
         }
+        .three-days-container-inner {
+            display: none;
+        }
         
                
 }
@@ -483,14 +485,15 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
+    .forecast-data-container {
+        position: relative;
+    }
 
-        .forecast-data-container {
-            position: relative;
-        }
+    .main-container {
+        position: relative;
+        top: 30px;
+    }
 
-        .main-container {
-            position: relative;
-        }
 }
 
 @media screen and (max-width: 700px) {
@@ -522,8 +525,9 @@ body {
     }
 }
 
-@media screen and (max-width: 546px) { /* 480 */
-
+@media screen and (max-width: 546px) { /* from here down mobile */
+/* hide the desktop view make mobile view visible*/
+    
         .main-container {
             height: 690px;
             position: fixed;
@@ -555,12 +559,13 @@ body {
             margin-right: 15px;
             text-align: center;
         }
+
         .forecast-data-container {
+            top: 200px;
             position: relative;
             top: 180px;
-
         }
-        
+
 }
 @media screen and (max-width: 414px) {
 
@@ -573,9 +578,6 @@ body {
         height: 1550px; /*1250 1275*/
     }
 
-    .forecast-data-container {
-        top: 200px;
-    }
     /* what a pain in the ass. I could have just redesigned the damn thing
     I hope I never let another project go apeshit like this. pick a design
     stick with it, and learn some CSS front end library!!*/
@@ -597,6 +599,7 @@ body {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
     }
+
 }
 @media screen and (max-width: 375px) {
 

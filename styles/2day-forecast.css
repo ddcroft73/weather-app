@@ -11,12 +11,12 @@
 
 }
 
-/*  THe 48 hour forecast CSS*/
+/*  THe 48 hour forecast CSS  mobile*/
 .inner-left {
     display: flex;
     flex-direction: column;
     flex: 0 1000px;
-    height: 740px;
+    height: 780px;
     min-width: 375px;
     border: 0px solid rgb(11, 11, 11);
     background-color: rgba(12, 11, 11, 0.9);
@@ -79,7 +79,7 @@
     justify-content: center;
     align-items: center;
 
-    border: 0px solid rgb(6, 6, 6);
+    border: 1px solid rgb(6, 6, 6);
     height: 50px;
     width: 100%;
     padding-left: 5px;
@@ -117,7 +117,7 @@
     width: 100%;
 }
 
-.hour-rain {
+.hour-rain-snow {
     background-color: rgb(29, 29, 45);
 }
 
@@ -155,27 +155,6 @@
 
 /*Deatailed information on each Day CSS*/
 
-.inner-right {
-    flex: 0 400px;
-    height: 375px;
-    min-width: 375px;
-    border: 1px solid rgb(6, 6, 6);
-    background-color: rgba(4, 4, 5, .3);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    border-radius: 8px;
-}
-
-.column-container {
-    display: flex;
-    flex-direction: column;
-    height: 350px;
-    width: 550px;
-    min-width: 375px;
-    margin-top: 10px;
-    gap: 10px;
-}
-
 .title {
     margin: 0px;
     padding-left: 5px;
@@ -193,7 +172,111 @@
 }
 
 
-@media screen and (min-width: 800px) {
 
+/* Desktop \tablet */
+.three-days-desktop-tablet {
+    display: flex; /*
+    flex-direction: column;
+    justify-content: center; */
+    border: 0px solid rgb(9, 9, 9);
+    
+}
+
+.forty-8-days-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0px solid rgb(9, 9, 9);
+    width: 600px;
+    height: 100%;
+}
+
+.day-info {
+    display: flex;
+    height: 110px;
+    margin-top: 15px;
+    border: 1px solid rgb(9, 9, 9);
+}
+
+.date-day-desk {
+    position: relative;
+    left: 5px;
+    top: 5px;
+    font-weight: bolder;
+    font-size: 13px;
+    color: rgb(230, 212, 177);
+}
+.main-icon-desk{
+    position: relative;
+    top: 20px;
+    left: -100px;
+    border: 0px solid rgb(6, 6, 6);
+    height: 50px;
+    
+}
+
+.day-hi-lo-desk {
+    position: relative;
+    top: 90px;
+    left:-180px;
+    color: rgb(247, 170, 16);
+    font-weight: bolder;
+}
+
+
+/* a div to contain all the hurs  Should be a set size "viewport 
+and remain with content scrollable*/
+.hours-container-desk-inner {
+   display: flex;   
+   height: 100px;
+   border: 0px solid rgb(6, 6, 6);
+   gap: 5px;
+   margin-top: 10px;
+   margin-left: 0px;
+   overflow:auto;
    
+}
+
+.hour-desk {
+    display: flex;
+    flex-direction:column; 
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(6, 6, 6);    
+    font-weight: 600;
+    margin-top: 0px;
+    font-size: 13px;
+    width: 50px;
+}
+
+.hour-cell-time-desk {
+   flex: 0 35px;
+   margin-top: 5px;
+   color: rgb(230, 212, 177);
+   border: 0px solid rgb(6, 6, 6);
+}
+.hour-cell-icon-desk {
+    flex: 0 35px;
+    border: 0px solid rgb(6, 6, 6);
+
+}
+.hour-cell-temp-desk {
+    flex: 0 35px;
+    color: rgb(247, 170, 16);
+    border: 0px solid rgb(6, 6, 6);  
+}
+/* mobile */
+@media screen and (max-width: 690px) {   
+    .three-days-desktop-tablet {
+        visibility: hidden;
+    }   
+    
+}
+/* desktop and tablet*/
+@media screen and (min-width: 800px) {
+    .three-days-container-inner {
+        visibility: hidden;                
+    }
+    
+    
 }
