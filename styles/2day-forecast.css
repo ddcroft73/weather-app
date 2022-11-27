@@ -280,7 +280,8 @@ and remain with content scrollable*/
         display: none              
     }
         .three-days-desktop-tablet {
-            display: block;
+            display: block
+            ;
         }
     
 }

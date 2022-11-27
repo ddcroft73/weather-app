@@ -9,12 +9,22 @@
 }
 
 /* Remove default margin */
-body,h1,h2,h3,h4,p,figure,blockquote,dl,dd {
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
     margin: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],ol[role='list'] {
+ul[role='list'],
+ol[role='list'] {
     list-style: none;
 }
 
@@ -36,14 +46,17 @@ a:not([class]) {
 }
 
 /* Make images easier to work with */
-img,picture {
+img,
+picture {
     max-width: 100%;
     display: block;
 }
 
 /* Inherit fonts for inputs and buttons */
-input,button,
-textarea,select {
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
 
@@ -66,27 +79,30 @@ textarea,select {
 * {
     border: 0px solid black;
 }
+
 /* App Styling */
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
+
     display: flex;
     justify-content: center;
-    background-color:rgb(78, 122, 162);
+    background-color: rgb(78, 122, 162);
     font-size: 10px;
 }
 
-.centered-container, .forecast-data-container{
+.centered-container,
+.forecast-data-container {
     visibility: hidden;
 }
 
 /* The main container to keep all otheres centered*/
-.centered-container, .huge-container {
+.centered-container,
+.huge-container {
     display: flex;
     justify-content: center;
     width: 100%;
     max-width: 1000px;
-    border: 0px solid rgb(15, 15, 15);
+    border: 1px solid rgb(91, 91, 214);
     height: 1300px;
     margin-top: 13px;
     margin-right: 20px;
@@ -94,7 +110,7 @@ body {
 }
 
 .huge-container {
-    flex-direction:column;
+    flex-direction: column;
 
 }
 
@@ -102,11 +118,11 @@ body {
 .main-container {
     display: flex;
     flex-direction: column;
-    
+
     background-image: url();
 
     border: 0px solid rgb(247, 170, 16);
-    
+
     width: 100%;
     max-width: 1000px;
     height: 520px;
@@ -117,18 +133,19 @@ body {
 }
 
 /* three levels to hold the celss of the data*/
-.level-top { 
+.level-top {
     display: flex;
     flex: 0 auto;
     border: 0px solid black;
     height: 170px;
     transition: .5s ease-in-out;
 }
+
 .level-top .weather-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     flex: 1 20%;
     border: 0px solid black;
     margin-left: 10px;
@@ -166,8 +183,11 @@ body {
     font-weight: 100;
     color: rgb(160, 252, 1);
 }
-.temp- {transition: .5s ease-in-out;
+
+.temp- {
+    transition: .5s ease-in-out;
 }
+
 .temp {
     display: flex;
     border: 0px solid black;
@@ -179,12 +199,12 @@ body {
     font-size: 48px;
     font-weight: 300;
     padding-left: 3px;
-    color:rgb(254, 170, 2);
+    color: rgb(254, 170, 2);
 }
 
 .temp-type {
-    position:relative;
-    left:-23px;
+    position: relative;
+    left: -23px;
     top: -30px;
     border: 0px solid black;
     width: 80px;
@@ -203,14 +223,16 @@ body {
     padding-left: 7px;
     color: white;
 }
+
 .condition {
     border: 0px solid black;
     margin-left: 10px;
     margin-top: 0px;
-    color:rgb(245, 249, 249);
+    color: rgb(245, 249, 249);
     font-size: 14px;
     transition: .5s ease-in-out;
 }
+
 .location {
     margin-right: 20px;
     margin-left: 20px;
@@ -218,7 +240,7 @@ body {
     font-size: 12px;
     color: rgb(249, 246, 246);
     border: 0px solid black;
-    text-align:end;
+    text-align: end;
 }
 
 /*----------------------------Style for submit and textbox-----------------------------------*/
@@ -232,7 +254,7 @@ body {
     padding-bottom: 8px;
     margin-right: 20px;
     width: 100%;
-    background-color:rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
@@ -250,6 +272,7 @@ body {
     border-radius: 5px;
     width: 90%;
 }
+
 .current-stats {
     display: flex;
     border: 0px solid rgb(251, 249, 249);
@@ -257,12 +280,13 @@ body {
     height: 24px;
     margin-left: 0px;
     margin-bottom: 6px;
-    text-align:left;
+    text-align: left;
     font-size: 15px;
     line-height: 22px;
-    color:rgb(248, 247, 247);
+    color: rgb(248, 247, 247);
     background-color: rgba(118, 118, 180, 0.4);
 }
+
 #deg {
     margin-left: 2px;
     border: 0px solid rgb(251, 249, 249);
@@ -274,30 +298,36 @@ body {
     width: 60px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-} 
+}
+
 .current-stats:nth-child(2) {
     width: 70px;
 }
+
 .current-stats:nth-child(3) {
     width: 110px;
 }
+
 .current-stats:nth-child(4) {
     width: 70px;
 }
+
 .current-stats:nth-child(5) {
     width: 60px;
 }
 
-.current-stats:last-child{
+.current-stats:last-child {
     width: 140px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
 .icon {
     border: 0px solid black;
     margin-left: 5px;
 
 }
+
 .level-bottom {
     display: flex;
     flex: 1 auto;
@@ -309,6 +339,7 @@ body {
     margin-bottom: 50px;
     margin-top: 5px;
 }
+
 .day-container {
     display: flex;
     align-items: center;
@@ -317,6 +348,7 @@ body {
     transition: .5s ease-in-out;
 
 }
+
 .day-container-centered {
     display: flex;
     flex: 1 auto;
@@ -327,7 +359,7 @@ body {
 }
 
 
-.level-bottom .day{
+.level-bottom .day {
     display: flex;
     flex-direction: column;
 
@@ -340,16 +372,19 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
+    transition: all ease-in-out;
 }
+
 .degrees {
     font-size: 18px;
     line-height: 20px;
 }
+
 /*.day:first-child {
     margin-left: 5px;
 }*/
 
-.level-bottom .day .inside-day-container{
+.level-bottom .day .inside-day-container {
     display: flex;
     padding-top: 8px;
     flex-direction: column;
@@ -363,7 +398,7 @@ body {
     margin-bottom: 5px;
     flex: 1;
     border: 0px solid rgb(254, 254, 254);
-    color:aliceblue;
+    color: aliceblue;
 }
 
 .day-conditions {
@@ -371,7 +406,8 @@ body {
     padding-left: 7px;
     margin-top: 8px;
 }
-.level-bottom .day .inside-day-container .icon-temp-container{
+
+.level-bottom .day .inside-day-container .icon-temp-container {
     display: flex;
     margin-top: 1px;
 }
@@ -382,31 +418,37 @@ body {
     align-items: center;
     margin-left: 8px;
     flex: 0 40px;
-    height: 30px; 
+    height: 30px;
     border: 0px solid rgb(254, 254, 254);
     padding-top: 8px;
 }
+
 .level-bottom .day .inside-day-container .icon-temp-container .day-temp {
     display: flex;
     padding-top: 0px;
     padding-left: 2px;
     flex: 0 40px;
     height: 25px;
-    border: 0px solid rgb(254, 254, 254);color:
-    rgb(254, 170, 2);
+    border: 0px solid rgb(254, 254, 254);
+    color:
+        rgb(254, 170, 2);
     font-size: 25px;
     line-height: 28px;
 }
+
 .day-temp-low {
     font-size: 11px;
     padding-left: 3px;
     line-height: 20px;
 }
-.hi, .lo {
+
+.hi,
+.lo {
     border: 0px solid rgb(255, 171, 3);
     border-radius: 3px;
     font-size: 11px;
 }
+
 .hi {
     color: rgb(205, 82, 20);
 }
@@ -429,29 +471,32 @@ body {
 
 @media screen and (max-width: 1000px) {
     .main-container {
-            position: fixed;
-            height: 500px;
-            margin-bottom: 50px;
-            top: 10px;
-            left: 5px;
-        }
-    
-        .centered-container {
-            height: 1300px;
-            gap: 20px;
-        }
-               
-        .forecast-data-container {
-            top: 40px;
-        }
-        /*
-        .three-days-container-inner {
-            display: none;
-        }
-        */
-               
+        height: 500px;
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+    .centered-container {
+        height: 1300px;
+        gap: 20px;
+    }
+
+    .forecast-data-container {
+        top: 10px;
+    }
+
+
 }
+
 @media screen and (max-width: 800px) {
+.forecast-data-container {
+        position: relative;
+    }
+
+    .main-container {
+        position: relative;
+        top: 20px;
+    }
     /* make the last three days hide
     #day-five, #day-six, #day-seven {
         display: none;
@@ -462,25 +507,30 @@ body {
     .level-top {
         margin-bottom: 5px;
     }
+
     .main-container {
         height: 550px;
         margin-bottom: 50px;
-        position: fixed;
-            top: 10px;
-            left: 10px;
+        top: 50px;
+        
     }
+
     .centered-container {
         height: 1250px;
         gap: 20px;
     }
+
     .temp {
         font-size: 50px;
-        margin-bottom: 5px; /*10*/
+        margin-bottom: 5px;
+        /*10*/
         margin-top: 10px;
     }
+
     .temp-type {
-        top: -35px; 
+        top: -35px;
     }
+
     .search {
         padding-top: 10px;
         margin-left: 0px;
@@ -490,25 +540,19 @@ body {
         height: 400px;
         margin-bottom: 100px;
     }
-    .forecast-data-container {
-        position: relative;
-    }
-
 
 }
 
 @media screen and (max-width: 700px) {
     .level-mid {
-            height: 50px;
-        }
+        height: 50px;
+    }
+
     .main-container {
         height: 600px;
-        position: fixed;
-            top: 10px;
-            left: 10px;
-       
-
+        top: 50px;
     }
+
     .centered-container {
         height: 1540px;
     }
@@ -518,73 +562,85 @@ body {
 
     }
 }
+
 /* round the corners when the row breaks*/
 @media screen and (max-width: 616px) {
-    .current-stats:nth-child(5) {            
+    .current-stats:nth-child(5) {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
     }
+
     .current-stats:last-child {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
     }
 }
 
-@media screen and (max-width: 546px) { /* from here down mobile */
-/* hide the desktop view make mobile view visible*/
-    
-        .main-container {
-            height: 690px;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            
-        }
-        .centered-container {
-            height: 2050px;
-        }
-        .temp {
-            font-size: 60px;
-            margin-bottom: 5px;
-            /*10*/
-            margin-top: 15px;
-        }
-        .condition {
-            margin-left: -5px;
-        }
-        .search-container {
-            flex-direction: column;
-            justify-content:center;
-            align-items:center;
-            width: 100%;
-            gap: 10px;
-        }
-        .component-container {
-            margin: 0px;
-        }
-        .location {
-            margin: 0px;
-            margin-right: 15px;
-            text-align: center;
-        }
-
-        .forecast-data-container {
-            top: 200px;
-            position: relative;
-            top: 220px;
-        }
-
-}
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 546px) {
+    /* 480 */
 
     .main-container {
-        height: 720px; /*690 700 */ 
-        width: 390px;
-        left:15px;
+        height: 690px;
+        width: 95%;
+        position: fixed;
+        top: -10px;
     }
 
     .centered-container {
-        height: 1550px; /*1250 1275*/
+        height: 2050px;
+    }
+
+    .temp {
+        font-size: 60px;
+        margin-bottom: 5px;
+        /*10*/
+        margin-top: 15px;
+    }
+
+    .condition {
+        margin-left: -5px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .component-container {
+        margin: 0px;
+    }
+
+    .location {
+        margin: 0px;
+        margin-right: 15px;
+        text-align: center;
+    }
+
+    .forecast-data-container {
+        position: relative;
+        top: 280px;
+
+    }
+
+}
+
+@media screen and (max-width: 414px) {
+
+    .main-container {
+        height: 720px;
+        /*690 700 */
+        width: 380px;
+    }
+
+    .centered-container {
+        height: 1550px;
+        /*1250 1275*/
+    }
+
+    .forecast-data-container {
+        top: 200px;
     }
 
     /* what a pain in the ass. I could have just redesigned the damn thing
@@ -599,6 +655,7 @@ body {
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
     }
+
     .current-stats:nth-child(5) {
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
@@ -608,8 +665,8 @@ body {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
     }
-
 }
+
 @media screen and (max-width: 375px) {
 
     .main-container {
@@ -620,9 +677,9 @@ body {
         height: 2200px;
     }
 
-        .forecast-data-container {
-            top: 175px;
-        }
+    .forecast-data-container {
+        top: 175px;
+    }
 }
 
 .spin {
@@ -632,13 +689,15 @@ body {
 
 @keyframes spinner {
     0% {
-      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
     }
+
     100% {
-      transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
     }
-  }
-  .spin::before {
+}
+
+.spin::before {
     animation: 1.5s linear infinite spinner;
     animation-play-state: inherit;
     border: solid 5px #f5f5f6;
@@ -652,10 +711,10 @@ body {
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     will-change: transform;
-  }
+}
 
 
-  
+
 
 
 /* Playing with animations.... I;m so lost! */
@@ -669,8 +728,8 @@ body {
     transform: scale(1);
     /*animation: pulse-white 1s infinite; */
     animation-name: pulse-white;
-        animation-duration: 1s;
-        animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
     animation-delay: 1s;
 }
 
@@ -679,22 +738,25 @@ body {
     /*box-shadow: 0 0 0 0 rgba(255, 255, 255, 1); */
     /*animation: pulse-white 1s infinite; */
     animation-name: pulse-white;
-        animation-duration: 1s;
-        animation-iteration-count: 1;
-        animation-delay: 1s;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
 }
+
 @keyframes pulse-white {
     0% {
         transform: scale(1);
         /*box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);*/
     }
+
     50% {
         transform: scale(1.5);
         /*box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);*/
     }
+
     100% {
         transform: scale(1);
-       /* box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);*/
+        /* box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);*/
     }
 }
 
