@@ -86,9 +86,9 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 1000px;
-    border: 0px solid rgb(91, 91, 214);
+    border: 0px solid rgb(15, 15, 15);
     height: 1300px;
-    margin-top: 3px;
+    margin-top: 13px;
     margin-right: 20px;
     margin-left: 10px;
 }
@@ -429,9 +429,11 @@ body {
 
 @media screen and (max-width: 1000px) {
     .main-container {
+            position: fixed;
             height: 500px;
             margin-bottom: 50px;
-
+            top: 10px;
+            left: 5px;
         }
     
         .centered-container {
@@ -440,12 +442,13 @@ body {
         }
                
         .forecast-data-container {
-            top: 10px;
+            top: 40px;
         }
+        /*
         .three-days-container-inner {
             display: none;
         }
-        
+        */
                
 }
 @media screen and (max-width: 800px) {
@@ -462,7 +465,9 @@ body {
     .main-container {
         height: 550px;
         margin-bottom: 50px;
-        top: 50px;;
+        position: fixed;
+            top: 10px;
+            left: 10px;
     }
     .centered-container {
         height: 1250px;
@@ -489,10 +494,6 @@ body {
         position: relative;
     }
 
-    .main-container {
-        position: relative;
-        top: 30px;
-    }
 
 }
 
@@ -502,6 +503,10 @@ body {
         }
     .main-container {
         height: 600px;
+        position: fixed;
+            top: 10px;
+            left: 10px;
+       
 
     }
     .centered-container {
@@ -532,6 +537,8 @@ body {
             height: 690px;
             position: fixed;
             top: 10px;
+            left: 10px;
+            
         }
         .centered-container {
             height: 2050px;
@@ -549,6 +556,7 @@ body {
             flex-direction: column;
             justify-content:center;
             align-items:center;
+            width: 100%;
             gap: 10px;
         }
         .component-container {
@@ -563,7 +571,7 @@ body {
         .forecast-data-container {
             top: 200px;
             position: relative;
-            top: 180px;
+            top: 220px;
         }
 
 }
@@ -571,7 +579,8 @@ body {
 
     .main-container {
         height: 720px; /*690 700 */ 
-        width: 380px;
+        width: 390px;
+        left:15px;
     }
 
     .centered-container {

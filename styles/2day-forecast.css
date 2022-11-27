@@ -15,7 +15,7 @@
 .inner-left {
     display: flex;
     flex-direction: column;
-    flex: 0 1000px;
+    flex: 0 850px;
     height: 780px;
     min-width: 375px;
     border: 0px solid rgb(11, 11, 11);
@@ -268,15 +268,19 @@ and remain with content scrollable*/
 /* mobile */
 @media screen and (max-width: 690px) {   
     .three-days-desktop-tablet {
-        visibility: hidden;
+        display: none;
     }   
-    
+        .three-days-container-inner {
+            display: block;
+        }
 }
 /* desktop and tablet*/
 @media screen and (min-width: 800px) {
     .three-days-container-inner {
-        visibility: hidden;                
+        display: none              
     }
-    
+        .three-days-desktop-tablet {
+            display: block;
+        }
     
 }

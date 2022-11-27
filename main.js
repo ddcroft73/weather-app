@@ -20,9 +20,9 @@ const searchBox = new SearchAndSave();
 const locations = searchBox.getSearches();
 searchBox.loadMenu(locations);
 
-import {showUI} from "./modules/util.js"
-showUI();
-//getWeatherWithGPS();
+////import {showUI} from "./modules/util.js"
+//showUI();
+getWeatherWithGPS();
 
     /*
 const day0 = document.querySelector("#day-0");
