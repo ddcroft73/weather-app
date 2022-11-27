@@ -106,7 +106,7 @@ body {
     height: 1300px;
     margin-top: 13px;
     margin-right: 20px;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .huge-container {
@@ -581,8 +581,9 @@ body {
 
     .main-container {
         height: 690px;
-        width: 95%;
         position: fixed;
+        width: 95%;
+        left: 5px;
         top: -10px;
     }
 
@@ -631,6 +632,7 @@ body {
     .main-container {
         height: 720px;
         /*690 700 */
+        left: 17px;
         width: 380px;
     }
 
