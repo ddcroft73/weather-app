@@ -6,9 +6,13 @@ import {
 import { SearchAndSave } from "./modules/search-and-save.js"
 //import { twoDayForecastTest } from "./modules/two-day-forecast.js";
 
+const tempType = document.querySelector(".temp-type");
+tempType.addEventListener("click", () => alert("type"));
+
+
 const locationInput = document.querySelector(".text");
 const submit = document.querySelector(".button");
-submit.addEventListener("click", () => {//
+submit.addEventListener("click", () => {
     getForecastFromLocation(locationInput.value);
 });
 
