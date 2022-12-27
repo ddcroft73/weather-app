@@ -7,10 +7,10 @@ import {
     setBackground,
     getDateString,
     isNight,
-    evalName,
     capAllWords,
     getWindDirection,
-    showUI
+    showUI,
+    pulseIcon
 } from "./util.js";
 
 const weatherIcon = document.querySelector("#weather-icon");
@@ -30,20 +30,13 @@ const windDirection = document.querySelector("#deg");
 const sunup = document.querySelector("#sunup");
 const sundown = document.querySelector("#sundown");
 
-export const parseWeatherData = (weatherData) => {
-    
+export const parseWeatherData = (weatherData) => {    
     showUI();
     displayCurrentConditions(weatherData);
     displayWeatherForWeek(weatherData);
     //twoDayForecastTest(twoDayForecastTest, dom);
     displayHourlyData(weatherData);
-    
-const pulseIcon = document.querySelector(".weather-icon");
-
- pulseIcon.classList.add("pulse");
- setTimeout(() => {
-     pulseIcon.classList.remove("pulse");
- }, "3000");
+    pulseIcon();    
 };
 
 const displayCurrentConditions = (weatherData) => {
@@ -86,27 +79,31 @@ const displayCurrentConditions = (weatherData) => {
 };
 
 const displayWeatherForWeek = (weatherData) => {
-    let daily = [];
+    // loop through the API response Data daily Array, and get the info for each day.
+    for (let index = 0; index < 8; index++) {
+        const { 
+            main, 
+            description, 
+            icon 
+        } = weatherData.daily[index].weather[0];
 
-    for (let index = 0; index < 8; index++) {
-        daily[index] = {
-            date: document.querySelector("#day-date-" + index),
-            icon: document.querySelector("#day-icon-" + index),
-            temp: document.querySelector("#day-temp-" + index),
-            condition: document.querySelector("#day-condition-" + index),
-            tempMax: document.querySelector("#hi" + index),
-            tempMin: document.querySelector("#lo" + index),
-        };
-    }
-    for (let index = 0; index < 8; index++) {
-        const { main, description, icon } = weatherData.daily[index].weather[0];
-        daily[index].date.innerHTML = getDateString(weatherData.daily[index].dt);
-        daily[index].temp.innerHTML = `${Math.round(
-            weatherData.daily[index].temp.day
-        )} <span class="degrees">&#176;</span>`;
-        daily[index].icon.src = getIcon(false, icon, main, description); //  "SVG/sun.svg";
-        daily[index].condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
-        daily[index].tempMax.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
-        daily[index].tempMin.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
+        const date = document.querySelector("#day-date-" + index);
+        date.innerHTML = getDateString(weatherData.daily[index].dt);
+
+        const temp = document.querySelector("#day-temp-" + index);
+        temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
+
+        const weatherIcon = document.querySelector("#day-icon-" + index);
+        weatherIcon.src = getIcon(false,icon,main,description); //  "SVG/sun.svg";
+
+        const condition = document.querySelector("#day-condition-" + index);
+        condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
+
+        const hiTemp = document.querySelector("#hi" + index);
+        hiTemp.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
+
+        const loTemp = document.querySelector("#lo" + index);
+        loTemp.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
     }
 };
+

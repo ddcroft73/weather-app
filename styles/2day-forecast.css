@@ -16,8 +16,9 @@
     display: flex;
     flex-direction: column;
     flex: 0 850px;
-    height: 780px;
+    height: 768px;
     min-width: 375px;
+    width: 100%;
     border: 0px solid rgb(11, 11, 11);
     background-color: rgba(12, 11, 11, 0.9);
     border-bottom-right-radius: 8px;
@@ -65,13 +66,13 @@
 .divider1 {
     position: relative;
     top: 50px;
-    height: 618px;
+    height: 668px;
 }
 
 .divider2 {
     position: relative;
     top: 50px;
-    height: 618px;
+    height: 668px;
 }
 
 .main-icon {
@@ -111,9 +112,10 @@
 
 .hour {
     display: flex;
-    border: 0px solid rgb(5, 5, 5);
+    border: 0px solid rgb(226, 157, 8);
     height: 22px;
     padding-bottom: 4px;
+    margin-bottom: 2px;
     width: 100%;
 }
 
@@ -126,7 +128,7 @@
 .hour-cell-time,
 .hour-cell-icon,
 .hour-cell-temp {
-    border: 0px solid rgb(5, 5, 5);
+    border: 0px solid rgb(249, 246, 246);
     flex: auto;
     margin-left: 0px;
     line-height: 20px;
@@ -172,24 +174,40 @@
 }
 
 
-
+/*  DESKTOP STYLING  -------------------------------------------------------------------------------*/
 /* Desktop \tablet */
-.three-days-desktop-tablet {
-    display: flex; /*
-    flex-direction: column;
-    justify-content: center; */
-    border: 0px solid rgb(9, 9, 9);
-    
-}
-
 .forty-8-days-desktop {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 0px solid rgb(9, 9, 9);
-    width: 700px;
+    border: 0px solid rgb(243, 236, 236);
+    width: 100%;
     height: 100%;
 }
+
+.three-days-desktop-tablet {
+    display: flex; /*
+    flex-direction: column;
+    justify-content: center; */
+    max-width: 700px;
+    border: 0px solid rgb(148, 18, 18);
+    
+}
+
+.left, .right{
+    border: 0px solid rgb(249, 249, 249);
+}
+
+.expander {
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid rgb(9, 9, 9);
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+
+
+
 
 .day-info {
     display: flex;
@@ -209,9 +227,10 @@
     color: rgb(230, 212, 177);
 }
 .main-icon-desk{
+    
     position: relative;
-    top: 25px;
-    left: -125px;
+    top: -10px;
+    left: 15px;
     border: 0px solid rgb(6, 6, 6);
     height: 50px;
     
@@ -221,8 +240,8 @@
     position: relative;
     height: 30px;
     width: 100px;
-    top: 95px;
-    left:-205px;
+    top: 15px;
+    left:10px;
     color: rgb(247, 170, 16);
     font-weight: bolder;
     border: 0px solid rgb(6, 6, 6);
@@ -232,10 +251,9 @@
 /* a div to contain all the hurs  Should be a set size "viewport 
 and remain with content scrollable*/
 .hours-container-desk-inner {
-   position: relative;
-   left: -130px;
+   
    display: flex;   
-   width: 548px;
+   width:300px;
    height: 110px;
    border-left: 1px solid rgb(242, 239, 239);
    border-right: 1px solid rgb(242, 239, 239);
@@ -247,8 +265,8 @@ and remain with content scrollable*/
    
 }
 .hours-container-desk-inner::-webkit-scrollbar {
-    width: .1em;
-    height: .3em;
+    width: 0em;
+    height: .5em;
 }
 .hours-container-desk-inner::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -293,6 +311,11 @@ and remain with content scrollable*/
     padding-bottom: 5px; 
 }
 
+.desk-divider {
+    width: 500px;
+    height: 10px;
+    border-bottom: 1px solid rgb(6, 6, 6);
+}
 
 /* mobile */
 @media screen and (max-width: 546px) {   
@@ -300,11 +323,14 @@ and remain with content scrollable*/
         visibility: hidden;
         display: none;
     }   
-        .three-days-container-inner {
-            visibility: visible;
-            display: flex;
-        }
-        
+    .three-days-container-inner {
+        visibility: visible;
+        display: flex;
+    }
+    
+    .inner-left{
+        height: 780px;
+    }
 }
 /* desktop and tablet*/
 @media screen and (min-width: 546px) {
@@ -312,10 +338,12 @@ and remain with content scrollable*/
         visibility: hidden; 
         display: none;    
     }
-        .three-days-desktop-tablet {
-            visibility: visible;
-            display: flex;
-        }
-       
+    .three-days-desktop-tablet {
+        visibility: visible;
+        display: flex;
+    }
+    .inner-left {
+        height: 60%;
+    }
     
 }

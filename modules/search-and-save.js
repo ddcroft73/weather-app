@@ -1,12 +1,5 @@
 /**
- * a drop down component, sort of.. I want to learn either Web Components and\or react
- * to make things like this more often.
- *
- * Allows the user to both enter and select saved locations. The premise being the ability to
- * quickly check the weather in multiple locations.
- * 
- * I know now this is not how this is done, but its not broke and maybe when I learn how I;ll fix it.
- * If nothing else it will be a nice look back at my progress.
+ * This is a prototype of a Web Component I'm building to add something like this to any app. 
  */
 
 import { getForecastFromLocation } from "./weather-api.js";
@@ -18,7 +11,7 @@ export class SearchAndSave {
             menuVisible: false,
             save: false,
             menuItems: [],
-            currentItem: null,
+            currentItem: null
         };
 
         // DOM
@@ -42,7 +35,7 @@ export class SearchAndSave {
         });
 
         this.saveCheck.addEventListener("click", () => {
-            let checked = document.getElementById("checkbox").checked;
+            let checked = document.getElementById("checkbox").checked;            
             if (checked) { 
                 this.state.save = true;
                 this.showTip(this.saveToolTip, 1);
@@ -72,9 +65,8 @@ export class SearchAndSave {
             this.viewMenu(false);
 
             if (newItem !== "") {
-                // are we saving this?
+                
                 if (this.state.save) {
-
                     const exists = this.itemExists(newItem);
                     if (!exists) {
                         // add the input to the menuItems array.
@@ -112,12 +104,12 @@ export class SearchAndSave {
     }
 
     // Methods //
-// This is unacceptable. 
-// create a better re-usable tooltip method. 
-// This will be the start of a Custom element
+    
+    // create a better re-usable tooltip method. 
+    // This will be the start of a Custom element
+    // maybe use span instead of a div
     showTip = (element, save) => {
         // will show a tooltip for a few seconds.
-
         element.style.display = "inline-block";        
         element.innerHTML = text;        
         if (save) {
@@ -125,9 +117,8 @@ export class SearchAndSave {
             element.style.width = 120 + 'px';
         } else {
             element.innerHTML = "Don't Save";
-            element.style.width = 80 +'px';
-        }
-        
+            element.style.width = 95 +'px';
+        }        
 
         setTimeout(() => {
             element.style.display = "none";
@@ -213,7 +204,7 @@ export class SearchAndSave {
 
     // listen for the clicks on both the item and the delete Icon and
     // handle accordingly
-    bindItemToDOM = (itemID) => {
+    listenForEvents = (itemID) => {
         const item = document.querySelector("#item-" + itemID);
         const deleteItem = document.querySelector("#close-" + itemID);
 
@@ -299,8 +290,9 @@ export class SearchAndSave {
             });
         };
 
+        // start logic
         generateItem(inputObj, itemID);
-        this.bindItemToDOM(itemID);
+        this.listenForEvents(itemID);
     };
 
     // populate the menu from storage

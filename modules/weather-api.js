@@ -1,11 +1,8 @@
-import {
-    evalName,
-    capAllWords
-} from "./util.js";
+import { evalName, capAllWords } from "./util.js";
 import { parseWeatherData } from  "./parse-weather-data.js";
 
 const API_KEY_30 = "69eb4c4ba2a0b741f04a495fd8e76b06"; // I only did this because it is a free API key and therefore no need to house on a server, etc.
-const excludes = "minutley"; // 1000 calls per-day
+const excludes = "minutley"; 
 const spinner = document.querySelector(".spin");
 const curentLocation = document.querySelector(".location");
 const locationInput = document.querySelector(".text");
@@ -34,15 +31,12 @@ export const getWeatherWithGPS = async () => {
                         lat: position.coords.latitude,
                         lon: position.coords.longitude,
                     };
-
+                    
                     const { name, state } = await getLocationFromCoords(coords);
                     const weatherData = await getForecastData(coords);
                     curentLocation.innerHTML = `${name}, ${state}`;
-
-                    locationInput.value = `${name}, ${state}`;
-                    
-                    parseWeatherData(weatherData);
-                    
+                    locationInput.value = `${name}, ${state}`;                    
+                    parseWeatherData(weatherData);                    
                     spinner.style.visibility = "hidden";
                 } catch (err) {
                     console.error(err);

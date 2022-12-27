@@ -291,91 +291,72 @@
             <div class="title">&nbsp;</div>
             <div class="three-days-container">
                 <div class="three-days-desktop-tablet">
-                    <!-- Dynamically generate 2 day forecast desktop here.-->
-
                     <div class="forty-8-days-desktop">
-                        
-                        <div class="day-info">
-                            <div id="date-day-0" class="date-day-desk">Sat Nov 26 2022</div>
-                            <div class="main-icon-desk"><img src="./SVG/02d.svg" width="120"></div>
-                            <div id="day-hi-lo-0" class="day-hi-lo-desk"><span class="hi">63°</span> /<span class="lo">45°</span></div>
-                        
-                            <div class="hours-container-desk-inner">
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                        <!-- Dynamically generate 2 day forecast desktop here.-->
+                    <!--
+                        -create the expander div with createElement
+                        -create day-info inside expander and internals with JS
+                        -create left inside day-info and its internals uing the data in the hourlyData array
+                        - create the right div and hours-container-desk-inner 
+                        - loop through the hours and use innerHTML to build them
+                    --> 
+                    <!--
+                        <div class="expander">
+                            <div class="day-info">
+                                <div class="left">
+                                        <div id="date-day-0" class="date-day-desk">
+                                            Sat Nov 26 2022
+                                        </div>
+                                        <div id="icon-day-0" class="main-icon-desk">
+                                            <img src="./SVG/02d.svg" width="100">
+                                        </div>
+                                        <div id="hi-lo-day-0" class="day-hi-lo-desk">
+                                            <span class="hi">63°</span> /<span class="lo">45°</span>
+                                        </div>
                                 </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                                <div class="hour-desk">
-                                    <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
-                                    <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
-                                    <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
-                                </div>
-                            </div>
                             
-                        </div>                        
-                    </div>
-
+                                <div class="right">
+                                        <div class="hours-container-desk-inner">
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk">
+                                                    <img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38">
+                                                </div>
+                                                <div id="hour-cell-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>                                    
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
+                                                <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
+                                                <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
+                                                <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
+                                                <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>
+                                            <div class="hour-desk">
+                                                <div id="day-0-hour-0" class="hour-cell-time-desk">16:00</div>
+                                                <div class="hour-cell-icon-desk"><img id="day-0-hour-0-icon" src="./SVG/02d.svg" width="38"></div>
+                                                <div id="hour-temp-0" class="hour-cell-temp-desk">61°</div>
+                                            </div>
+                                        </div>                            
+                                </div>                                
+                            </div>
+                        </div>    
+                    -->
+                        
+                        
+                   </div>
                 </div>
 
                 <div class="three-days-container-inner">
@@ -389,6 +370,5 @@
 
 <script type="module" src="main.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-<script>dayjs().format()</script>
 </body>
 </html>

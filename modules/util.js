@@ -4,52 +4,27 @@
 // has both temps fpr each day we record.
 //
 
+// UI is hidden until te data is ready. On seconf thought and as i learn more, this app should be displayed
+// dynamically with JS into divs on the index page. Not changing it now. works fine.
 export const showUI = () => {
     document.querySelector(".centered-container").style.visibility = "visible";     
     document.querySelector(".forecast-data-container").style.visibility = "visible";         
     document.querySelector(".spin").style.visibility = "hidden";          
 }
-export const getWindDirection = (degrees) => {
-    // given the degrees return the closest direction via a path to the corresonding image
-    const dir = "SVG/";
-    const ext = ".svg";
-    let direction;
-
-    if(degrees >= 0 && degrees <= 23) {
-         direction  = 'N';
-    }
-    if (degrees > 24 && degrees <= 45) {
-         direction = "NE";
-    }
-    if (degrees > 45 && degrees <= 90) {
-         direction = "E";
-    }
-    if (degrees > 90 && degrees <= 135) {
-         direction = "SE";
-    }
-    if (degrees > 135 && degrees <= 180) {
-         direction = "S";
-    }
-    if (degrees > 180 && degrees <= 225) {
-        direction = "SW";
-    }
-    if (degrees > 225 && degrees <= 270) {
-        direction = "W";
-    }
-    if (degrees > 270 && degrees <= 315) {
-        direction = "NW";
-    }
-    if (degrees > 316 && degrees <= 360) {
-        direction = "N";
-    }
-
-
-    return dir + direction + ext;
-};
 // convert F to C
 export const findCelsius = (fahrenheit) => {
     const celsius = ((fahrenheit - 32) * 5) / 9;
     return celsius;
+};
+
+
+export const pulseIcon = () => {
+    // makes the main icon pulse one time. Added at last minute
+    const pulseIcon = document.querySelector(".weather-icon");
+    pulseIcon.classList.add("pulse");
+    setTimeout(() => {
+        pulseIcon.classList.remove("pulse");
+    }, "3000");
 };
 
 // C to F
@@ -86,10 +61,6 @@ export const isNight = (unixTimeStamp, offset) => {
         const ssHourInt = parseInt(ssHour, 10);
         const ssMinuteInt = parseInt(ssMinute, 10);
 
-        //const now = currHour.toString() + currMinute.toString();
-        //const sunDown = ssHour + ssMinute;
-        //console.log(now, sunDown);
-        //console.log(ssHourInt, ssMinuteInt, currHour, currMinute);
         if (
             currHour > ssHourInt ||
             (currHour === ssHourInt && currMinute > ssMinuteInt) ||
@@ -172,13 +143,6 @@ export const setBackground = (main, description,  night) => {
             }
         }        
 
-        // the condition divs
-        //for (let i = 0; i < conditionBorders.length; i++) {
-        //    if (conditionBorders[i].nodeName.toLowerCase() == "div") {
-              //  conditionBorders[i].style = `border: 1px solid ${borderColor};`;
-                //dom.conditionBorders[i].style.color = color;
-        //    }
-        //}
         // the day cards .what-day
         for (let i = 0; i < daysBorders.length; i++) {
             if (daysBorders[i].nodeName.toLowerCase() == "div") {
@@ -334,4 +298,41 @@ export const getIcon = (night, icon, main, description) => {
 
     path = dir + icon + ext;
     return path;
+};
+
+export const getWindDirection = (degrees) => {
+    // given the degrees return the closest direction via a path to the corresonding image
+    const dir = "SVG/";
+    const ext = ".svg";
+    let direction;
+
+    if (degrees >= 0 && degrees <= 23) {
+        direction = "N";
+    }
+    if (degrees > 24 && degrees <= 45) {
+        direction = "NE";
+    }
+    if (degrees > 45 && degrees <= 90) {
+        direction = "E";
+    }
+    if (degrees > 90 && degrees <= 135) {
+        direction = "SE";
+    }
+    if (degrees > 135 && degrees <= 180) {
+        direction = "S";
+    }
+    if (degrees > 180 && degrees <= 225) {
+        direction = "SW";
+    }
+    if (degrees > 225 && degrees <= 270) {
+        direction = "W";
+    }
+    if (degrees > 270 && degrees <= 315) {
+        direction = "NW";
+    }
+    if (degrees > 316 && degrees <= 360) {
+        direction = "N";
+    }
+
+    return dir + direction + ext;
 };
