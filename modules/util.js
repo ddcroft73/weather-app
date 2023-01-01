@@ -1,8 +1,6 @@
 // module of JS utilitys
 
-// API will always be called for fahrenheit, and then converted... the temps will be kept in an object that
-// has both temps fpr each day we record.
-//
+
 
 // UI is hidden until te data is ready. On seconf thought and as i learn more, this app should be displayed
 // dynamically with JS into divs on the index page. Not changing it now. works fine.
@@ -11,10 +9,11 @@ export const showUI = () => {
     document.querySelector(".forecast-data-container").style.visibility = "visible";         
     document.querySelector(".spin").style.visibility = "hidden";          
 }
+
 // convert F to C
 export const findCelsius = (fahrenheit) => {
     const celsius = ((fahrenheit - 32) * 5) / 9;
-    return celsius;
+    return Math.round(celsius);
 };
 
 
@@ -29,7 +28,7 @@ export const pulseIcon = () => {
 
 // C to F
 export const findFahrenheit = (celsius) => {
-    return (9 * celsius + 160) / 5;
+    return Math.round((9 * celsius + 160) / 5);
 };
 
 export const getDateString = (unixTimeStamp) => {
@@ -335,4 +334,120 @@ export const getWindDirection = (degrees) => {
     }
 
     return dir + direction + ext;
+};
+
+
+// This was a last minute addition and as a result, I had to really force it in there. its a simple enough task
+// that I kept putting off and when i got around to it Id already named all the elemetns I need according to a different
+// scheme. They were already being styled and accessed by other members and it was just easier to bandaid the application
+// and work around the names as they were. Again a definite side effect of  not planning an app and keeping to it.
+export const generateArrayOfDOMTempElements = (hourlyData) => {
+    const buildArrayToReferenceTempElements = (array) => {
+        // using the names of the elements in the array, create anther arrray of items refering to the
+        // elements on the page
+        let temps = [];
+        for (let x = 0; x < array.length; x++) {
+            temps[x] = document.querySelector(array[x]);
+        }
+        return temps;
+    };
+
+    const buildArrayOfTempElements = () => {
+        const numDays = hourlyData.length - 1;
+        let dayCnt = 0;
+        // current condition temps:
+        let DOM_Targets = [
+            "#current-temp",
+            "#current-hi-temp",
+            "#current-hi-temp",
+            "#feels-like",
+        ];
+        // the temp elements in the 8 day forecast:
+        for (let i = 0; i < 8; i++) {
+            DOM_Targets.push("#day-temp-" + i);
+            DOM_Targets.push("#daily-hi" + i);
+            DOM_Targets.push("#daily-lo" + i);
+        }
+        // HIs and LOWs on mobile and desk
+        for (let i = 0; i < numDays; i++) {
+            DOM_Targets.push("#mobile-hi" + i);
+            DOM_Targets.push("#mobile-lo" + i);
+            DOM_Targets.push("#desk-hi-" + i);
+            DOM_Targets.push("#desk-lo-" + i);
+        }
+        // hours of the day for mobile and desktop
+        for (let day of hourlyData) {
+            for (let hour in day) {
+                if (dayCnt !== numDays) {
+                    // the last array is for the his and los of each day.
+                    DOM_Targets.push(`#day-${dayCnt}-hour-${hour}-temp-mobile`);
+                    DOM_Targets.push(`#day-${dayCnt}-hour-${hour}-temp-desk`);
+                }
+            }
+            dayCnt++;
+        }
+        
+        return DOM_Targets;
+    };
+
+    const arrayOfTempElements = buildArrayOfTempElements();
+    const arrayOfReferences = buildArrayToReferenceTempElements(arrayOfTempElements);    
+    return arrayOfReferences;
+};
+
+
+export const toggleTempScale = (scaleElement, arrayOfTempDOM_Elements) => {
+
+    const changeIcon = () => {
+        // initial temp scale
+        const currentScale = scaleElement.getAttribute("data-temp-scale");
+        const img = document.querySelector("#temp-img");
+        if (currentScale === "F") {
+            scaleElement.setAttribute("data-temp-scale", "C");
+            img.src = "SVG/cel.svg";
+        } else {
+            scaleElement.setAttribute("data-temp-scale", "F");
+            img.src = "SVG/fah.svg";
+        }        
+        return currentScale;
+    };
+
+    const convertTemp = () => {
+        const cleanTemp = (temp) => {
+            // 86 the degree symbol if there is one.
+            // if not do nothing.
+            if (isNaN(temp.slice(-1))) {
+                temp = temp.split('').slice(0,-1).join('');
+            } else {
+                temp = temp;
+            }
+            return temp;
+        };
+
+        // loop over every element in the array and convert it 
+        // change the temp to the opposite of currentScale
+        for (let el of arrayOfTempDOM_Elements) {            
+            const currTemp = cleanTemp(el.textContent);
+            
+            if (currentScale === "F") { 
+                // the main cur temp does not get the degree symbol               
+                if (el.id !== "current-temp") {
+                    el.innerHTML = findCelsius(currTemp) + "&#176";
+                } else {
+                    el.innerHTML = findCelsius(currTemp);
+                }
+            }
+            if (currentScale === "C") {
+                // the main cur temp does not get the degree symbol               
+                if (el.id !== "current-temp") {
+                    el.innerHTML = findFahrenheit(currTemp) + "&#176";
+                } else {
+                    el.innerHTML = findFahrenheit(currTemp);
+                }
+            }
+        }
+    };
+
+    const currentScale = changeIcon();
+    convertTemp();
 };

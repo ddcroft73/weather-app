@@ -63,12 +63,12 @@
                         <span class="today-date-time">Day, Date, Year</span>
                     </div>
                     <div class="temp">
-                        <span class="temp-"></span><div class="temp-type"><img src="SVG/fah.svg"></div>
+                        <span class="temp-" id="current-temp"></span><div class="temp-type" id="temp-type" data-temp-scale="F"><img src="SVG/fah.svg" id="temp-img"></div>
                     </div>
 
                     <div class="temp-high-low">
-                        <div class="hi">hi 60</div>
-                        <div class="lo">low 70</div>
+                        <div class="hi" id="current-hi-temp">hi 60</div>
+                        <div class="lo" id="current-lo-temp">low 70</div>
                     </div>
 
                     <div class="condition">
@@ -80,7 +80,7 @@
             <div class="level-mid" id="conditionsBorders">
                 <div class="current-stats">
                     <div class="icon"></div>
-                    <img src="SVG/thermo.svg" width="15" alt="Feels like"> &nbsp;<span id="feels-like"></span>
+                    <img src="SVG/thermo.svg" width="15" alt="Feels like"> &nbsp;<span id="feels-like" ></span>
                 
                 </div>
                 <div class="current-stats">  
@@ -126,9 +126,9 @@
                                         <img src="SVG/sun.svg"  id="day-icon-0">
                                     </div>
                                     <div class="day-temp">
-                                        <div class="day-temp" id="day-temp-0"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi0" class="hi">50</span>/<span id="lo0"
-                                                class="lo">50</span></div>
+                                        <div class="day-temp" id="day-temp-0"  class="T"></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi0" class="hi"  class="T">50</span>/<span id="daily-lo0"
+                                                class="lo"  class="T">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-0">
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-1"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi1" class="hi">50</span>/<span id="lo1" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi1" class="hi">50</span>/<span id="daily-lo1" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-1">
@@ -169,7 +169,7 @@
 
                                     <div class="day-temp">
                                     <div class="day-temp" id="day-temp-2"></div>    
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi2" class="hi">50</span>/<span id="lo2" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi2" class="hi">50</span>/<span id="daily-lo2" class="lo">50</span></div>
                                     </div>
                                     
                                 </div>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-3"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi3" class="hi">50</span>/<span id="lo3" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi3" class="hi">50</span>/<span id="daily-lo3" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-3">
@@ -209,7 +209,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-4"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi4" class="hi">50</span>/<span id="lo4" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi4" class="hi">50</span>/<span id="daily-lo4" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-4">
@@ -228,7 +228,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-5"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi5" class="hi">50</span>/<span id="lo5" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi5" class="hi">50</span>/<span id="daily-lo5" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-5">
@@ -247,7 +247,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-6"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi6" class="hi">50</span>/<span id="lo6" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi6" class="hi">50</span>/<span id="daily-lo6" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-6">
@@ -267,7 +267,7 @@
                                     </div>
                                     <div class="day-temp">
                                         <div class="day-temp" id="day-temp-7"></div>
-                                        <div class="day-temp-low" id="day-temp-low"><span id="hi7" class="hi">50</span>/<span id="lo7" class="lo">50</span></div>
+                                        <div class="day-temp-low" id="day-temp-low"><span id="daily-hi7" class="hi">50</span>/<span id="daily-lo7" class="lo">50</span></div>
                                     </div>
                                 </div>
                                 <div class="day-conditions" id="day-condition-7">

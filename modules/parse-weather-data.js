@@ -15,12 +15,12 @@ import {
 
 const weatherIcon = document.querySelector("#weather-icon");
 const today = document.querySelector(".today-date-time");
-const currentTemp = document.querySelector(".temp-");
+const currentTemp = document.querySelector("#current-temp");
 
 const DOMpressure = document.querySelector("#pressure");
 
-const hiTemp = document.querySelector(".hi");
-const loTemp = document.querySelector(".lo");
+const hiTemp = document.querySelector("#current-hi-temp");
+const loTemp = document.querySelector("#current-lo-temp");
 const condition = document.querySelector(".condition-text");
 const DOMhumidity = document.querySelector("#current-humidity");
 const dewPoint = document.querySelector("#dewpoint");
@@ -91,7 +91,7 @@ const displayWeatherForWeek = (weatherData) => {
         date.innerHTML = getDateString(weatherData.daily[index].dt);
 
         const temp = document.querySelector("#day-temp-" + index);
-        temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)} <span class="degrees">&#176;</span>`;
+        temp.innerHTML = `${Math.round(weatherData.daily[index].temp.day)}<span class="degrees">&#176;</span>`;
 
         const weatherIcon = document.querySelector("#day-icon-" + index);
         weatherIcon.src = getIcon(false,icon,main,description); //  "SVG/sun.svg";
@@ -99,10 +99,10 @@ const displayWeatherForWeek = (weatherData) => {
         const condition = document.querySelector("#day-condition-" + index);
         condition.innerHTML = capAllWords(weatherData.daily[index].weather[0].description);
 
-        const hiTemp = document.querySelector("#hi" + index);
+        const hiTemp = document.querySelector("#daily-hi" + index);
         hiTemp.innerHTML = Math.round(weatherData.daily[index].temp.max) + "&#176";
 
-        const loTemp = document.querySelector("#lo" + index);
+        const loTemp = document.querySelector("#daily-lo" + index);
         loTemp.innerHTML = Math.round(weatherData.daily[index].temp.min) + "&#176";
     }
 };

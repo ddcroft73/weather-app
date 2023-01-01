@@ -2,6 +2,7 @@ import { getDateString } from "./util.js";
 const mainContainerMobile = document.querySelector(".three-days-container-inner");
 const mainContainerDesk = document.querySelector(".forty-8-days-desktop");
 
+export let hourlyDataCopy = [];
 
 export const displayHourlyData = (weatherData) => {
     const MOBILE = 1;
@@ -21,7 +22,6 @@ export const displayHourlyData = (weatherData) => {
     
     const cleanUp = () => {
         try {
-            // dividers
             for (let i = 0; i < 2; i++) {
                 let divider = document.querySelector(".divider" + (i + 1));
                 divider.remove();
@@ -40,14 +40,15 @@ export const displayHourlyData = (weatherData) => {
     };
 
     // Start logic
-    let hourlyData = getHourlyData(weatherData);
+    const hourlyData = getHourlyData(weatherData);
+    hourlyDataCopy = [...hourlyData];
+
     const numDays = hourlyData.length - 1; // the last array is the daily his\los
     document.querySelector(".title").innerHTML = "Forty-Eight Hour Forecast";
     
     cleanUp();
     // Generate the UI
     for (let day = 0; day < numDays; day++) {
-        // the object witht he hiLo daily Data
         const [ hiLo ] = hourlyData[hourlyData.length - 1][day];
         //MOBILE
         displayHourlyForecastByDay_MobileUI(hourlyData[day], day, hiLo); //
@@ -79,7 +80,7 @@ const displayHourlyForecastByDay_DeskUI = (data, day, hiLo) => {
                     <img src="${`./SVG/${data[day].icon}.svg`}" width="65">
                 </div>
                 <div id="hi-lo-day-${day}" class="day-hi-lo-desk">
-                    <span class="hi">${`${hiLo.max}&#176`}</span>/<span class="lo">${`${hiLo.min}&#176`}</span>
+                    <span class="hi" id="desk-hi-${day}">${`${hiLo.max}&#176`}</span>/<span class="lo" id="desk-lo-${day}">${`${hiLo.min}&#176`}</span>
                 </div>
            </div>
            <div class="right">  
@@ -107,9 +108,7 @@ const displayHourlyForecastByDay_DeskUI = (data, day, hiLo) => {
             <div class="hour-cell-icon-desk">
                 <img id="day-${day}-hour-${hour}-icon" src="${`./SVG/${data[hour].icon}.svg`}" width="38" />
             </div>
-            <div id="day-${day}-hour-${hour}-temp" class="hour-cell-temp-desk">
-                ${Math.round(data[hour].temp) + "&#176;"}
-            </div>`;
+            <div id="day-${day}-hour-${hour}-temp-desk" class="hour-cell-temp-desk">${Math.round(data[hour].temp) + "&#176;"}</div>`;
     }
 };
 
@@ -137,6 +136,7 @@ const displayHourlyForecastByDay_MobileUI = (data, day, hiLo) => {
     // build the elements from top to bottom and populate with the weather Data        
     const fortyEightContainer = addElement("div", mainContainerMobile, {
         className: "forty-8-days",
+        idName: "forty-8-days-" + day,
     });
 
     // THe date
@@ -157,7 +157,7 @@ const displayHourlyForecastByDay_MobileUI = (data, day, hiLo) => {
     addElement("div", fortyEightContainer, {
         className: "day-hi-lo",
         idName: "day-hi-lo-" + day,
-        content: `<span class="hi">${hiLo.max}&#176</span> /</span><span class="lo">${hiLo.min}&#176</span>`,
+        content: `<span class="hi" id="mobile-hi${day}">${hiLo.max}&#176</span>/</span><span class="lo" id="mobile-lo${day}">${hiLo.min}&#176</span>`,
     });
 
     // add the forecast for each hour of the day.
@@ -178,14 +178,14 @@ const displayHourlyForecastByDay_MobileUI = (data, day, hiLo) => {
         });
         // Icon
         addElement("img", iconContainer, {
-            idName: "day-" + day + "-hour-" + hour + "-icon", // "day-" + day + "-hour-icon-" + hour
+            idName: "day-" + day + "-hour-" + hour + "-icon", // "day-" + day + "-hour-" + hour + "-icon"
             src: `./SVG/${data[hour].icon}.svg`,
-            width: "18",
+            width: "22",
         });
         // Temp
         addElement("div", hourContainer, {
             className: "hour-cell-temp",
-            idName: "hour-temp-" + hour,
+            idName: "day-" + day + "-hour-" + hour + "-temp-mobile", // "day-" + day + "-hour-" + hour + "-temp"   was: "hour-temp-" + hour
             content: Math.round(data[hour].temp) + "&#176;",
         });
 
