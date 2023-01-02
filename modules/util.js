@@ -426,8 +426,9 @@ export const toggleTempScale = (scaleElement, arrayOfTempDOM_Elements) => {
 
         // loop over every element in the array and convert it 
         // change the temp to the opposite of currentScale
-        for (let el of arrayOfTempDOM_Elements) {            
-            const currTemp = cleanTemp(el.textContent);
+        for (let el of arrayOfTempDOM_Elements) {  
+            const currTemp = cleanTemp(el.textContent);      
+            //console.log(currTemp);    
             
             if (currentScale === "F") { 
                 // the main cur temp does not get the degree symbol               

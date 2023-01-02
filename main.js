@@ -19,8 +19,9 @@ const tempScale = document.querySelector("#temp-type");
 tempScale.addEventListener("click", () => {
     // generate an array and reference all the elements that display temperatures.
     const DOMTempsElements = generateArrayOfDOMTempElements(hourlyDataCopy);  
-    toggleTempScale(tempScale, DOMTempsElements);
     
+    console.log(DOMTempsElements);
+    toggleTempScale(tempScale, DOMTempsElements);
 });
 
 const startApp = () => {    
